@@ -22,8 +22,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Calculer le signal et régénérer le site
+      - name: Calculer le signal BTC et régénérer le site
         run: python engine/update.py
+
+      - name: Calculer le signal ETH et régénérer le site
+        run: python engine/update_eth.py
 
       - name: Commit si changement
         run: |

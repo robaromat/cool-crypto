@@ -1,9 +1,10 @@
-# cool-crypto — signal Bitcoin mensuel (stratégie « G75 »)
+# cool-crypto — signaux crypto mensuels (stratégie « G75 »)
 
-> **Site en ligne : https://robaromat.github.io/cool-crypto/**
+> **Site en ligne : https://robaromat.github.io/cool-crypto/** (Bitcoin)
+> **· Ethereum : https://robaromat.github.io/cool-crypto/eth/**
 >
-> Indique chaque mois s'il faut **acheter, vendre ou conserver** du Bitcoin, et affiche
-> tout l'historique mensuel pour pouvoir auditer la méthode facilement.
+> Indique chaque mois s'il faut **acheter, vendre ou conserver** du Bitcoin et de l'Ethereum,
+> et affiche tout l'historique mensuel pour pouvoir auditer la méthode facilement.
 
 ⚠️ **Étude quantitative personnelle, pas un conseil en investissement.** Voir l'avertissement plus bas.
 
@@ -42,18 +43,49 @@ exposé à 75 % (au lieu de 50 % pour une version prudente, ou 100 % pour une ve
 
 ---
 
+## Ethereum — même logique, une différence clé
+
+Le signal ETH (https://robaromat.github.io/cool-crypto/eth/) applique **la même règle G75**, avec
+une power-law **propre à l'ETH** (pente **2,3**, lancement réseau 30/07/2015) et une adaptation
+démontrée par backtest :
+
+- **Valorisation instantanée** (et non « collante » comme sur BTC). La power-law d'ETH est plus
+  plate (pente 2,3, R²≈0,86) et moins fiable que celle du BTC (pente 5,8). Avec le mécanisme à
+  hystérésis du BTC, le portefeuille resterait bloqué en cash des années (ex : 2021→2025, en ratant
+  la reprise 2023-24). On sort donc **tant que** c'est cher (> 2,5× juste valeur) et on re-rentre
+  dès que la surévaluation se dissipe.
+
+### Résultats du backtest ETH (2017 → aujourd'hui, walk-forward)
+
+| | G75 ETH | HODL |
+|---|---|---|
+| Multiple | ~×266 | ~×280 |
+| Rendement / an | ~82 % | ~83 % |
+| Pire baisse | **~−64 %** | ~−90 % |
+
+> Sur l'ETH, G75 est avant tout un **réducteur de risque** : rendement quasi identique à HODL sur
+> l'ensemble (tout le petit écart vient de la mania de 2017), mais pire baisse fortement réduite.
+> **Depuis 2021** (marché ETH mature), elle bat HODL sur les deux tableaux. Comparaison des moteurs
+> testés : la power-law bat MVRV on-chain, force relative ETH/BTC et Metcalfe. À considérer comme un
+> outil pour rendre la détention **tenable**, pas comme un faiseur de surperformance.
+
+---
+
 ## Architecture
 
 ```
 engine/
-  update.py        # télécharge les prix, calcule le signal, régénère history.csv / data.json / index.html
-  build_site.py    # gabarit de la page HTML
+  update.py        # BTC : télécharge les prix, calcule le signal, régénère docs/
+  update_eth.py    # ETH : idem (power-law pente 2,3, valorisation instantanée) -> docs/eth/
+  build_site.py    # gabarit HTML commun (configs BTC / ETH + navigation)
 docs/              # publié par GitHub Pages
-  index.html       # tableau de bord (recommandation + courbe + historique)
-  history.csv      # historique mensuel, brut et auditable
-  data.json        # mêmes données, format structuré
+  index.html       # tableau de bord BTC (recommandation + courbe + historique)
+  history.csv / data.json
+  eth/
+    index.html     # tableau de bord ETH
+    history.csv / data.json
 .github/workflows/
-  monthly-update.yml  # exécute update.py le 1er de chaque mois et committe les changements
+  monthly-update.yml  # exécute update.py + update_eth.py le 1er de chaque mois et committe
 ```
 
 **Aucune dépendance** : uniquement la bibliothèque standard de Python (≥ 3.10).

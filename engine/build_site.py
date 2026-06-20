@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Genere docs/index.html a partir du payload produit par update.py (aucune dependance JS)."""
+"""Genere les pages HTML (BTC et ETH) a partir du payload produit par les moteurs
+update.py / update_eth.py. Aucune dependance JS.
+
+render(payload, asset) ou `asset` est une des configs ci-dessous (BTC par defaut)."""
 import math, datetime as dt
 
 ACTION_STYLE = {
@@ -8,6 +11,62 @@ ACTION_STYLE = {
     "CONSERVER": ("#2563eb", "#eff6ff", "🔵", "CONSERVER (ne rien faire)"),
     "INIT":      ("#64748b", "#f8fafc", "⚪", "POSITION INITIALE"),
 }
+
+# --- Configs par actif -------------------------------------------------------
+BTC = dict(
+    name="Bitcoin", sym="BTC", slope="5,8",
+    title="cool-crypto — signal BTC mensuel (G75)",
+    h1="cool-crypto — signal Bitcoin mensuel",
+    nav=[("₿ Bitcoin", "./", True), ("Ξ Ethereum", "eth/", False)],
+    repo="https://github.com/robaromat/cool-crypto",
+    intro=None,
+    # bullets "comment lire" specifiques (BTC : machine a etats + bandes)
+    rule_html=(
+        "<li><b>Valorisation</b> = prix vs « juste valeur » d'une power-law "
+        "(pente 5,8, recalibrée chaque 1ᵉʳ janvier). Si prix &gt; <b>2,5×</b> la juste valeur → "
+        "« chère ». Si &lt; <b>0,6×</b> → « bon marché ».</li>"
+        "<li><b>Tendance</b> = prix au-dessus de sa moyenne mobile 10 mois.</li>"
+        "<li><b>Règle G75</b> : valorisation chère → <b>0 %</b> (cash) · sinon tendance haussière → "
+        "<b>100 %</b> · sinon (baisse mais pas chère) → <b>75 %</b>.</li>"
+        "<li>L'<b>action</b> compare la cible du mois à celle du mois précédent : on n'achète/vend que l'écart.</li>"
+    ),
+)
+ETH = dict(
+    name="Ethereum", sym="ETH", slope="2,3",
+    title="cool-crypto — signal ETH mensuel (G75)",
+    h1="cool-crypto — signal Ethereum mensuel",
+    nav=[("₿ Bitcoin", "../", False), ("Ξ Ethereum", "./", True)],
+    repo="https://github.com/robaromat/cool-crypto",
+    intro=(
+        "<div class=\"disc\" style=\"background:#eff6ff;border-color:#bfdbfe;margin:14px 0 0\">"
+        "<b>ℹ️ À quoi sert ce signal sur l'ETH ?</b> Contrairement au Bitcoin (où la stratégie bat "
+        "« tout conserver » sur le rendement <i>et</i> le risque), sur Ethereum c'est avant tout un "
+        "<b>réducteur de risque</b> : rendement quasi identique à HODL sur l'ensemble, mais pire baisse "
+        "ramenée de <b>−90 % à −64 %</b>. Depuis 2021 (marché ETH mature) elle bat HODL sur les deux "
+        "tableaux. Son intérêt principal : rendre le trajet <b>tenable</b> sans vendre au pire moment."
+        "</div>"
+    ),
+    # bullets "comment lire" specifiques (ETH : valorisation INSTANTANEE)
+    rule_html=(
+        "<li><b>Valorisation</b> = prix vs « juste valeur » d'une power-law <b>propre à l'ETH</b> "
+        "(pente 2,3, recalibrée chaque 1ᵉʳ janvier). « chère » si prix &gt; <b>2,5×</b> la juste valeur.</li>"
+        "<li><b>Tendance</b> = prix au-dessus de sa moyenne mobile 10 mois.</li>"
+        "<li><b>Règle G75</b> : valorisation chère → <b>0 %</b> (cash) · sinon tendance haussière → "
+        "<b>100 %</b> · sinon (baisse mais pas chère) → <b>75 %</b>.</li>"
+        "<li><b>Différence clé avec le BTC</b> : la valorisation est <b>instantanée</b> (on sort "
+        "<i>tant que</i> c'est cher, on rentre dès que ça se dissipe). La power-law d'ETH étant plus "
+        "plate et moins fiable, le mécanisme « collant » du BTC resterait bloqué en cash des années.</li>"
+        "<li>L'<b>action</b> compare la cible du mois à celle du mois précédent : on n'achète/vend que l'écart.</li>"
+    ),
+)
+
+
+def _nav(asset):
+    items = ""
+    for label, href, active in asset["nav"]:
+        cls = "navlink active" if active else "navlink"
+        items += f'<a class="{cls}" href="{href}">{label}</a>'
+    return f'<div class="nav">{items}</div>'
 
 
 def _svg(history):
@@ -63,17 +122,17 @@ def _rows_html(history):
     return "\n".join(out).replace(",", " ")
 
 
-def _explain(c):
+def _explain(c, asset):
     """Explication dynamique de la position cible du mois, selon les 2 signaux."""
+    sym = asset["sym"]
     tg = c["target"]
     up = (c["trend"] == "HAUSSE")
-    cheap = (c["valuation"] == "bon marché")
     chk = lambda ok: ('<span style="color:#16a34a">✔</span>' if ok
                       else '<span style="color:#dc2626">✗</span>')
     signals = (
         '<div class="sig">'
         f'<div>{chk(not (c["valuation"]=="chère"))} <b>Valorisation</b> : '
-        f'{"BTC pas cher" if cheap else "BTC cher (> 2,5× la juste valeur)"} '
+        f'{sym + " pas cher" if c["valuation"]!="chère" else sym + " cher (> 2,5× la juste valeur)"} '
         f'<span class="muted">(ratio {c["ratio"]:.2f})</span></div>'
         f'<div>{chk(up)} <b>Tendance</b> : '
         f'{"haussière (prix > moyenne mobile 10 mois)" if up else "baissière (prix < moyenne mobile 10 mois)"}</div>'
@@ -82,15 +141,15 @@ def _explain(c):
     if tg == 0.0:
         title = "Pourquoi 0 % (tout en cash) ?"
         body = (
-            "<p>La valorisation est <b>chère</b> : le prix dépasse <b>2,5×</b> la juste valeur power-law. "
-            "Dans cette zone, le risque de correction est jugé trop élevé : on <b>sort entièrement</b> du BTC, "
+            f"<p>La valorisation est <b>chère</b> : le prix dépasse <b>2,5×</b> la juste valeur power-law. "
+            f"Dans cette zone, le risque de correction est jugé trop élevé : on <b>sort entièrement</b> du {sym}, "
             "<b>quelle que soit la tendance</b>.</p>"
             "<p class=muted>C'est ce garde-fou qui a permis d'éviter l'essentiel des krachs de 2018 et 2022.</p>"
         )
     elif tg == 1.0:
-        title = "Pourquoi 100 % BTC ?"
+        title = f"Pourquoi 100 % {sym} ?"
         body = (
-            "<p>Les <b>deux feux sont au vert</b> : le BTC n'est pas cher <b>et</b> la tendance est haussière. "
+            f"<p>Les <b>deux feux sont au vert</b> : le {sym} n'est pas cher <b>et</b> la tendance est haussière. "
             "Aucune raison de se protéger — on est <b>pleinement investi</b>.</p>"
         )
     else:  # 75 %
@@ -100,11 +159,11 @@ def _explain(c):
             "<ul>"
             "<li><b>Pas 100 %</b> : la <b>tendance est baissière</b> (le prix est repassé sous sa moyenne mobile "
             "10 mois). On réduit l'exposition par prudence, le temps que la tendance se retourne.</li>"
-            "<li><b>Pas 0 % (cash)</b> : le BTC est <b>bon marché</b> selon la power-law (loin du plafond de 2,5×). "
+            f"<li><b>Pas 0 % (cash)</b> : le {sym} n'est <b>pas dans la zone chère</b> (loin du plafond de 2,5×). "
             "Tout vendre alors qu'il n'est pas cher ferait rater un éventuel rebond — on <b>garde 75 %</b>.</li>"
             "</ul>"
             "<p class=muted>Le « 75 % » est le <b>curseur de la stratégie</b> : c'est le niveau d'exposition choisi "
-            "quand le BTC baisse sans être cher. Une version prudente mettrait 50 %, une version agressive 100 %. "
+            f"quand le {sym} baisse sans être cher. Une version prudente mettrait 50 %, une version agressive 100 %. "
             "75 % est l'entre-deux : on protège une partie du capital tout en restant exposé au rebond.</p>"
         )
     return (
@@ -115,24 +174,30 @@ def _explain(c):
     )
 
 
-def render(payload):
+def render(payload, asset=BTC):
     c = payload["current"]
     st = payload["stats"]
+    sym = asset["sym"]
     col, bg, emoji, label = ACTION_STYLE.get(c["action"], ACTION_STYLE["CONSERVER"])
     cur_date = dt.date.fromisoformat(c["date"])
     # prochaine revision = 1er du mois suivant la date courante
     nxt = (cur_date.replace(day=28) + dt.timedelta(days=7)).replace(day=1)
     target_pct = "%.0f%%" % (c["target"] * 100)
+    intro = asset.get("intro") or ""
     return f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>cool-crypto — signal BTC mensuel (G75)</title>
+<title>{asset["title"]}</title>
 <style>
  *{{box-sizing:border-box}}
  body{{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1e293b;line-height:1.5;
    max-width:960px;margin:0 auto;padding:22px 18px;background:#fafbfc}}
  h1{{font-size:23px;margin:0 0 2px}} .sub{{color:#64748b;font-size:13px;margin-bottom:18px}}
  h2{{font-size:17px;margin:30px 0 8px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}}
+ .nav{{display:flex;gap:8px;margin:0 0 16px}}
+ .navlink{{text-decoration:none;font-weight:600;font-size:14px;color:#475569;background:#fff;
+   border:1px solid #e2e8f0;border-radius:9px;padding:7px 14px}}
+ .navlink.active{{background:#1e293b;color:#fff;border-color:#1e293b}}
  .reco{{background:{bg};border:1px solid {col}33;border-left:5px solid {col};border-radius:12px;padding:20px 22px;margin:14px 0}}
  .reco .lab{{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.5px}}
  .reco .act{{font-size:30px;font-weight:800;color:{col};margin:2px 0 4px}}
@@ -161,24 +226,25 @@ def render(payload):
  a{{color:#2563eb}}
 </style></head><body>
 
-<h1>cool-crypto — signal Bitcoin mensuel</h1>
+{_nav(asset)}
+<h1>{asset["h1"]}</h1>
 <div class="sub">Stratégie « G75 » · un seul arbitrage par mois (le 1ᵉʳ à 06:00 UTC) · mis à jour le {payload["generated_utc"]}</div>
 
 <div class="reco">
   <div class="lab">Décision du {c['date']} {emoji}</div>
   <div class="act">{label}</div>
-  <div class="tgt">Position cible : <b>{target_pct} BTC</b> &nbsp;·&nbsp; le reste en cash (USDC). Prochaine révision : <b>{nxt.isoformat()}</b>.</div>
+  <div class="tgt">Position cible : <b>{target_pct} {sym}</b> &nbsp;·&nbsp; le reste en cash (USDC). Prochaine révision : <b>{nxt.isoformat()}</b>.</div>
 </div>
-
+{intro}
 <div class="facts">
-  <div class="fact"><div class="l">Prix BTC ({c['date']})</div><div class="v">{c['price']:,.0f} $</div></div>
+  <div class="fact"><div class="l">Prix {sym} ({c['date']})</div><div class="v">{c['price']:,.0f} $</div></div>
   <div class="fact"><div class="l">Juste valeur (power-law)</div><div class="v">{c['fair_value']:,.0f} $</div></div>
   <div class="fact"><div class="l">Ratio prix / juste valeur</div><div class="v">{c['ratio']:.2f}</div></div>
   <div class="fact"><div class="l">Tendance (MM 10 mois)</div><div class="v" style="color:{'#16a34a' if c['trend']=='HAUSSE' else '#dc2626'}">{c['trend']}</div></div>
   <div class="fact"><div class="l">Valorisation</div><div class="v">{c['valuation']}</div></div>
 </div>
 
-{_explain(c)}
+{_explain(c, asset)}
 
 <h2>Performance depuis 2015 (backtest auditable)</h2>
 <div class="kpi">
@@ -193,7 +259,7 @@ def render(payload):
 <h2>Historique mensuel complet ({st['months']+1} mois — le plus récent en haut)</h2>
 <div class="tablewrap"><table>
 <thead><tr><th>Date</th><th class=num>Prix $</th><th class=num>Juste valeur $</th><th class=num>Ratio</th>
-<th>Tendance</th><th>Valorisation</th><th class=num>Cible BTC</th><th>Action</th></tr></thead>
+<th>Tendance</th><th>Valorisation</th><th class=num>Cible {sym}</th><th>Action</th></tr></thead>
 <tbody>
 {_rows_html(payload["history"])}
 </tbody></table></div>
@@ -201,14 +267,11 @@ def render(payload):
 
 <h2>Comment lire le signal</h2>
 <ul class="note" style="font-size:13px;line-height:1.7">
-<li><b>Valorisation</b> = prix vs « juste valeur » d'une power-law (pente 5,8, recalibrée chaque 1ᵉʳ janvier). Si prix &gt; <b>2,5×</b> la juste valeur → « chère ». Si &lt; <b>0,6×</b> → « bon marché ».</li>
-<li><b>Tendance</b> = prix au-dessus de sa moyenne mobile 10 mois.</li>
-<li><b>Règle G75</b> : valorisation chère → <b>0 %</b> (cash) · sinon tendance haussière → <b>100 %</b> · sinon (baisse mais pas chère) → <b>75 %</b>.</li>
-<li>L'<b>action</b> compare la cible du mois à celle du mois précédent : on n'achète/vend que l'écart.</li>
+{asset["rule_html"]}
 </ul>
 
 <div class="disc">
-<b>⚠️ Avertissement.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement. Les performances passées (backtest sur données historiques) ne préjugent pas des performances futures. La « juste valeur » power-law est une extrapolation statistique, pas une loi : elle peut cesser d'être valide. Le Bitcoin est un actif très volatil ; n'investissez que ce que vous pouvez vous permettre de perdre. Faites vos propres recherches.
+<b>⚠️ Avertissement.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement. Les performances passées (backtest sur données historiques) ne préjugent pas des performances futures. La « juste valeur » power-law est une extrapolation statistique, pas une loi : elle peut cesser d'être valide. Le {asset["name"]} est un actif très volatil ; n'investissez que ce que vous pouvez vous permettre de perdre. Faites vos propres recherches.
 </div>
-<div class="note" style="margin-top:14px">Code &amp; méthodologie : <a href="https://github.com/robaromat/cool-crypto">github.com/robaromat/cool-crypto</a></div>
+<div class="note" style="margin-top:14px">Code &amp; méthodologie : <a href="{asset["repo"]}">{asset["repo"].replace("https://","")}</a></div>
 </body></html>'''

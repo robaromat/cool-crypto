@@ -8,6 +8,10 @@
    max-width:960px;margin:0 auto;padding:22px 18px;background:#fafbfc}
  h1{font-size:23px;margin:0 0 2px} .sub{color:#64748b;font-size:13px;margin-bottom:18px}
  h2{font-size:17px;margin:30px 0 8px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}
+ .nav{display:flex;gap:8px;margin:0 0 16px}
+ .navlink{text-decoration:none;font-weight:600;font-size:14px;color:#475569;background:#fff;
+   border:1px solid #e2e8f0;border-radius:9px;padding:7px 14px}
+ .navlink.active{background:#1e293b;color:#fff;border-color:#1e293b}
  .reco{background:#eff6ff;border:1px solid #2563eb33;border-left:5px solid #2563eb;border-radius:12px;padding:20px 22px;margin:14px 0}
  .reco .lab{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.5px}
  .reco .act{font-size:30px;font-weight:800;color:#2563eb;margin:2px 0 4px}
@@ -36,8 +40,9 @@
  a{color:#2563eb}
 </style></head><body>
 
+<div class="nav"><a class="navlink active" href="./">₿ Bitcoin</a><a class="navlink" href="eth/">Ξ Ethereum</a></div>
 <h1>cool-crypto — signal Bitcoin mensuel</h1>
-<div class="sub">Stratégie « G75 » · un seul arbitrage par mois (le 1ᵉʳ à 06:00 UTC) · mis à jour le 2026-06-20 19:04 UTC</div>
+<div class="sub">Stratégie « G75 » · un seul arbitrage par mois (le 1ᵉʳ à 06:00 UTC) · mis à jour le 2026-06-20 19:28 UTC</div>
 
 <div class="reco">
   <div class="lab">Décision du 2026-06-01 🔵</div>
@@ -53,7 +58,7 @@
   <div class="fact"><div class="l">Valorisation</div><div class="v">bon marché</div></div>
 </div>
 
-<div class="why"><div class="whytitle">Pourquoi 75 % et pas 100 % ?</div><div class="sig"><div><span style="color:#16a34a">✔</span> <b>Valorisation</b> : BTC pas cher <span class="muted">(ratio 0.48)</span></div><div><span style="color:#dc2626">✗</span> <b>Tendance</b> : baissière (prix < moyenne mobile 10 mois)</div></div><p>Les deux signaux se <b>contredisent</b>, on prend donc une position <b>intermédiaire</b> :</p><ul><li><b>Pas 100 %</b> : la <b>tendance est baissière</b> (le prix est repassé sous sa moyenne mobile 10 mois). On réduit l'exposition par prudence, le temps que la tendance se retourne.</li><li><b>Pas 0 % (cash)</b> : le BTC est <b>bon marché</b> selon la power-law (loin du plafond de 2,5×). Tout vendre alors qu'il n'est pas cher ferait rater un éventuel rebond — on <b>garde 75 %</b>.</li></ul><p class=muted>Le « 75 % » est le <b>curseur de la stratégie</b> : c'est le niveau d'exposition choisi quand le BTC baisse sans être cher. Une version prudente mettrait 50 %, une version agressive 100 %. 75 % est l'entre-deux : on protège une partie du capital tout en restant exposé au rebond.</p></div>
+<div class="why"><div class="whytitle">Pourquoi 75 % et pas 100 % ?</div><div class="sig"><div><span style="color:#16a34a">✔</span> <b>Valorisation</b> : BTC pas cher <span class="muted">(ratio 0.48)</span></div><div><span style="color:#dc2626">✗</span> <b>Tendance</b> : baissière (prix < moyenne mobile 10 mois)</div></div><p>Les deux signaux se <b>contredisent</b>, on prend donc une position <b>intermédiaire</b> :</p><ul><li><b>Pas 100 %</b> : la <b>tendance est baissière</b> (le prix est repassé sous sa moyenne mobile 10 mois). On réduit l'exposition par prudence, le temps que la tendance se retourne.</li><li><b>Pas 0 % (cash)</b> : le BTC n'est <b>pas dans la zone chère</b> (loin du plafond de 2,5×). Tout vendre alors qu'il n'est pas cher ferait rater un éventuel rebond — on <b>garde 75 %</b>.</li></ul><p class=muted>Le « 75 % » est le <b>curseur de la stratégie</b> : c'est le niveau d'exposition choisi quand le BTC baisse sans être cher. Une version prudente mettrait 50 %, une version agressive 100 %. 75 % est l'entre-deux : on protège une partie du capital tout en restant exposé au rebond.</p></div>
 
 <h2>Performance depuis 2015 (backtest auditable)</h2>
 <div class="kpi">
@@ -219,10 +224,7 @@
 
 <h2>Comment lire le signal</h2>
 <ul class="note" style="font-size:13px;line-height:1.7">
-<li><b>Valorisation</b> = prix vs « juste valeur » d'une power-law (pente 5,8, recalibrée chaque 1ᵉʳ janvier). Si prix &gt; <b>2,5×</b> la juste valeur → « chère ». Si &lt; <b>0,6×</b> → « bon marché ».</li>
-<li><b>Tendance</b> = prix au-dessus de sa moyenne mobile 10 mois.</li>
-<li><b>Règle G75</b> : valorisation chère → <b>0 %</b> (cash) · sinon tendance haussière → <b>100 %</b> · sinon (baisse mais pas chère) → <b>75 %</b>.</li>
-<li>L'<b>action</b> compare la cible du mois à celle du mois précédent : on n'achète/vend que l'écart.</li>
+<li><b>Valorisation</b> = prix vs « juste valeur » d'une power-law (pente 5,8, recalibrée chaque 1ᵉʳ janvier). Si prix &gt; <b>2,5×</b> la juste valeur → « chère ». Si &lt; <b>0,6×</b> → « bon marché ».</li><li><b>Tendance</b> = prix au-dessus de sa moyenne mobile 10 mois.</li><li><b>Règle G75</b> : valorisation chère → <b>0 %</b> (cash) · sinon tendance haussière → <b>100 %</b> · sinon (baisse mais pas chère) → <b>75 %</b>.</li><li>L'<b>action</b> compare la cible du mois à celle du mois précédent : on n'achète/vend que l'écart.</li>
 </ul>
 
 <div class="disc">
