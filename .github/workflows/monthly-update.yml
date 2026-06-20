@@ -1,0 +1,38 @@
+name: Mise à jour mensuelle du signal
+
+on:
+  schedule:
+    - cron: "0 6 1 * *"   # le 1er de chaque mois à 06:00 UTC
+  workflow_dispatch: {}    # bouton "Run" manuel
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monthly-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Calculer le signal et régénérer le site
+        run: python engine/update.py
+
+      - name: Commit si changement
+        run: |
+          git config user.name "cool-crypto bot"
+          git config user.email "actions@github.com"
+          git add docs/
+          if git diff --staged --quiet; then
+            echo "Aucun changement."
+          else
+            git commit -m "chore: mise à jour mensuelle du signal ($(date -u +%Y-%m-%d))"
+            git push
+          fi
