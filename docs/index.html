@@ -26,13 +26,18 @@
  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
  .tablewrap{max-height:460px;overflow:auto;border:1px solid #e7ebf0;border-radius:10px}
  .note{font-size:12px;color:#64748b}
+ .why{background:#fff;border:1px solid #e7ebf0;border-left:5px solid #f59e0b;border-radius:11px;padding:16px 20px;margin:14px 0}
+ .why .whytitle{font-size:17px;font-weight:800;margin-bottom:10px}
+ .why .sig{background:#f8fafc;border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:13.5px;line-height:1.9}
+ .why p{margin:8px 0} .why ul{margin:8px 0;padding-left:20px} .why li{margin:5px 0}
+ .why .muted,.muted{color:#64748b;font-size:12.5px}
  .disc{background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:12px 15px;font-size:12.5px;margin-top:18px}
  code{background:#f1f5f9;padding:1px 5px;border-radius:4px}
  a{color:#2563eb}
 </style></head><body>
 
 <h1>cool-crypto — signal Bitcoin mensuel</h1>
-<div class="sub">Stratégie « G75 » · un seul arbitrage par mois (le 1ᵉʳ à 06:00 UTC) · mis à jour le 2026-06-20 18:55 UTC</div>
+<div class="sub">Stratégie « G75 » · un seul arbitrage par mois (le 1ᵉʳ à 06:00 UTC) · mis à jour le 2026-06-20 19:04 UTC</div>
 
 <div class="reco">
   <div class="lab">Décision du 2026-06-01 🔵</div>
@@ -47,6 +52,8 @@
   <div class="fact"><div class="l">Tendance (MM 10 mois)</div><div class="v" style="color:#dc2626">BAISSE</div></div>
   <div class="fact"><div class="l">Valorisation</div><div class="v">bon marché</div></div>
 </div>
+
+<div class="why"><div class="whytitle">Pourquoi 75 % et pas 100 % ?</div><div class="sig"><div><span style="color:#16a34a">✔</span> <b>Valorisation</b> : BTC pas cher <span class="muted">(ratio 0.48)</span></div><div><span style="color:#dc2626">✗</span> <b>Tendance</b> : baissière (prix < moyenne mobile 10 mois)</div></div><p>Les deux signaux se <b>contredisent</b>, on prend donc une position <b>intermédiaire</b> :</p><ul><li><b>Pas 100 %</b> : la <b>tendance est baissière</b> (le prix est repassé sous sa moyenne mobile 10 mois). On réduit l'exposition par prudence, le temps que la tendance se retourne.</li><li><b>Pas 0 % (cash)</b> : le BTC est <b>bon marché</b> selon la power-law (loin du plafond de 2,5×). Tout vendre alors qu'il n'est pas cher ferait rater un éventuel rebond — on <b>garde 75 %</b>.</li></ul><p class=muted>Le « 75 % » est le <b>curseur de la stratégie</b> : c'est le niveau d'exposition choisi quand le BTC baisse sans être cher. Une version prudente mettrait 50 %, une version agressive 100 %. 75 % est l'entre-deux : on protège une partie du capital tout en restant exposé au rebond.</p></div>
 
 <h2>Performance depuis 2015 (backtest auditable)</h2>
 <div class="kpi">

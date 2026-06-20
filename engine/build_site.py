@@ -63,6 +63,58 @@ def _rows_html(history):
     return "\n".join(out).replace(",", " ")
 
 
+def _explain(c):
+    """Explication dynamique de la position cible du mois, selon les 2 signaux."""
+    tg = c["target"]
+    up = (c["trend"] == "HAUSSE")
+    cheap = (c["valuation"] == "bon marché")
+    chk = lambda ok: ('<span style="color:#16a34a">✔</span>' if ok
+                      else '<span style="color:#dc2626">✗</span>')
+    signals = (
+        '<div class="sig">'
+        f'<div>{chk(not (c["valuation"]=="chère"))} <b>Valorisation</b> : '
+        f'{"BTC pas cher" if cheap else "BTC cher (> 2,5× la juste valeur)"} '
+        f'<span class="muted">(ratio {c["ratio"]:.2f})</span></div>'
+        f'<div>{chk(up)} <b>Tendance</b> : '
+        f'{"haussière (prix > moyenne mobile 10 mois)" if up else "baissière (prix < moyenne mobile 10 mois)"}</div>'
+        '</div>'
+    )
+    if tg == 0.0:
+        title = "Pourquoi 0 % (tout en cash) ?"
+        body = (
+            "<p>La valorisation est <b>chère</b> : le prix dépasse <b>2,5×</b> la juste valeur power-law. "
+            "Dans cette zone, le risque de correction est jugé trop élevé : on <b>sort entièrement</b> du BTC, "
+            "<b>quelle que soit la tendance</b>.</p>"
+            "<p class=muted>C'est ce garde-fou qui a permis d'éviter l'essentiel des krachs de 2018 et 2022.</p>"
+        )
+    elif tg == 1.0:
+        title = "Pourquoi 100 % BTC ?"
+        body = (
+            "<p>Les <b>deux feux sont au vert</b> : le BTC n'est pas cher <b>et</b> la tendance est haussière. "
+            "Aucune raison de se protéger — on est <b>pleinement investi</b>.</p>"
+        )
+    else:  # 75 %
+        title = "Pourquoi 75 % et pas 100 % ?"
+        body = (
+            "<p>Les deux signaux se <b>contredisent</b>, on prend donc une position <b>intermédiaire</b> :</p>"
+            "<ul>"
+            "<li><b>Pas 100 %</b> : la <b>tendance est baissière</b> (le prix est repassé sous sa moyenne mobile "
+            "10 mois). On réduit l'exposition par prudence, le temps que la tendance se retourne.</li>"
+            "<li><b>Pas 0 % (cash)</b> : le BTC est <b>bon marché</b> selon la power-law (loin du plafond de 2,5×). "
+            "Tout vendre alors qu'il n'est pas cher ferait rater un éventuel rebond — on <b>garde 75 %</b>.</li>"
+            "</ul>"
+            "<p class=muted>Le « 75 % » est le <b>curseur de la stratégie</b> : c'est le niveau d'exposition choisi "
+            "quand le BTC baisse sans être cher. Une version prudente mettrait 50 %, une version agressive 100 %. "
+            "75 % est l'entre-deux : on protège une partie du capital tout en restant exposé au rebond.</p>"
+        )
+    return (
+        '<div class="why">'
+        f'<div class="whytitle">{title}</div>'
+        f'{signals}{body}'
+        '</div>'
+    )
+
+
 def render(payload):
     c = payload["current"]
     st = payload["stats"]
@@ -99,6 +151,11 @@ def render(payload):
  td.num,th.num{{text-align:right;font-variant-numeric:tabular-nums}}
  .tablewrap{{max-height:460px;overflow:auto;border:1px solid #e7ebf0;border-radius:10px}}
  .note{{font-size:12px;color:#64748b}}
+ .why{{background:#fff;border:1px solid #e7ebf0;border-left:5px solid #f59e0b;border-radius:11px;padding:16px 20px;margin:14px 0}}
+ .why .whytitle{{font-size:17px;font-weight:800;margin-bottom:10px}}
+ .why .sig{{background:#f8fafc;border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:13.5px;line-height:1.9}}
+ .why p{{margin:8px 0}} .why ul{{margin:8px 0;padding-left:20px}} .why li{{margin:5px 0}}
+ .why .muted,.muted{{color:#64748b;font-size:12.5px}}
  .disc{{background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:12px 15px;font-size:12.5px;margin-top:18px}}
  code{{background:#f1f5f9;padding:1px 5px;border-radius:4px}}
  a{{color:#2563eb}}
@@ -120,6 +177,8 @@ def render(payload):
   <div class="fact"><div class="l">Tendance (MM 10 mois)</div><div class="v" style="color:{'#16a34a' if c['trend']=='HAUSSE' else '#dc2626'}">{c['trend']}</div></div>
   <div class="fact"><div class="l">Valorisation</div><div class="v">{c['valuation']}</div></div>
 </div>
+
+{_explain(c)}
 
 <h2>Performance depuis 2015 (backtest auditable)</h2>
 <div class="kpi">
