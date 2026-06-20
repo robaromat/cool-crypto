@@ -202,6 +202,14 @@ def render(payload, asset=BTC):
  .reco .lab{{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.5px}}
  .reco .act{{font-size:30px;font-weight:800;color:{col};margin:2px 0 4px}}
  .reco .tgt{{font-size:15px}} .reco .tgt b{{font-size:20px;color:{col}}}
+ .calc{{background:#fff;border:1px solid #e7ebf0;border-radius:11px;padding:14px 18px;margin:14px 0}}
+ .calclab{{font-size:13px;font-weight:600;margin-bottom:8px}}
+ .calc input{{width:100%;font-size:16px;padding:9px 11px;border:1px solid #cbd5e1;border-radius:8px;font-variant-numeric:tabular-nums}}
+ .calcout{{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}}
+ .calcout .cline{{flex:1;min-width:150px;display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:8px;padding:9px 12px}}
+ .calcout .cline span{{font-size:12.5px;color:#64748b}}
+ .calcout .cline b{{font-size:18px;font-variant-numeric:tabular-nums}}
+ .calcout .buy b{{color:#16a34a}} .calcout .cash b{{color:#64748b}}
  .facts{{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}}
  .fact{{flex:1;min-width:120px;background:#fff;border:1px solid #e7ebf0;border-radius:9px;padding:11px 13px}}
  .fact .l{{font-size:11px;color:#64748b}} .fact .v{{font-size:18px;font-weight:700;margin-top:1px}}
@@ -235,6 +243,26 @@ def render(payload, asset=BTC):
   <div class="act">{label}</div>
   <div class="tgt">Position cible : <b>{target_pct} {sym}</b> &nbsp;·&nbsp; le reste en cash (USDC). Prochaine révision : <b>{nxt.isoformat()}</b>.</div>
 </div>
+
+<div class="calc">
+  <div class="calclab">🧮 Répartition pour votre portefeuille <span class="muted" style="font-weight:400">— calcul instantané, rien n'est enregistré</span></div>
+  <input id="tot" type="number" inputmode="decimal" min="0" step="any" placeholder="Montant total de votre poche crypto (ex. 10000)">
+  <div class="calcout" id="calcout"></div>
+</div>
+<script>
+(function(){{
+  var W={c['target']}, SYM="{sym}";
+  var inp=document.getElementById('tot'), out=document.getElementById('calcout');
+  function fmt(x){{return x.toLocaleString('fr-FR',{{maximumFractionDigits:0}});}}
+  function calc(){{
+    var v=parseFloat((inp.value||'').replace(',','.'));
+    if(!(v>0)){{out.innerHTML='';return;}}
+    out.innerHTML='<div class="cline buy"><span>'+Math.round(W*100)+'% en '+SYM+'</span><b>'+fmt(v*W)+'</b></div>'+
+                  '<div class="cline cash"><span>'+Math.round((1-W)*100)+'% en cash (USDC)</span><b>'+fmt(v*(1-W))+'</b></div>';
+  }}
+  inp.addEventListener('input',calc);
+}})();
+</script>
 {intro}
 <div class="facts">
   <div class="fact"><div class="l">Prix {sym} ({c['date']})</div><div class="v">{c['price']:,.0f} $</div></div>
