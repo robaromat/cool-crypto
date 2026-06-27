@@ -40,34 +40,110 @@ LEVERAGE = 2.0                  # ×2 quotidien
 UA = {"User-Agent": "cool-crypto/1.0 (+https://github.com/robaromat/cool-crypto)"}
 
 
+CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ndx_cache.csv")
+
+
 def _get(url, timeout=60):
     req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
 
 
+def _src_yahoo(host):
+    url = ("https://%s.finance.yahoo.com/v8/finance/chart/%%5ENDX"
+           "?period1=0&period2=9999999999&interval=1d" % host)
+    j = json.loads(_get(url, 60))
+    r = j["chart"]["result"][0]
+    ts = r["timestamp"]
+    close = r["indicators"]["quote"][0]["close"]
+    out = {}
+    for t, c in zip(ts, close):
+        if c:
+            out[dt.datetime.fromtimestamp(t, dt.timezone.utc).date()] = float(c)
+    return out
+
+
+def _src_fred():
+    """Federal Reserve (FRED) — serie NASDAQ100, tres fiable depuis un runner US."""
+    raw = _get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQ100", 60).decode("utf-8")
+    out = {}
+    for line in raw.splitlines()[1:]:
+        parts = line.split(",")
+        if len(parts) >= 2 and parts[1] not in ("", "."):
+            try:
+                out[dt.date.fromisoformat(parts[0][:10])] = float(parts[1])
+            except ValueError:
+                pass
+    return out
+
+
+def _src_stooq():
+    raw = _get("https://stooq.com/q/d/l/?s=^ndx&i=d", 40).decode("utf-8")
+    out = {}
+    for line in raw.splitlines()[1:]:
+        p = line.split(",")
+        if len(p) >= 5 and p[4] not in ("", "N/D"):
+            try:
+                out[dt.date.fromisoformat(p[0])] = float(p[4])  # Close
+            except ValueError:
+                pass
+    return out
+
+
+def _load_cache():
+    out = {}
+    if os.path.exists(CACHE):
+        with open(CACHE, encoding="utf-8") as f:
+            for line in f.read().splitlines()[1:]:
+                p = line.split(",")
+                if len(p) >= 2:
+                    try:
+                        out[dt.date.fromisoformat(p[0])] = float(p[1])
+                    except ValueError:
+                        pass
+    return out
+
+
+def _save_cache(daily):
+    with open(CACHE, "w", encoding="utf-8") as f:
+        f.write("date,close\n")
+        for d in sorted(daily):
+            f.write("%s,%.6f\n" % (d, daily[d]))
+
+
 def fetch_ndx_daily():
-    """Nasdaq-100 (^NDX) quotidien via Yahoo Finance (query1 puis query2 en secours)."""
-    last_err = None
-    for host in ("query1", "query2"):
+    """Nasdaq-100 quotidien : cache profond commite + rafraichissement live multi-source.
+
+    Le cache (engine/ndx_cache.csv) garantit l'historique profond meme si toutes les
+    sources live tombent. Les sources live (Yahoo q1/q2, puis FRED, puis Stooq) ne
+    servent qu'a etendre/rafraichir les points recents. Premiere source OK = utilisee."""
+    daily = _load_cache()
+    sources = [
+        ("Yahoo query1", lambda: _src_yahoo("query1")),
+        ("Yahoo query2", lambda: _src_yahoo("query2")),
+        ("FRED", _src_fred),
+        ("Stooq", _src_stooq),
+    ]
+    live = {}
+    for name, fn in sources:
         try:
-            url = ("https://%s.finance.yahoo.com/v8/finance/chart/%%5ENDX"
-                   "?period1=0&period2=9999999999&interval=1d" % host)
-            j = json.loads(_get(url, 60))
-            r = j["chart"]["result"][0]
-            ts = r["timestamp"]
-            close = r["indicators"]["quote"][0]["close"]
-            out = {}
-            for t, c in zip(ts, close):
-                if c:
-                    d = dt.datetime.fromtimestamp(t, dt.timezone.utc).date()
-                    out[d] = float(c)
-            if len(out) > 1000:
-                return out
+            got = fn()
+            if len(got) > 200:
+                live = got
+                print("Source live : %s (%d points, jusqu'a %s)" % (name, len(got), max(got)))
+                break
+            print("WARN %s : trop peu de points (%d)" % (name, len(got)), file=sys.stderr)
         except Exception as e:
-            last_err = e
-            print("WARN Yahoo %s: %s" % (host, e), file=sys.stderr)
-    raise RuntimeError("Nasdaq-100 introuvable (Yahoo KO): %s" % last_err)
+            print("WARN %s : %s" % (name, e), file=sys.stderr)
+    if not live and not daily:
+        raise RuntimeError("Aucune source live joignable et aucun cache disponible.")
+    if not live:
+        print("WARN : toutes les sources live KO — utilisation du cache seul (jusqu'a %s)"
+              % (max(daily) if daily else "?"), file=sys.stderr)
+    daily.update(live)          # le live prime / etend le cache
+    if live:
+        _save_cache(daily)      # le cache grandit (commite par le workflow)
+    return daily
 
 
 def build():

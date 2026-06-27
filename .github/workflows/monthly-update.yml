@@ -35,7 +35,7 @@ jobs:
         run: |
           git config user.name "cool-crypto bot"
           git config user.email "actions@github.com"
-          git add docs/
+          git add docs/ engine/ndx_cache.csv
           if git diff --staged --quiet; then
             echo "Aucun changement."
           else
