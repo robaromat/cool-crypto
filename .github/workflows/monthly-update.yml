@@ -28,6 +28,9 @@ jobs:
       - name: Calculer le signal ETH et régénérer le site
         run: python engine/update_eth.py
 
+      - name: Calculer le signal LQQ et régénérer le site
+        run: python engine/update_lqq.py
+
       - name: Commit si changement
         run: |
           git config user.name "cool-crypto bot"

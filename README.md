@@ -1,10 +1,10 @@
 # cool-crypto — signaux crypto mensuels (stratégie « G75 »)
 
 > **Site en ligne : https://robaromat.github.io/cool-crypto/** (Bitcoin)
-> **· Ethereum : https://robaromat.github.io/cool-crypto/eth/**
+> **· Ethereum : `/eth/` · LQQ (Nasdaq-100 ×2) : `/lqq/`**
 >
-> Indique chaque mois s'il faut **acheter, vendre ou conserver** du Bitcoin et de l'Ethereum,
-> et affiche tout l'historique mensuel pour pouvoir auditer la méthode facilement.
+> Indique chaque mois s'il faut **acheter, vendre ou conserver** du Bitcoin, de l'Ethereum et du
+> LQQ, et affiche tout l'historique mensuel pour pouvoir auditer la méthode facilement.
 
 ⚠️ **Étude quantitative personnelle, pas un conseil en investissement.** Voir l'avertissement plus bas.
 
@@ -71,21 +71,53 @@ démontrée par backtest :
 
 ---
 
+## LQQ — Nasdaq-100 ×2 (produit à effet de levier)
+
+Le signal LQQ (https://robaromat.github.io/cool-crypto/lqq/) applique le **même esprit**
+(une décision par mois) à l'**ETF Amundi LQQ**, un ×2 à réinitialisation quotidienne sur le
+Nasdaq-100. Sur un produit à levier, **ne pas timer = ruine** : le buy & hold a perdu **−98 %**
+au krach 2000-2002.
+
+**Méthode retenue : ensemble de momentum absolu multi-fenêtres** (la méthode momentum de
+« Floran », robustifiée). Pour chaque fenêtre w ∈ {6, 8, 10, 12} mois, le Nasdaq-100 a-t-il
+progressé sur les w derniers mois ? L'exposition cible au LQQ = **fraction des fenêtres
+positives** (0 / 25 / 50 / 75 / 100 %), le reste en cash.
+
+> Pourquoi un ensemble et pas une seule fenêtre ? Le backtest montre que le choix d'une fenêtre
+> unique est **fragile** (8 mois → ×209 mais ses voisins 4 et 11 mois → ×28 et ×108, drawdowns
+> −87 %/−74 %). Voter sur 4 horizons donne ~le même rendement sans dépendre d'un « nombre magique ».
+
+### Résultats du backtest LQQ (1999 → aujourd'hui, signal mensuel)
+
+| | Ensemble momentum | Buy & Hold LQQ ×2 |
+|---|---|---|
+| Multiple | ~×201 | ~×32 |
+| Rendement / an | ~21 % | ~14 % |
+| Pire baisse | **~−59 %** | ~−98 % |
+
+> LQQ **simulé** à partir du Nasdaq-100 (^NDX, ×2 quotidien, hors dividendes → conservateur) ;
+> simulation **validée** sur le vrai LQQ.PA depuis 2008 (drawdowns COVID/2022 reproduits à ~1 pt
+> près, corrélation mensuelle 0,94). Le vrai ETF capte en plus ~+1,2 %/an de dividendes ×2.
+> Approches comparées : momentum absolu (fenêtre unique et ensemble), SMA Faber, vol-targeting,
+> paliers de levier — l'ensemble de momentum offre le meilleur rendement à exposition ≤ 100 %.
+
+---
+
 ## Architecture
 
 ```
 engine/
   update.py        # BTC : télécharge les prix, calcule le signal, régénère docs/
   update_eth.py    # ETH : idem (power-law pente 2,3, valorisation instantanée) -> docs/eth/
-  build_site.py    # gabarit HTML commun (configs BTC / ETH + navigation)
+  update_lqq.py    # LQQ : ensemble momentum {6,8,10,12} sur Nasdaq-100 (Yahoo ^NDX) -> docs/lqq/
+  build_site.py    # gabarit HTML commun (render BTC/ETH + render_lqq + navigation)
 docs/              # publié par GitHub Pages
   index.html       # tableau de bord BTC (recommandation + courbe + historique)
   history.csv / data.json
-  eth/
-    index.html     # tableau de bord ETH
-    history.csv / data.json
+  eth/             # tableau de bord ETH (index.html, history.csv, data.json)
+  lqq/             # tableau de bord LQQ (index.html, history.csv, data.json)
 .github/workflows/
-  monthly-update.yml  # exécute update.py + update_eth.py le 1er de chaque mois et committe
+  monthly-update.yml  # exécute update.py + update_eth.py + update_lqq.py le 1er du mois et committe
 ```
 
 **Aucune dépendance** : uniquement la bibliothèque standard de Python (≥ 3.10).

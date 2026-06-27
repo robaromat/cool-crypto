@@ -17,7 +17,7 @@ BTC = dict(
     name="Bitcoin", sym="BTC", slope="5,8",
     title="cool-crypto — signal BTC mensuel (G75)",
     h1="cool-crypto — signal Bitcoin mensuel",
-    nav=[("₿ Bitcoin", "./", True), ("Ξ Ethereum", "eth/", False)],
+    nav=[("₿ Bitcoin", "./", True), ("Ξ Ethereum", "eth/", False), ("📈 LQQ", "lqq/", False)],
     repo="https://github.com/robaromat/cool-crypto",
     intro=None,
     # bullets "comment lire" specifiques (BTC : machine a etats + bandes)
@@ -35,7 +35,7 @@ ETH = dict(
     name="Ethereum", sym="ETH", slope="2,3",
     title="cool-crypto — signal ETH mensuel (G75)",
     h1="cool-crypto — signal Ethereum mensuel",
-    nav=[("₿ Bitcoin", "../", False), ("Ξ Ethereum", "./", True)],
+    nav=[("₿ Bitcoin", "../", False), ("Ξ Ethereum", "./", True), ("📈 LQQ", "../lqq/", False)],
     repo="https://github.com/robaromat/cool-crypto",
     intro=(
         "<div class=\"disc\" style=\"background:#eff6ff;border-color:#bfdbfe;margin:14px 0 0\">"
@@ -302,4 +302,174 @@ def render(payload, asset=BTC):
 <b>⚠️ Avertissement.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement. Les performances passées (backtest sur données historiques) ne préjugent pas des performances futures. La « juste valeur » power-law est une extrapolation statistique, pas une loi : elle peut cesser d'être valide. Le {asset["name"]} est un actif très volatil ; n'investissez que ce que vous pouvez vous permettre de perdre. Faites vos propres recherches.
 </div>
 <div class="note" style="margin-top:14px">Code &amp; méthodologie : <a href="{asset["repo"]}">{asset["repo"].replace("https://","")}</a></div>
+</body></html>'''
+
+
+# ----------------------------------------------------------------------------
+# Rendu dédié LQQ (structure différente : pas de power-law, exposition graduée
+# par vote de momentum multi-fenêtres)
+# ----------------------------------------------------------------------------
+LQQ_NAV = [("₿ Bitcoin", "../", False), ("Ξ Ethereum", "../eth/", False), ("📈 LQQ", "./", True)]
+
+
+def _lqq_rows_html(history):
+    out = []
+    mcol = lambda v: "#16a34a" if v == "HAUSSE" else "#dc2626"
+    for r in reversed(history):
+        col, _, _, _ = ACTION_STYLE.get(r["action"], ACTION_STYLE["CONSERVER"])
+        tg = r["target"]
+        tcol = "#16a34a" if tg >= 0.75 else ("#f59e0b" if tg >= 0.5 else ("#ea580c" if tg > 0 else "#dc2626"))
+        out.append(
+            "<tr>"
+            f"<td>{r['date']}</td>"
+            f"<td class=num>{r['ndx']:,.0f}</td>"
+            f"<td style='color:{mcol(r['mom6'])}'>{r['mom6']}</td>"
+            f"<td style='color:{mcol(r['mom8'])}'>{r['mom8']}</td>"
+            f"<td style='color:{mcol(r['mom10'])}'>{r['mom10']}</td>"
+            f"<td style='color:{mcol(r['mom12'])}'>{r['mom12']}</td>"
+            f"<td class=num>{r['votes']}/4</td>"
+            f"<td class=num style='color:{tcol};font-weight:700'>{tg*100:.0f}%</td>"
+            f"<td style='color:{col};font-weight:600'>{r['action']}</td>"
+            "</tr>"
+        )
+    return "\n".join(out).replace(",", " ")
+
+
+def render_lqq(payload):
+    c = payload["current"]
+    st = payload["stats"]
+    col, bg, emoji, label = ACTION_STYLE.get(c["action"], ACTION_STYLE["CONSERVER"])
+    cur_date = dt.date.fromisoformat(c["date"])
+    nxt = (cur_date.replace(day=28) + dt.timedelta(days=7)).replace(day=1)
+    target_pct = "%.0f%%" % (c["target"] * 100)
+    votes = c["votes"]
+    nav = '<div class="nav">' + "".join(
+        f'<a class="{"navlink active" if a else "navlink"}" href="{h}">{lb}</a>'
+        for lb, h, a in LQQ_NAV) + '</div>'
+    mom_chip = lambda lab, v: (
+        f'<span style="display:inline-block;margin:2px 4px 2px 0;padding:3px 9px;border-radius:7px;'
+        f'font-size:12px;font-weight:600;background:{"#f0fdf4" if v=="HAUSSE" else "#fef2f2"};'
+        f'color:{"#16a34a" if v=="HAUSSE" else "#dc2626"}">{lab} {"▲" if v=="HAUSSE" else "▼"}</span>')
+    chips = (mom_chip("6m", c["mom6"]) + mom_chip("8m", c["mom8"])
+             + mom_chip("10m", c["mom10"]) + mom_chip("12m", c["mom12"]))
+    return f'''<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cool-crypto — signal LQQ mensuel (Nasdaq-100 ×2)</title>
+<style>
+ *{{box-sizing:border-box}}
+ body{{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1e293b;line-height:1.5;
+   max-width:960px;margin:0 auto;padding:22px 18px;background:#fafbfc}}
+ h1{{font-size:23px;margin:0 0 2px}} .sub{{color:#64748b;font-size:13px;margin-bottom:18px}}
+ h2{{font-size:17px;margin:30px 0 8px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}}
+ .nav{{display:flex;gap:8px;margin:0 0 16px}}
+ .navlink{{text-decoration:none;font-weight:600;font-size:14px;color:#475569;background:#fff;
+   border:1px solid #e2e8f0;border-radius:9px;padding:7px 14px}}
+ .navlink.active{{background:#1e293b;color:#fff;border-color:#1e293b}}
+ .reco{{background:{bg};border:1px solid {col}33;border-left:5px solid {col};border-radius:12px;padding:20px 22px;margin:14px 0}}
+ .reco .lab{{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.5px}}
+ .reco .act{{font-size:30px;font-weight:800;color:{col};margin:2px 0 4px}}
+ .reco .tgt{{font-size:15px}} .reco .tgt b{{font-size:20px;color:{col}}}
+ .calc{{background:#fff;border:1px solid #e7ebf0;border-radius:11px;padding:14px 18px;margin:14px 0}}
+ .calclab{{font-size:13px;font-weight:600;margin-bottom:8px}}
+ .calc input{{width:100%;font-size:16px;padding:9px 11px;border:1px solid #cbd5e1;border-radius:8px;font-variant-numeric:tabular-nums}}
+ .calcout{{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}}
+ .calcout .cline{{flex:1;min-width:150px;display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:8px;padding:9px 12px}}
+ .calcout .cline span{{font-size:12.5px;color:#64748b}}
+ .calcout .cline b{{font-size:18px;font-variant-numeric:tabular-nums}}
+ .calcout .buy b{{color:#16a34a}} .calcout .cash b{{color:#64748b}}
+ .facts{{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}}
+ .fact{{flex:1;min-width:120px;background:#fff;border:1px solid #e7ebf0;border-radius:9px;padding:11px 13px}}
+ .fact .l{{font-size:11px;color:#64748b}} .fact .v{{font-size:18px;font-weight:700;margin-top:1px}}
+ .kpi{{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}}
+ .kpi .c{{flex:1;min-width:150px;background:#fff;border:1px solid #e7ebf0;border-radius:9px;padding:12px 14px}}
+ .kpi .l{{font-size:11px;color:#64748b}} .kpi .v{{font-size:20px;font-weight:700}}
+ .g{{color:#16a34a}} .r{{color:#dc2626}}
+ .chartwrap{{background:#fff;border:1px solid #e7ebf0;border-radius:10px;padding:12px;overflow-x:auto}}
+ table{{border-collapse:collapse;width:100%;font-size:12.5px;background:#fff}}
+ th,td{{border-bottom:1px solid #eef2f7;padding:6px 9px;text-align:left;white-space:nowrap}}
+ th{{position:sticky;top:0;background:#f1f5f9;font-weight:600;z-index:1}}
+ td.num,th.num{{text-align:right;font-variant-numeric:tabular-nums}}
+ .tablewrap{{max-height:460px;overflow:auto;border:1px solid #e7ebf0;border-radius:10px}}
+ .note{{font-size:12px;color:#64748b}}
+ .why{{background:#fff;border:1px solid #e7ebf0;border-left:5px solid #f59e0b;border-radius:11px;padding:16px 20px;margin:14px 0}}
+ .why .whytitle{{font-size:17px;font-weight:800;margin-bottom:10px}}
+ .why p{{margin:8px 0}}
+ .disc{{background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:12px 15px;font-size:12.5px;margin-top:18px}}
+ a{{color:#2563eb}}
+</style></head><body>
+
+{nav}
+<h1>cool-crypto — signal LQQ mensuel</h1>
+<div class="sub">LQQ = ETF Amundi <b>×2 quotidien sur le Nasdaq-100</b> · stratégie d'ensemble de momentum · un seul arbitrage par mois (le 1ᵉʳ) · mis à jour le {payload["generated_utc"]}</div>
+
+<div class="reco">
+  <div class="lab">Décision du {c['date']} {emoji}</div>
+  <div class="act">{label}</div>
+  <div class="tgt">Position cible : <b>{target_pct} LQQ</b> &nbsp;·&nbsp; le reste en cash (fonds monétaire). Prochaine révision : <b>{nxt.isoformat()}</b>.</div>
+</div>
+
+<div class="calc">
+  <div class="calclab">🧮 Répartition pour votre portefeuille <span class="note" style="font-weight:400">— calcul instantané, rien n'est enregistré</span></div>
+  <input id="tot" type="number" inputmode="decimal" min="0" step="any" placeholder="Montant total de votre poche LQQ (ex. 10000)">
+  <div class="calcout" id="calcout"></div>
+</div>
+<script>
+(function(){{
+  var W={c['target']};
+  var inp=document.getElementById('tot'), out=document.getElementById('calcout');
+  function fmt(x){{return x.toLocaleString('fr-FR',{{maximumFractionDigits:0}});}}
+  function calc(){{
+    var v=parseFloat((inp.value||'').replace(',','.'));
+    if(!(v>0)){{out.innerHTML='';return;}}
+    out.innerHTML='<div class="cline buy"><span>'+Math.round(W*100)+'% en LQQ</span><b>'+fmt(v*W)+'</b></div>'+
+                  '<div class="cline cash"><span>'+Math.round((1-W)*100)+'% en cash</span><b>'+fmt(v*(1-W))+'</b></div>';
+  }}
+  inp.addEventListener('input',calc);
+}})();
+</script>
+
+<div class="facts">
+  <div class="fact"><div class="l">Nasdaq-100 ({c['date']})</div><div class="v">{c['ndx']:,.0f}</div></div>
+  <div class="fact"><div class="l">Fenêtres en hausse</div><div class="v" style="color:{'#16a34a' if votes>=3 else ('#f59e0b' if votes>=2 else '#dc2626')}">{votes} / 4</div></div>
+  <div class="fact" style="flex:2;min-width:220px"><div class="l">Momentum par fenêtre</div><div class="v" style="font-size:13px;margin-top:4px">{chips}</div></div>
+</div>
+
+<div class="why">
+  <div class="whytitle">Pourquoi {target_pct} de LQQ ce mois-ci ?</div>
+  <p>L'exposition cible = la <b>part des 4 fenêtres de momentum qui sont haussières</b>. Ce mois-ci, <b>{votes} fenêtre(s) sur 4</b> indiquent que le Nasdaq-100 a progressé sur leur horizon → exposition <b>{target_pct}</b>, le reste en cash.</p>
+  <p class="note">En votant sur plusieurs horizons (6, 8, 10 et 12 mois) plutôt qu'un seul, on évite de dépendre d'un « nombre magique » fragile : l'exposition se réduit progressivement quand la tendance se dégrade, et c'est ce garde-fou qui a évité la ruine du buy &amp; hold (−98 %) au krach de 2000-2002.</p>
+</div>
+
+<h2>Performance depuis 1999 (backtest auditable)</h2>
+<div class="kpi">
+  <div class="c"><div class="l">Rendement / an — Stratégie</div><div class="v g">{st['strat_cagr']*100:.1f} %</div></div>
+  <div class="c"><div class="l">Rendement / an — Buy &amp; Hold LQQ</div><div class="v">{st['hodl_cagr']*100:.1f} %</div></div>
+  <div class="c"><div class="l">Pire baisse — Stratégie</div><div class="v g">{st['strat_mdd']*100:.0f} %</div></div>
+  <div class="c"><div class="l">Pire baisse — Buy &amp; Hold LQQ</div><div class="v r">{st['hodl_mdd']*100:.0f} %</div></div>
+</div>
+<div class="chartwrap">{_svg(payload["history"])}</div>
+<div class="note">Capital indexé, échelle logarithmique. Stratégie en vert, buy &amp; hold LQQ en gris. LQQ <b>simulé</b> à partir du Nasdaq-100 (×2 quotidien, hors dividendes — donc conservateur) ; simulation validée sur le vrai LQQ depuis 2008.</div>
+
+<h2>Historique mensuel complet ({st['months']+1} mois — le plus récent en haut)</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Date</th><th class=num>Nasdaq-100</th><th>Mom. 6m</th><th>Mom. 8m</th><th>Mom. 10m</th><th>Mom. 12m</th>
+<th class=num>Votes</th><th class=num>Cible LQQ</th><th>Action</th></tr></thead>
+<tbody>
+{_lqq_rows_html(payload["history"])}
+</tbody></table></div>
+<div class="note">Données brutes : <a href="history.csv">history.csv</a> · <a href="data.json">data.json</a></div>
+
+<h2>Comment lire le signal</h2>
+<ul class="note" style="font-size:13px;line-height:1.7">
+<li><b>Momentum absolu</b> : pour chaque fenêtre w ∈ {{6, 8, 10, 12}} mois, on regarde si le Nasdaq-100 a <b>progressé</b> sur les w derniers mois (rendement glissant &gt; 0).</li>
+<li><b>Exposition cible</b> = fraction des fenêtres haussières → <b>0 / 25 / 50 / 75 / 100 %</b> de LQQ, le reste en cash.</li>
+<li><b>Pourquoi un ensemble ?</b> Une fenêtre unique (ex. 8 mois) est <b>fragile</b> : ses voisines (4 ou 11 mois) s'effondrent dans le backtest. Voter sur 4 horizons rend le signal robuste.</li>
+<li><b>Pourquoi sur un ×2 ?</b> Un ETF à levier ×2 quotidien subit une forte décote en marché agité et un <b>drawdown catastrophique</b> en bear (le buy &amp; hold a fait <b>−98 %</b> en 2000-02). Le signal coupe l'exposition à temps.</li>
+</ul>
+
+<div class="disc">
+<b>⚠️ Avertissement — produit à effet de levier.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement. Le LQQ est un ETF <b>×2 à réinitialisation quotidienne</b> : très volatil, sujet à la décote de volatilité, et inadapté à la détention passive longue (le buy &amp; hold a perdu ~98 % au krach 2000-02). Les performances passées (backtest, dont une partie <b>simulée</b> avant 2008) ne préjugent pas du futur ; un signal mensuel ne protège pas des chutes intra-mois. N'investissez que ce que vous pouvez vous permettre de perdre, et faites vos propres recherches.
+</div>
+<div class="note" style="margin-top:14px">Code &amp; méthodologie : <a href="https://github.com/robaromat/cool-crypto">github.com/robaromat/cool-crypto</a></div>
 </body></html>'''
