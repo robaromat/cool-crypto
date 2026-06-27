@@ -12,6 +12,60 @@ ACTION_STYLE = {
     "INIT":      ("#64748b", "#f8fafc", "⚪", "POSITION INITIALE"),
 }
 
+# Empêche l'indexation par les moteurs de recherche (site non découvrable).
+NOINDEX = '<meta name="robots" content="noindex, nofollow, noarchive">'
+
+# Porte de consentement bloquante (avertissement « pas un conseil en investissement »).
+# Chaîne littérale normale (PAS une f-string) -> accolades CSS/JS non échappées.
+CONSENT_OVERLAY = """
+<div id="cc-consent" role="dialog" aria-modal="true">
+  <div class="cc-card">
+    <div class="cc-title">⚠️ Avertissement — à lire avant d'entrer</div>
+    <p>Ce site est une <b>étude quantitative personnelle</b>, à but informatif et pédagogique.
+    Ce <b>n'est pas un conseil en investissement</b>, ni une recommandation, ni une sollicitation
+    d'achat ou de vente d'un quelconque actif.</p>
+    <ul>
+      <li>Les signaux proviennent de <b>backtests</b> sur données historiques (parfois simulées).
+      <b>Les performances passées ne préjugent en rien des performances futures.</b></li>
+      <li>Le Bitcoin, l'Ethereum et le LQQ (ETF à effet de levier ×2) sont des actifs
+      <b>très volatils</b> : vous pouvez perdre tout ou partie de votre capital.</li>
+      <li>Vous restez <b>seul responsable</b> de vos décisions. Faites vos propres recherches et,
+      au besoin, consultez un conseiller financier agréé.</li>
+    </ul>
+    <label class="cc-check"><input type="checkbox" id="cc-cb">
+      J'ai lu et compris : ce site ne constitue pas un conseil en investissement, et j'investis
+      sous ma seule responsabilité.</label>
+    <button id="cc-btn" type="button" disabled>Entrer sur le site</button>
+  </div>
+</div>
+<style>
+ #cc-consent{position:fixed;inset:0;z-index:99999;background:#0f172a;
+   display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}
+ #cc-consent .cc-card{background:#fff;max-width:560px;width:100%;border-radius:14px;
+   padding:24px 26px;box-shadow:0 20px 60px rgba(0,0,0,.4);font-size:14px;line-height:1.55;color:#1e293b}
+ #cc-consent .cc-title{font-size:19px;font-weight:800;margin-bottom:12px}
+ #cc-consent ul{margin:10px 0;padding-left:20px} #cc-consent li{margin:7px 0}
+ #cc-consent .cc-check{display:flex;gap:9px;align-items:flex-start;background:#f8fafc;
+   border-radius:9px;padding:11px 13px;margin:14px 0;font-size:13px;cursor:pointer}
+ #cc-consent .cc-check input{margin-top:2px;flex:0 0 auto;width:17px;height:17px}
+ #cc-consent button{width:100%;padding:12px;font-size:15px;font-weight:700;color:#fff;
+   background:#16a34a;border:0;border-radius:9px;cursor:pointer}
+ #cc-consent button:disabled{background:#cbd5e1;cursor:not-allowed}
+</style>
+<script>
+(function(){
+  var ov=document.getElementById('cc-consent');
+  try{ if(localStorage.getItem('cc-accepted')==='1'){ ov.style.display='none'; } }catch(e){}
+  var cb=document.getElementById('cc-cb'), btn=document.getElementById('cc-btn');
+  cb.addEventListener('change',function(){ btn.disabled=!cb.checked; });
+  btn.addEventListener('click',function(){
+    try{ localStorage.setItem('cc-accepted','1'); }catch(e){}
+    ov.style.display='none';
+  });
+})();
+</script>
+"""
+
 # --- Configs par actif -------------------------------------------------------
 BTC = dict(
     name="Bitcoin", sym="BTC", slope="5,8",
@@ -187,6 +241,7 @@ def render(payload, asset=BTC):
     return f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{NOINDEX}
 <title>{asset["title"]}</title>
 <style>
  *{{box-sizing:border-box}}
@@ -233,7 +288,7 @@ def render(payload, asset=BTC):
  code{{background:#f1f5f9;padding:1px 5px;border-radius:4px}}
  a{{color:#2563eb}}
 </style></head><body>
-
+{CONSENT_OVERLAY}
 {_nav(asset)}
 <h1>{asset["h1"]}</h1>
 <div class="sub">Stratégie « G75 » · un seul arbitrage par mois (le 1ᵉʳ à 06:00 UTC) · mis à jour le {payload["generated_utc"]}</div>
@@ -355,6 +410,7 @@ def render_lqq(payload):
     return f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{NOINDEX}
 <title>cool-crypto — signal LQQ mensuel (Nasdaq-100 ×2)</title>
 <style>
  *{{box-sizing:border-box}}
@@ -398,7 +454,7 @@ def render_lqq(payload):
  .disc{{background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:12px 15px;font-size:12.5px;margin-top:18px}}
  a{{color:#2563eb}}
 </style></head><body>
-
+{CONSENT_OVERLAY}
 {nav}
 <h1>cool-crypto — signal LQQ mensuel</h1>
 <div class="sub">LQQ = ETF Amundi <b>×2 quotidien sur le Nasdaq-100</b> · stratégie d'ensemble de momentum · un seul arbitrage par mois (le 1ᵉʳ) · mis à jour le {payload["generated_utc"]}</div>
