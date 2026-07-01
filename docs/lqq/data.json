@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-06-27 14:26 UTC",
+ "generated_utc": "2026-07-01 13:57 UTC",
  "params": {
   "windows": [
    6,
@@ -10,17 +10,17 @@
   "leverage": 2.0
  },
  "stats": {
-  "months": 329,
-  "strat_mult": 196.672,
-  "hodl_mult": 31.7016,
-  "strat_cagr": 0.21244582301832549,
-  "hodl_cagr": 0.1343594187477033,
+  "months": 330,
+  "strat_mult": 208.0933,
+  "hodl_mult": 33.5426,
+  "strat_cagr": 0.21422814259813894,
+  "hodl_cagr": 0.13625614377232842,
   "strat_mdd": -0.5885127865596292,
   "hodl_mdd": -0.9823305470495738
  },
  "current": {
-  "date": "2026-06-26",
-  "ndx": 29118.24,
+  "date": "2026-07-01",
+  "ndx": 29964.82,
   "mom6": "HAUSSE",
   "mom8": "HAUSSE",
   "mom10": "HAUSSE",
@@ -28,8 +28,8 @@
   "votes": 4,
   "target": 1.0,
   "action": "CONSERVER",
-  "strat": 196.672,
-  "hodl": 31.7016
+  "strat": 208.0933,
+  "hodl": 33.5426
  },
  "history": [
   {
@@ -4310,8 +4310,8 @@
    "hodl": 34.6696
   },
   {
-   "date": "2026-06-26",
-   "ndx": 29118.24,
+   "date": "2026-06-30",
+   "ndx": 30276.35,
    "mom6": "HAUSSE",
    "mom8": "HAUSSE",
    "mom10": "HAUSSE",
@@ -4319,8 +4319,21 @@
    "votes": 4,
    "target": 1.0,
    "action": "CONSERVER",
-   "strat": 196.672,
-   "hodl": 31.7016
+   "strat": 212.4657,
+   "hodl": 34.2474
+  },
+  {
+   "date": "2026-07-01",
+   "ndx": 29964.82,
+   "mom6": "HAUSSE",
+   "mom8": "HAUSSE",
+   "mom10": "HAUSSE",
+   "mom12": "HAUSSE",
+   "votes": 4,
+   "target": 1.0,
+   "action": "CONSERVER",
+   "strat": 208.0933,
+   "hodl": 33.5426
   }
  ]
 }

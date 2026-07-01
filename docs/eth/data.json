@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-06-27 14:26 UTC",
+ "generated_utc": "2026-07-01 13:57 UTC",
  "params": {
   "slope": 2.3,
   "band_low": 0.6,
@@ -8,26 +8,26 @@
   "buffer": 0.75
  },
  "stats": {
-  "months": 113,
-  "strat_mult": 241.2355,
-  "hodl_mult": 245.0509,
-  "strat_cagr": 0.7906166039432416,
-  "hodl_cagr": 0.7936030466128694,
+  "months": 114,
+  "strat_mult": 204.2059,
+  "hodl_mult": 194.8971,
+  "strat_cagr": 0.7505119615087374,
+  "hodl_cagr": 0.7419358005779255,
   "strat_mdd": -0.6409099274046688,
   "hodl_mdd": -0.8953707819729141
  },
  "current": {
-  "date": "2026-06-01",
-  "price": 2003.99,
-  "fair_value": 4302.1,
-  "ratio": 0.466,
-  "sma10": 2896.26,
+  "date": "2026-07-01",
+  "price": 1593.84,
+  "fair_value": 4377.44,
+  "ratio": 0.364,
+  "sma10": 2625.59,
   "trend": "BAISSE",
   "valuation": "bon marché",
   "target": 0.75,
   "action": "CONSERVER",
-  "strat": 241.2355,
-  "hodl": 245.0509
+  "strat": 204.2059,
+  "hodl": 194.8971
  },
  "history": [
   {
@@ -1509,8 +1509,21 @@
    "valuation": "bon marché",
    "target": 0.75,
    "action": "CONSERVER",
-   "strat": 241.2355,
-   "hodl": 245.0509
+   "strat": 204.2059,
+   "hodl": 194.8971
+  },
+  {
+   "date": "2026-07-01",
+   "price": 1593.84,
+   "fair_value": 4377.44,
+   "ratio": 0.364,
+   "sma10": 2625.59,
+   "trend": "BAISSE",
+   "valuation": "bon marché",
+   "target": 0.75,
+   "action": "CONSERVER",
+   "strat": 204.2059,
+   "hodl": 194.8971
   }
  ]
 }
