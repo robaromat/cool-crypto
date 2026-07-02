@@ -32,6 +32,8 @@ from collections import OrderedDict
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from stats_common import extra_stats, COST_ONEWAY
 DOCS = os.path.join(ROOT, "docs", "lqq")
 WINDOWS = [6, 8, 10, 12]        # fenêtres de momentum (mois) — vote d'ensemble
 START = dt.date(1999, 1, 1)     # début de l'historique publié (rodage momentum dès 1986)
@@ -188,6 +190,7 @@ def build():
 
     rows = []
     strat, hodl = 1.0, 1.0
+    strat_net = 1.0            # courbe nette de couts (25 bps par aller, cf. stats_common)
     prev_w = None
     for i in range(n):
         d = mend[i]
@@ -197,7 +200,9 @@ def build():
             continue
         # rendement du LQQ pendant le mois i
         r_lqq = lclose[i] / lclose[i - 1] - 1
+        dw = abs(w - prev_w) if prev_w is not None else 0.0
         strat *= (1 + w * r_lqq)
+        strat_net *= (1 + w * r_lqq) * (1 - COST_ONEWAY * dw)
         hodl *= (1 + r_lqq)
         # action vs mois précédent
         if prev_w is None:
@@ -218,6 +223,7 @@ def build():
             votes=sum(1 for v in [mom_positive(i - 1, w) for w in WINDOWS] if v),
             target=round(w, 2), action=action,
             strat=round(strat, 4), hodl=round(hodl, 4),
+            strat_net=round(strat_net, 4),
         ))
     return rows
 
@@ -232,12 +238,14 @@ def equity_stats(rows):
         for v in c:
             pk = max(pk, v); m = min(m, v / pk - 1)
         return m
-    return dict(
+    out = dict(
         months=nn,
         strat_mult=sc[-1], hodl_mult=hc[-1],
         strat_cagr=cagr(sc[-1]), hodl_cagr=cagr(hc[-1]),
         strat_mdd=mdd(sc), hodl_mdd=mdd(hc),
     )
+    out.update(extra_stats(rows, nn))
+    return out
 
 
 if __name__ == "__main__":
@@ -248,10 +256,12 @@ if __name__ == "__main__":
     with open(os.path.join(DOCS, "history.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["date", "nasdaq100", "mom_6m", "mom_8m", "mom_10m", "mom_12m",
-                    "fenetres_positives", "cible_lqq", "action", "mult_strategie", "mult_hodl_lqq"])
+                    "fenetres_positives", "cible_lqq", "action", "mult_strategie", "mult_hodl_lqq",
+                    "mult_strategie_nette"])
         for r in rows:
             w.writerow([r["date"], r["ndx"], r["mom6"], r["mom8"], r["mom10"], r["mom12"],
-                        r["votes"], r["target"], r["action"], r["strat"], r["hodl"]])
+                        r["votes"], r["target"], r["action"], r["strat"], r["hodl"],
+                        r["strat_net"]])
 
     payload = dict(
         generated_utc=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
