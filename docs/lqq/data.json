@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-07-01 13:57 UTC",
+ "generated_utc": "2026-07-02 15:34 UTC",
  "params": {
   "windows": [
    6,
@@ -11,16 +11,28 @@
  },
  "stats": {
   "months": 330,
-  "strat_mult": 208.0933,
-  "hodl_mult": 33.5426,
-  "strat_cagr": 0.21422814259813894,
-  "hodl_cagr": 0.13625614377232842,
+  "strat_mult": 201.8006,
+  "hodl_mult": 32.5283,
+  "strat_cagr": 0.21287309407492283,
+  "hodl_cagr": 0.13498813741341809,
   "strat_mdd": -0.5885127865596292,
-  "hodl_mdd": -0.9823305470495738
+  "hodl_mdd": -0.9823305470495738,
+  "cost_bps": 25,
+  "strat_mult_net": 187.4461,
+  "strat_cagr_net": 0.20962304244986085,
+  "strat_mdd_net": -0.5910783745758503,
+  "calmar": 0.36171362617174696,
+  "turnover": 29.5,
+  "turnover_per_year": 1.0727272727272728,
+  "n_trades": 85,
+  "avg_exposure": 0.7620845921450151,
+  "boot_mdd_median": -0.5482145866972976,
+  "boot_mdd_p5": -0.746926890201812,
+  "boot_mdd_p1": -0.8321873637988669
  },
  "current": {
-  "date": "2026-07-01",
-  "ndx": 29964.82,
+  "date": "2026-07-02",
+  "ndx": 29511.8,
   "mom6": "HAUSSE",
   "mom8": "HAUSSE",
   "mom10": "HAUSSE",
@@ -28,8 +40,9 @@
   "votes": 4,
   "target": 1.0,
   "action": "CONSERVER",
-  "strat": 208.0933,
-  "hodl": 33.5426
+  "strat": 201.8006,
+  "hodl": 32.5283,
+  "strat_net": 187.4461
  },
  "history": [
   {
@@ -43,7 +56,8 @@
    "target": 1.0,
    "action": "INIT",
    "strat": 1.3293,
-   "hodl": 1.3293
+   "hodl": 1.3293,
+   "strat_net": 1.3293
   },
   {
    "date": "1999-02-26",
@@ -56,7 +70,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 1.073,
-   "hodl": 1.073
+   "hodl": 1.073,
+   "strat_net": 1.073
   },
   {
    "date": "1999-03-31",
@@ -69,7 +84,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 1.273,
-   "hodl": 1.273
+   "hodl": 1.273,
+   "strat_net": 1.273
   },
   {
    "date": "1999-04-30",
@@ -82,7 +98,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 1.2919,
-   "hodl": 1.2919
+   "hodl": 1.2919,
+   "strat_net": 1.2919
   },
   {
    "date": "1999-05-28",
@@ -95,7 +112,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 1.2254,
-   "hodl": 1.2254
+   "hodl": 1.2254,
+   "strat_net": 1.2254
   },
   {
    "date": "1999-06-30",
@@ -108,7 +126,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 1.4621,
-   "hodl": 1.4621
+   "hodl": 1.4621,
+   "strat_net": 1.4621
   },
   {
    "date": "1999-07-30",
@@ -121,7 +140,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 1.4184,
-   "hodl": 1.4184
+   "hodl": 1.4184,
+   "strat_net": 1.4184
   },
   {
    "date": "1999-08-31",
@@ -134,7 +154,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 1.5694,
-   "hodl": 1.5694
+   "hodl": 1.5694,
+   "strat_net": 1.5694
   },
   {
    "date": "1999-09-30",
@@ -147,7 +168,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 1.5706,
-   "hodl": 1.5706
+   "hodl": 1.5706,
+   "strat_net": 1.5706
   },
   {
    "date": "1999-10-29",
@@ -160,7 +182,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 1.869,
-   "hodl": 1.869
+   "hodl": 1.869,
+   "strat_net": 1.869
   },
   {
    "date": "1999-11-30",
@@ -173,7 +196,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 2.3501,
-   "hodl": 2.3501
+   "hodl": 2.3501,
+   "strat_net": 2.3501
   },
   {
    "date": "1999-12-31",
@@ -186,7 +210,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.6456,
-   "hodl": 3.6456
+   "hodl": 3.6456,
+   "strat_net": 3.6456
   },
   {
    "date": "2000-01-31",
@@ -199,7 +224,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.2918,
-   "hodl": 3.2918
+   "hodl": 3.2918,
+   "strat_net": 3.2918
   },
   {
    "date": "2000-02-29",
@@ -212,7 +238,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.6449,
-   "hodl": 4.6449
+   "hodl": 4.6449,
+   "strat_net": 4.6449
   },
   {
    "date": "2000-03-31",
@@ -225,7 +252,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.8332,
-   "hodl": 4.8332
+   "hodl": 4.8332,
+   "strat_net": 4.8332
   },
   {
    "date": "2000-04-28",
@@ -238,7 +266,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.3605,
-   "hodl": 3.3605
+   "hodl": 3.3605,
+   "strat_net": 3.3605
   },
   {
    "date": "2000-05-31",
@@ -251,7 +280,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 2.5095,
-   "hodl": 2.5095
+   "hodl": 2.5095,
+   "strat_net": 2.5095
   },
   {
    "date": "2000-06-30",
@@ -264,7 +294,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.1569,
-   "hodl": 3.1569
+   "hodl": 3.1569,
+   "strat_net": 3.1569
   },
   {
    "date": "2000-07-31",
@@ -277,7 +308,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 2.8532,
-   "hodl": 2.8532
+   "hodl": 2.8532,
+   "strat_net": 2.8532
   },
   {
    "date": "2000-08-31",
@@ -290,7 +322,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.619,
-   "hodl": 3.619
+   "hodl": 3.619,
+   "strat_net": 3.619
   },
   {
    "date": "2000-09-29",
@@ -303,7 +336,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 2.958,
-   "hodl": 2.7377
+   "hodl": 2.7377,
+   "strat_net": 2.9562
   },
   {
    "date": "2000-10-31",
@@ -316,7 +350,8 @@
    "target": 0.75,
    "action": "CONSERVER",
    "strat": 2.5525,
-   "hodl": 2.2373
+   "hodl": 2.2373,
+   "strat_net": 2.5509
   },
   {
    "date": "2000-11-30",
@@ -329,7 +364,8 @@
    "target": 0.25,
    "action": "VENDRE",
    "strat": 2.2754,
-   "hodl": 1.2657
+   "hodl": 1.2657,
+   "strat_net": 2.2711
   },
   {
    "date": "2000-12-29",
@@ -342,7 +378,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 2.2754,
-   "hodl": 1.0554
+   "hodl": 1.0554,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-01-31",
@@ -355,7 +392,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 1.2235
+   "hodl": 1.2235,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-02-28",
@@ -368,7 +406,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.6465
+   "hodl": 0.6465,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-03-30",
@@ -381,7 +420,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.4213
+   "hodl": 0.4213,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-04-30",
@@ -394,7 +434,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.5568
+   "hodl": 0.5568,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-05-31",
@@ -407,7 +448,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.5132
+   "hodl": 0.5132,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-06-29",
@@ -420,7 +462,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.5245
+   "hodl": 0.5245,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-07-31",
@@ -433,7 +476,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.4366
+   "hodl": 0.4366,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-08-31",
@@ -446,7 +490,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.3278
+   "hodl": 0.3278,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-09-28",
@@ -459,7 +504,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.2033
+   "hodl": 0.2033,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-10-31",
@@ -472,7 +518,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.2705
+   "hodl": 0.2705,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-11-30",
@@ -485,7 +532,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2754,
-   "hodl": 0.3661
+   "hodl": 0.3661,
+   "strat_net": 2.2697
   },
   {
    "date": "2001-12-31",
@@ -498,7 +546,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 2.2555,
-   "hodl": 0.3533
+   "hodl": 0.3533,
+   "strat_net": 2.2484
   },
   {
    "date": "2002-01-31",
@@ -511,7 +560,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 2.2555,
-   "hodl": 0.3384
+   "hodl": 0.3384,
+   "strat_net": 2.247
   },
   {
    "date": "2002-02-28",
@@ -524,7 +574,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2555,
-   "hodl": 0.2577
+   "hodl": 0.2577,
+   "strat_net": 2.247
   },
   {
    "date": "2002-03-28",
@@ -537,7 +588,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.2555,
-   "hodl": 0.2914
+   "hodl": 0.2914,
+   "strat_net": 2.247
   },
   {
    "date": "2002-04-30",
@@ -550,7 +602,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 2.1224,
-   "hodl": 0.2227
+   "hodl": 0.2227,
+   "strat_net": 2.1131
   },
   {
    "date": "2002-05-31",
@@ -563,7 +616,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 2.1224,
-   "hodl": 0.1949
+   "hodl": 0.1949,
+   "strat_net": 2.1118
   },
   {
    "date": "2002-06-28",
@@ -576,7 +630,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 1.9888,
-   "hodl": 0.1458
+   "hodl": 0.1458,
+   "strat_net": 1.9777
   },
   {
    "date": "2002-07-31",
@@ -589,7 +644,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 1.9888,
-   "hodl": 0.1182
+   "hodl": 0.1182,
+   "strat_net": 1.9764
   },
   {
    "date": "2002-08-30",
@@ -602,7 +658,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 1.9888,
-   "hodl": 0.111
+   "hodl": 0.111,
+   "strat_net": 1.9764
   },
   {
    "date": "2002-09-30",
@@ -615,7 +672,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 1.9888,
-   "hodl": 0.0854
+   "hodl": 0.0854,
+   "strat_net": 1.9764
   },
   {
    "date": "2002-10-31",
@@ -628,7 +686,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 1.9888,
-   "hodl": 0.1184
+   "hodl": 0.1184,
+   "strat_net": 1.9764
   },
   {
    "date": "2002-11-29",
@@ -641,7 +700,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 1.9888,
-   "hodl": 0.1485
+   "hodl": 0.1485,
+   "strat_net": 1.9764
   },
   {
    "date": "2002-12-31",
@@ -654,7 +714,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 1.9888,
-   "hodl": 0.1145
+   "hodl": 0.1145,
+   "strat_net": 1.9764
   },
   {
    "date": "2003-01-31",
@@ -667,7 +728,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 1.9888,
-   "hodl": 0.113
+   "hodl": 0.113,
+   "strat_net": 1.9764
   },
   {
    "date": "2003-02-28",
@@ -680,7 +742,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 2.0136,
-   "hodl": 0.1186
+   "hodl": 0.1186,
+   "strat_net": 1.9998
   },
   {
    "date": "2003-03-31",
@@ -693,7 +756,8 @@
    "target": 0.25,
    "action": "CONSERVER",
    "strat": 2.0175,
-   "hodl": 0.1195
+   "hodl": 0.1195,
+   "strat_net": 2.0036
   },
   {
    "date": "2003-04-30",
@@ -706,7 +770,8 @@
    "target": 0.5,
    "action": "ACHETER",
    "strat": 2.1919,
-   "hodl": 0.1402
+   "hodl": 0.1402,
+   "strat_net": 2.1755
   },
   {
    "date": "2003-05-30",
@@ -719,7 +784,8 @@
    "target": 0.75,
    "action": "ACHETER",
    "strat": 2.466,
-   "hodl": 0.1636
+   "hodl": 0.1636,
+   "strat_net": 2.446
   },
   {
    "date": "2003-06-30",
@@ -732,7 +798,8 @@
    "target": 0.75,
    "action": "CONSERVER",
    "strat": 2.4698,
-   "hodl": 0.1639
+   "hodl": 0.1639,
+   "strat_net": 2.4498
   },
   {
    "date": "2003-07-31",
@@ -745,7 +812,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 2.7742,
-   "hodl": 0.1841
+   "hodl": 0.1841,
+   "strat_net": 2.75
   },
   {
    "date": "2003-08-29",
@@ -758,7 +826,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.0518,
-   "hodl": 0.2025
+   "hodl": 0.2025,
+   "strat_net": 3.0252
   },
   {
    "date": "2003-09-30",
@@ -771,7 +840,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 2.8661,
-   "hodl": 0.1902
+   "hodl": 0.1902,
+   "strat_net": 2.8411
   },
   {
    "date": "2003-10-31",
@@ -784,7 +854,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.3691,
-   "hodl": 0.2236
+   "hodl": 0.2236,
+   "strat_net": 3.3398
   },
   {
    "date": "2003-11-28",
@@ -797,7 +868,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.3937,
-   "hodl": 0.2252
+   "hodl": 0.2252,
+   "strat_net": 3.3641
   },
   {
    "date": "2003-12-31",
@@ -810,7 +882,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.5937,
-   "hodl": 0.2385
+   "hodl": 0.2385,
+   "strat_net": 3.5624
   },
   {
    "date": "2004-01-30",
@@ -823,7 +896,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.7089,
-   "hodl": 0.2461
+   "hodl": 0.2461,
+   "strat_net": 3.6766
   },
   {
    "date": "2004-02-27",
@@ -836,7 +910,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.5899,
-   "hodl": 0.2382
+   "hodl": 0.2382,
+   "strat_net": 3.5586
   },
   {
    "date": "2004-03-31",
@@ -849,7 +924,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.4205,
-   "hodl": 0.227
+   "hodl": 0.227,
+   "strat_net": 3.3907
   },
   {
    "date": "2004-04-30",
@@ -862,7 +938,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.2328,
-   "hodl": 0.2145
+   "hodl": 0.2145,
+   "strat_net": 3.2046
   },
   {
    "date": "2004-05-28",
@@ -875,7 +952,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 3.4575,
-   "hodl": 0.2344
+   "hodl": 0.2344,
+   "strat_net": 3.4252
   },
   {
    "date": "2004-06-30",
@@ -888,7 +966,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 3.6905,
-   "hodl": 0.2502
+   "hodl": 0.2502,
+   "strat_net": 3.6538
   },
   {
    "date": "2004-07-30",
@@ -901,7 +980,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.1343,
-   "hodl": 0.2125
+   "hodl": 0.2125,
+   "strat_net": 3.1032
   },
   {
    "date": "2004-08-31",
@@ -914,7 +994,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 3.0584,
-   "hodl": 0.2022
+   "hodl": 0.2022,
+   "strat_net": 3.0242
   },
   {
    "date": "2004-09-30",
@@ -927,7 +1008,8 @@
    "target": 0.25,
    "action": "VENDRE",
    "strat": 3.1066,
-   "hodl": 0.2149
+   "hodl": 0.2149,
+   "strat_net": 3.0699
   },
   {
    "date": "2004-10-29",
@@ -940,7 +1022,8 @@
    "target": 0.25,
    "action": "CONSERVER",
    "strat": 3.187,
-   "hodl": 0.2372
+   "hodl": 0.2372,
+   "strat_net": 3.1494
   },
   {
    "date": "2004-11-30",
@@ -953,7 +1036,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 3.5554,
-   "hodl": 0.2646
+   "hodl": 0.2646,
+   "strat_net": 3.5068
   },
   {
    "date": "2004-12-31",
@@ -966,7 +1050,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.7778,
-   "hodl": 0.2812
+   "hodl": 0.2812,
+   "strat_net": 3.7262
   },
   {
    "date": "2005-01-31",
@@ -979,7 +1064,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.3113,
-   "hodl": 0.2465
+   "hodl": 0.2465,
+   "strat_net": 3.2661
   },
   {
    "date": "2005-02-28",
@@ -992,7 +1078,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.268,
-   "hodl": 0.2432
+   "hodl": 0.2432,
+   "strat_net": 3.2233
   },
   {
    "date": "2005-03-31",
@@ -1005,7 +1092,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 3.1726,
-   "hodl": 0.2338
+   "hodl": 0.2338,
+   "strat_net": 3.1273
   },
   {
    "date": "2005-04-29",
@@ -1018,7 +1106,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 2.9043,
-   "hodl": 0.214
+   "hodl": 0.214,
+   "strat_net": 2.8611
   },
   {
    "date": "2005-05-31",
@@ -1031,7 +1120,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 3.1622,
-   "hodl": 0.252
+   "hodl": 0.252,
+   "strat_net": 3.1112
   },
   {
    "date": "2005-06-30",
@@ -1044,7 +1134,8 @@
    "target": 0.75,
    "action": "ACHETER",
    "strat": 3.0109,
-   "hodl": 0.2359
+   "hodl": 0.2359,
+   "strat_net": 2.9605
   },
   {
    "date": "2005-07-29",
@@ -1057,7 +1148,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 3.2423,
-   "hodl": 0.2722
+   "hodl": 0.2722,
+   "strat_net": 3.186
   },
   {
    "date": "2005-08-31",
@@ -1070,7 +1162,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 3.1445,
-   "hodl": 0.264
+   "hodl": 0.264,
+   "strat_net": 3.0861
   },
   {
    "date": "2005-09-30",
@@ -1083,7 +1176,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 3.2021,
-   "hodl": 0.2704
+   "hodl": 0.2704,
+   "strat_net": 3.1406
   },
   {
    "date": "2005-10-31",
@@ -1096,7 +1190,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 3.1056,
-   "hodl": 0.2623
+   "hodl": 0.2623,
+   "strat_net": 3.0441
   },
   {
    "date": "2005-11-30",
@@ -1109,7 +1204,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 3.3866,
-   "hodl": 0.2939
+   "hodl": 0.2939,
+   "strat_net": 3.3175
   },
   {
    "date": "2005-12-30",
@@ -1122,7 +1218,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 3.2733,
-   "hodl": 0.2841
+   "hodl": 0.2841,
+   "strat_net": 3.2044
   },
   {
    "date": "2006-01-31",
@@ -1135,7 +1232,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.5305,
-   "hodl": 0.3064
+   "hodl": 0.3064,
+   "strat_net": 3.4562
   },
   {
    "date": "2006-02-28",
@@ -1148,7 +1246,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.3606,
-   "hodl": 0.2917
+   "hodl": 0.2917,
+   "strat_net": 3.2899
   },
   {
    "date": "2006-03-31",
@@ -1161,7 +1260,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.4901,
-   "hodl": 0.3029
+   "hodl": 0.3029,
+   "strat_net": 3.4167
   },
   {
    "date": "2006-04-28",
@@ -1174,7 +1274,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.4742,
-   "hodl": 0.3015
+   "hodl": 0.3015,
+   "strat_net": 3.4011
   },
   {
    "date": "2006-05-31",
@@ -1187,7 +1288,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 2.9899,
-   "hodl": 0.2595
+   "hodl": 0.2595,
+   "strat_net": 2.927
   },
   {
    "date": "2006-06-30",
@@ -1200,7 +1302,8 @@
    "target": 0.25,
    "action": "VENDRE",
    "strat": 2.9826,
-   "hodl": 0.257
+   "hodl": 0.257,
+   "strat_net": 2.9144
   },
   {
    "date": "2006-07-31",
@@ -1213,7 +1316,8 @@
    "target": 0.25,
    "action": "CONSERVER",
    "strat": 2.9195,
-   "hodl": 0.2352
+   "hodl": 0.2352,
+   "strat_net": 2.8527
   },
   {
    "date": "2006-08-31",
@@ -1226,7 +1330,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 2.9195,
-   "hodl": 0.2571
+   "hodl": 0.2571,
+   "strat_net": 2.851
   },
   {
    "date": "2006-09-29",
@@ -1239,7 +1344,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 2.9885,
-   "hodl": 0.2814
+   "hodl": 0.2814,
+   "strat_net": 2.9165
   },
   {
    "date": "2006-10-31",
@@ -1252,7 +1358,8 @@
    "target": 0.25,
    "action": "CONSERVER",
    "strat": 3.0595,
-   "hodl": 0.3081
+   "hodl": 0.3081,
+   "strat_net": 2.9858
   },
   {
    "date": "2006-11-30",
@@ -1265,7 +1372,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 3.2655,
-   "hodl": 0.3289
+   "hodl": 0.3289,
+   "strat_net": 3.1809
   },
   {
    "date": "2006-12-29",
@@ -1278,7 +1386,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.1385,
-   "hodl": 0.3161
+   "hodl": 0.3161,
+   "strat_net": 3.0571
   },
   {
    "date": "2007-01-31",
@@ -1291,7 +1400,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.2605,
-   "hodl": 0.3284
+   "hodl": 0.3284,
+   "strat_net": 3.176
   },
   {
    "date": "2007-02-28",
@@ -1304,7 +1414,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.1418,
-   "hodl": 0.3164
+   "hodl": 0.3164,
+   "strat_net": 3.0603
   },
   {
    "date": "2007-03-30",
@@ -1317,7 +1428,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.1737,
-   "hodl": 0.3196
+   "hodl": 0.3196,
+   "strat_net": 3.0915
   },
   {
    "date": "2007-04-30",
@@ -1330,7 +1442,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.5213,
-   "hodl": 0.3546
+   "hodl": 0.3546,
+   "strat_net": 3.4301
   },
   {
    "date": "2007-05-31",
@@ -1343,7 +1456,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.7478,
-   "hodl": 0.3775
+   "hodl": 0.3775,
+   "strat_net": 3.6507
   },
   {
    "date": "2007-06-29",
@@ -1356,7 +1470,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.7657,
-   "hodl": 0.3793
+   "hodl": 0.3793,
+   "strat_net": 3.6681
   },
   {
    "date": "2007-07-31",
@@ -1369,7 +1484,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.7497,
-   "hodl": 0.3776
+   "hodl": 0.3776,
+   "strat_net": 3.6525
   },
   {
    "date": "2007-08-31",
@@ -1382,7 +1498,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.9509,
-   "hodl": 0.3979
+   "hodl": 0.3979,
+   "strat_net": 3.8485
   },
   {
    "date": "2007-09-28",
@@ -1395,7 +1512,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.3591,
-   "hodl": 0.439
+   "hodl": 0.439,
+   "strat_net": 4.2461
   },
   {
    "date": "2007-10-31",
@@ -1408,7 +1526,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.98,
-   "hodl": 0.5016
+   "hodl": 0.5016,
+   "strat_net": 4.8509
   },
   {
    "date": "2007-11-30",
@@ -1421,7 +1540,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.2996,
-   "hodl": 0.433
+   "hodl": 0.433,
+   "strat_net": 4.1882
   },
   {
    "date": "2007-12-31",
@@ -1434,7 +1554,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.2684,
-   "hodl": 0.4299
+   "hodl": 0.4299,
+   "strat_net": 4.1578
   },
   {
    "date": "2008-01-31",
@@ -1447,7 +1568,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.305,
-   "hodl": 0.3329
+   "hodl": 0.3329,
+   "strat_net": 3.2194
   },
   {
    "date": "2008-02-29",
@@ -1460,7 +1582,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 3.1308,
-   "hodl": 0.2978
+   "hodl": 0.2978,
+   "strat_net": 3.0458
   },
   {
    "date": "2008-03-31",
@@ -1473,7 +1596,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 3.1308,
-   "hodl": 0.3079
+   "hodl": 0.3079,
+   "strat_net": 3.042
   },
   {
    "date": "2008-04-30",
@@ -1486,7 +1610,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 3.2497,
-   "hodl": 0.3547
+   "hodl": 0.3547,
+   "strat_net": 3.1556
   },
   {
    "date": "2008-05-30",
@@ -1499,7 +1624,8 @@
    "target": 0.25,
    "action": "CONSERVER",
    "strat": 3.3469,
-   "hodl": 0.3971
+   "hodl": 0.3971,
+   "strat_net": 3.25
   },
   {
    "date": "2008-06-30",
@@ -1512,7 +1638,8 @@
    "target": 0.5,
    "action": "ACHETER",
    "strat": 3.0319,
-   "hodl": 0.3224
+   "hodl": 0.3224,
+   "strat_net": 2.9423
   },
   {
    "date": "2008-07-31",
@@ -1525,7 +1652,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 3.0319,
-   "hodl": 0.3248
+   "hodl": 0.3248,
+   "strat_net": 2.9386
   },
   {
    "date": "2008-08-29",
@@ -1538,7 +1666,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 3.048,
-   "hodl": 0.3317
+   "hodl": 0.3317,
+   "strat_net": 2.9523
   },
   {
    "date": "2008-09-30",
@@ -1551,7 +1680,8 @@
    "target": 0.25,
    "action": "CONSERVER",
    "strat": 2.8224,
-   "hodl": 0.2335
+   "hodl": 0.2335,
+   "strat_net": 2.7338
   },
   {
    "date": "2008-10-31",
@@ -1564,7 +1694,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 2.8224,
-   "hodl": 0.1549
+   "hodl": 0.1549,
+   "strat_net": 2.7321
   },
   {
    "date": "2008-11-28",
@@ -1577,7 +1708,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.8224,
-   "hodl": 0.1184
+   "hodl": 0.1184,
+   "strat_net": 2.7321
   },
   {
    "date": "2008-12-31",
@@ -1590,7 +1722,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.8224,
-   "hodl": 0.1211
+   "hodl": 0.1211,
+   "strat_net": 2.7321
   },
   {
    "date": "2009-01-30",
@@ -1603,7 +1736,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.8224,
-   "hodl": 0.1135
+   "hodl": 0.1135,
+   "strat_net": 2.7321
   },
   {
    "date": "2009-02-27",
@@ -1616,7 +1750,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.8224,
-   "hodl": 0.1007
+   "hodl": 0.1007,
+   "strat_net": 2.7321
   },
   {
    "date": "2009-03-31",
@@ -1629,7 +1764,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.8224,
-   "hodl": 0.1213
+   "hodl": 0.1213,
+   "strat_net": 2.7321
   },
   {
    "date": "2009-04-30",
@@ -1642,7 +1778,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 2.8224,
-   "hodl": 0.1531
+   "hodl": 0.1531,
+   "strat_net": 2.7321
   },
   {
    "date": "2009-05-29",
@@ -1655,7 +1792,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 2.8611,
-   "hodl": 0.1615
+   "hodl": 0.1615,
+   "strat_net": 2.7678
   },
   {
    "date": "2009-06-30",
@@ -1668,7 +1806,8 @@
    "target": 0.25,
    "action": "CONSERVER",
    "strat": 2.9005,
-   "hodl": 0.1704
+   "hodl": 0.1704,
+   "strat_net": 2.806
   },
   {
    "date": "2009-07-31",
@@ -1681,7 +1820,8 @@
    "target": 0.5,
    "action": "ACHETER",
    "strat": 3.1524,
-   "hodl": 0.2
+   "hodl": 0.2,
+   "strat_net": 3.0477
   },
   {
    "date": "2009-08-31",
@@ -1694,7 +1834,8 @@
    "target": 0.75,
    "action": "ACHETER",
    "strat": 3.2108,
-   "hodl": 0.205
+   "hodl": 0.205,
+   "strat_net": 3.1023
   },
   {
    "date": "2009-09-30",
@@ -1707,7 +1848,8 @@
    "target": 0.75,
    "action": "CONSERVER",
    "strat": 3.4919,
-   "hodl": 0.2289
+   "hodl": 0.2289,
+   "strat_net": 3.3738
   },
   {
    "date": "2009-10-30",
@@ -1720,7 +1862,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 3.2725,
-   "hodl": 0.2145
+   "hodl": 0.2145,
+   "strat_net": 3.1599
   },
   {
    "date": "2009-11-30",
@@ -1733,7 +1876,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.6701,
-   "hodl": 0.2406
+   "hodl": 0.2406,
+   "strat_net": 3.5438
   },
   {
    "date": "2009-12-31",
@@ -1746,7 +1890,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.0604,
-   "hodl": 0.2662
+   "hodl": 0.2662,
+   "strat_net": 3.9207
   },
   {
    "date": "2010-01-29",
@@ -1759,7 +1904,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.5443,
-   "hodl": 0.2323
+   "hodl": 0.2323,
+   "strat_net": 3.4223
   },
   {
    "date": "2010-02-26",
@@ -1772,7 +1918,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.8593,
-   "hodl": 0.253
+   "hodl": 0.253,
+   "strat_net": 3.7265
   },
   {
    "date": "2010-03-31",
@@ -1785,7 +1932,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.4707,
-   "hodl": 0.2931
+   "hodl": 0.2931,
+   "strat_net": 4.3169
   },
   {
    "date": "2010-04-30",
@@ -1798,7 +1946,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.6574,
-   "hodl": 0.3053
+   "hodl": 0.3053,
+   "strat_net": 4.4972
   },
   {
    "date": "2010-05-28",
@@ -1811,7 +1960,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.9538,
-   "hodl": 0.2592
+   "hodl": 0.2592,
+   "strat_net": 3.8177
   },
   {
    "date": "2010-06-30",
@@ -1824,7 +1974,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 3.4631,
-   "hodl": 0.227
+   "hodl": 0.227,
+   "strat_net": 3.344
   },
   {
    "date": "2010-07-30",
@@ -1837,7 +1988,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 3.8395,
-   "hodl": 0.2599
+   "hodl": 0.2599,
+   "strat_net": 3.705
   },
   {
    "date": "2010-08-31",
@@ -1850,7 +2002,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 3.442,
-   "hodl": 0.233
+   "hodl": 0.233,
+   "strat_net": 3.3194
   },
   {
    "date": "2010-09-30",
@@ -1863,7 +2016,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 3.9148,
-   "hodl": 0.297
+   "hodl": 0.297,
+   "strat_net": 3.7707
   },
   {
    "date": "2010-10-29",
@@ -1876,7 +2030,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 4.4177,
-   "hodl": 0.3352
+   "hodl": 0.3352,
+   "strat_net": 4.2498
   },
   {
    "date": "2010-11-30",
@@ -1889,7 +2044,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.3785,
-   "hodl": 0.3322
+   "hodl": 0.3322,
+   "strat_net": 4.212
   },
   {
    "date": "2010-12-31",
@@ -1902,7 +2058,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.8004,
-   "hodl": 0.3642
+   "hodl": 0.3642,
+   "strat_net": 4.6179
   },
   {
    "date": "2011-01-31",
@@ -1915,7 +2072,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.0731,
-   "hodl": 0.3849
+   "hodl": 0.3849,
+   "strat_net": 4.8802
   },
   {
    "date": "2011-02-28",
@@ -1928,7 +2086,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.3754,
-   "hodl": 0.4078
+   "hodl": 0.4078,
+   "strat_net": 5.171
   },
   {
    "date": "2011-03-31",
@@ -1941,7 +2100,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.3046,
-   "hodl": 0.4024
+   "hodl": 0.4024,
+   "strat_net": 5.1028
   },
   {
    "date": "2011-04-29",
@@ -1954,7 +2114,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.5989,
-   "hodl": 0.4248
+   "hodl": 0.4248,
+   "strat_net": 5.386
   },
   {
    "date": "2011-05-31",
@@ -1967,7 +2128,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.4453,
-   "hodl": 0.4131
+   "hodl": 0.4131,
+   "strat_net": 5.2382
   },
   {
    "date": "2011-06-30",
@@ -1980,7 +2142,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.2132,
-   "hodl": 0.3955
+   "hodl": 0.3955,
+   "strat_net": 5.0149
   },
   {
    "date": "2011-07-29",
@@ -1993,7 +2156,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.3695,
-   "hodl": 0.4074
+   "hodl": 0.4074,
+   "strat_net": 5.1653
   },
   {
    "date": "2011-08-31",
@@ -2006,7 +2170,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.7346,
-   "hodl": 0.3592
+   "hodl": 0.3592,
+   "strat_net": 4.5545
   },
   {
    "date": "2011-09-30",
@@ -2019,7 +2184,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 4.4013,
-   "hodl": 0.3255
+   "hodl": 0.3255,
+   "strat_net": 4.2313
   },
   {
    "date": "2011-10-31",
@@ -2032,7 +2198,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 4.8618,
-   "hodl": 0.3936
+   "hodl": 0.3936,
+   "strat_net": 4.6711
   },
   {
    "date": "2011-11-30",
@@ -2045,7 +2212,8 @@
    "target": 0.75,
    "action": "ACHETER",
    "strat": 4.6378,
-   "hodl": 0.3694
+   "hodl": 0.3694,
+   "strat_net": 4.4531
   },
   {
    "date": "2011-12-30",
@@ -2058,7 +2226,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 4.5966,
-   "hodl": 0.3629
+   "hodl": 0.3629,
+   "strat_net": 4.4107
   },
   {
    "date": "2012-01-31",
@@ -2071,7 +2240,8 @@
    "target": 0.25,
    "action": "VENDRE",
    "strat": 4.795,
-   "hodl": 0.4255
+   "hodl": 0.4255,
+   "strat_net": 4.5982
   },
   {
    "date": "2012-02-29",
@@ -2084,7 +2254,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 5.4119,
-   "hodl": 0.4803
+   "hodl": 0.4803,
+   "strat_net": 5.1802
   },
   {
    "date": "2012-03-30",
@@ -2097,7 +2268,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.9636,
-   "hodl": 0.5292
+   "hodl": 0.5292,
+   "strat_net": 5.7082
   },
   {
    "date": "2012-04-30",
@@ -2110,7 +2282,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.8124,
-   "hodl": 0.5158
+   "hodl": 0.5158,
+   "strat_net": 5.5635
   },
   {
    "date": "2012-05-31",
@@ -2123,7 +2296,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 4.9821,
-   "hodl": 0.4421
+   "hodl": 0.4421,
+   "strat_net": 4.7687
   },
   {
    "date": "2012-06-29",
@@ -2136,7 +2310,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.3225,
-   "hodl": 0.4723
+   "hodl": 0.4723,
+   "strat_net": 5.0946
   },
   {
    "date": "2012-07-31",
@@ -2149,7 +2324,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.42,
-   "hodl": 0.481
+   "hodl": 0.481,
+   "strat_net": 5.1878
   },
   {
    "date": "2012-08-31",
@@ -2162,7 +2338,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.9593,
-   "hodl": 0.5288
+   "hodl": 0.5288,
+   "strat_net": 5.7041
   },
   {
    "date": "2012-09-28",
@@ -2175,7 +2352,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 6.0665,
-   "hodl": 0.5383
+   "hodl": 0.5383,
+   "strat_net": 5.8067
   },
   {
    "date": "2012-10-31",
@@ -2188,7 +2366,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 5.4194,
-   "hodl": 0.4809
+   "hodl": 0.4809,
+   "strat_net": 5.1873
   },
   {
    "date": "2012-11-30",
@@ -2201,7 +2380,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 5.5014,
-   "hodl": 0.4906
+   "hodl": 0.4906,
+   "strat_net": 5.2625
   },
   {
    "date": "2012-12-31",
@@ -2214,7 +2394,8 @@
    "target": 0.75,
    "action": "CONSERVER",
    "strat": 5.4424,
-   "hodl": 0.4836
+   "hodl": 0.4836,
+   "strat_net": 5.206
   },
   {
    "date": "2013-01-31",
@@ -2227,7 +2408,8 @@
    "target": 0.75,
    "action": "CONSERVER",
    "strat": 5.6557,
-   "hodl": 0.5089
+   "hodl": 0.5089,
+   "strat_net": 5.4101
   },
   {
    "date": "2013-02-28",
@@ -2240,7 +2422,8 @@
    "target": 0.75,
    "action": "CONSERVER",
    "strat": 5.6708,
-   "hodl": 0.5107
+   "hodl": 0.5107,
+   "strat_net": 5.4245
   },
   {
    "date": "2013-03-28",
@@ -2253,7 +2436,8 @@
    "target": 0.75,
    "action": "CONSERVER",
    "strat": 5.9205,
-   "hodl": 0.5407
+   "hodl": 0.5407,
+   "strat_net": 5.6634
   },
   {
    "date": "2013-04-30",
@@ -2266,7 +2450,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 6.197,
-   "hodl": 0.5659
+   "hodl": 0.5659,
+   "strat_net": 5.9242
   },
   {
    "date": "2013-05-31",
@@ -2279,7 +2464,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 6.6029,
-   "hodl": 0.603
+   "hodl": 0.603,
+   "strat_net": 6.3122
   },
   {
    "date": "2013-06-28",
@@ -2292,7 +2478,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 6.2746,
-   "hodl": 0.573
+   "hodl": 0.573,
+   "strat_net": 5.9984
   },
   {
    "date": "2013-07-31",
@@ -2305,7 +2492,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 7.0713,
-   "hodl": 0.6458
+   "hodl": 0.6458,
+   "strat_net": 6.76
   },
   {
    "date": "2013-08-30",
@@ -2318,7 +2506,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 6.9875,
-   "hodl": 0.6381
+   "hodl": 0.6381,
+   "strat_net": 6.6799
   },
   {
    "date": "2013-09-30",
@@ -2331,7 +2520,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 7.6546,
-   "hodl": 0.699
+   "hodl": 0.699,
+   "strat_net": 7.3176
   },
   {
    "date": "2013-10-31",
@@ -2344,7 +2534,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 8.4162,
-   "hodl": 0.7686
+   "hodl": 0.7686,
+   "strat_net": 8.0457
   },
   {
    "date": "2013-11-29",
@@ -2357,7 +2548,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 8.9641,
-   "hodl": 0.8186
+   "hodl": 0.8186,
+   "strat_net": 8.5695
   },
   {
    "date": "2013-12-31",
@@ -2370,7 +2562,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 9.5011,
-   "hodl": 0.8676
+   "hodl": 0.8676,
+   "strat_net": 9.0828
   },
   {
    "date": "2014-01-31",
@@ -2383,7 +2576,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 9.1161,
-   "hodl": 0.8325
+   "hodl": 0.8325,
+   "strat_net": 8.7148
   },
   {
    "date": "2014-02-28",
@@ -2396,7 +2590,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 10.0245,
-   "hodl": 0.9155
+   "hodl": 0.9155,
+   "strat_net": 9.5832
   },
   {
    "date": "2014-03-31",
@@ -2409,7 +2604,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 9.4747,
-   "hodl": 0.8652
+   "hodl": 0.8652,
+   "strat_net": 9.0576
   },
   {
    "date": "2014-04-30",
@@ -2422,7 +2618,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 9.3683,
-   "hodl": 0.8555
+   "hodl": 0.8555,
+   "strat_net": 8.9559
   },
   {
    "date": "2014-05-30",
@@ -2435,7 +2632,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 10.1846,
-   "hodl": 0.9301
+   "hodl": 0.9301,
+   "strat_net": 9.7362
   },
   {
    "date": "2014-06-30",
@@ -2448,7 +2646,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 10.8044,
-   "hodl": 0.9867
+   "hodl": 0.9867,
+   "strat_net": 10.3288
   },
   {
    "date": "2014-07-31",
@@ -2461,7 +2660,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 11.0302,
-   "hodl": 1.0073
+   "hodl": 1.0073,
+   "strat_net": 10.5446
   },
   {
    "date": "2014-08-29",
@@ -2474,7 +2674,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 12.1269,
-   "hodl": 1.1074
+   "hodl": 1.1074,
+   "strat_net": 11.5931
   },
   {
    "date": "2014-09-30",
@@ -2487,7 +2688,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 11.9157,
-   "hodl": 1.0882
+   "hodl": 1.0882,
+   "strat_net": 11.3911
   },
   {
    "date": "2014-10-31",
@@ -2500,7 +2702,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 12.5128,
-   "hodl": 1.1427
+   "hodl": 1.1427,
+   "strat_net": 11.9619
   },
   {
    "date": "2014-11-28",
@@ -2513,7 +2716,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 13.6128,
-   "hodl": 1.2431
+   "hodl": 1.2431,
+   "strat_net": 13.0135
   },
   {
    "date": "2014-12-31",
@@ -2526,7 +2730,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 12.9547,
-   "hodl": 1.183
+   "hodl": 1.183,
+   "strat_net": 12.3844
   },
   {
    "date": "2015-01-30",
@@ -2539,7 +2744,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 12.3887,
-   "hodl": 1.1314
+   "hodl": 1.1314,
+   "strat_net": 11.8433
   },
   {
    "date": "2015-02-27",
@@ -2552,7 +2758,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 14.1831,
-   "hodl": 1.2952
+   "hodl": 1.2952,
+   "strat_net": 13.5587
   },
   {
    "date": "2015-03-31",
@@ -2565,7 +2772,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 13.4817,
-   "hodl": 1.2312
+   "hodl": 1.2312,
+   "strat_net": 12.8882
   },
   {
    "date": "2015-04-30",
@@ -2578,7 +2786,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 13.9697,
-   "hodl": 1.2757
+   "hodl": 1.2757,
+   "strat_net": 13.3547
   },
   {
    "date": "2015-05-29",
@@ -2591,7 +2800,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 14.5493,
-   "hodl": 1.3287
+   "hodl": 1.3287,
+   "strat_net": 13.9088
   },
   {
    "date": "2015-06-30",
@@ -2604,7 +2814,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 13.8193,
-   "hodl": 1.262
+   "hodl": 1.262,
+   "strat_net": 13.211
   },
   {
    "date": "2015-07-31",
@@ -2617,7 +2828,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 15.0265,
-   "hodl": 1.3722
+   "hodl": 1.3722,
+   "strat_net": 14.3649
   },
   {
    "date": "2015-08-31",
@@ -2630,7 +2842,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 12.9308,
-   "hodl": 1.1809
+   "hodl": 1.1809,
+   "strat_net": 12.3616
   },
   {
    "date": "2015-09-30",
@@ -2643,7 +2856,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 12.4643,
-   "hodl": 1.1241
+   "hodl": 1.1241,
+   "strat_net": 11.9081
   },
   {
    "date": "2015-10-30",
@@ -2656,7 +2870,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 13.9195,
-   "hodl": 1.3865
+   "hodl": 1.3865,
+   "strat_net": 13.2901
   },
   {
    "date": "2015-11-30",
@@ -2669,7 +2884,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 13.9942,
-   "hodl": 1.394
+   "hodl": 1.394,
+   "strat_net": 13.3447
   },
   {
    "date": "2015-12-31",
@@ -2682,7 +2898,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 13.5249,
-   "hodl": 1.3472
+   "hodl": 1.3472,
+   "strat_net": 12.8972
   },
   {
    "date": "2016-01-29",
@@ -2695,7 +2912,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 11.6575,
-   "hodl": 1.1612
+   "hodl": 1.1612,
+   "strat_net": 11.1165
   },
   {
    "date": "2016-02-29",
@@ -2708,7 +2926,8 @@
    "target": 0.25,
    "action": "VENDRE",
    "strat": 11.5406,
-   "hodl": 1.1146
+   "hodl": 1.1146,
+   "strat_net": 10.9843
   },
   {
    "date": "2016-03-31",
@@ -2721,7 +2940,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 11.5406,
-   "hodl": 1.2673
+   "hodl": 1.2673,
+   "strat_net": 10.9775
   },
   {
    "date": "2016-04-29",
@@ -2734,7 +2954,8 @@
    "target": 0.5,
    "action": "ACHETER",
    "strat": 11.1717,
-   "hodl": 1.1862
+   "hodl": 1.1862,
+   "strat_net": 10.6133
   },
   {
    "date": "2016-05-31",
@@ -2747,7 +2968,8 @@
    "target": 0.25,
    "action": "VENDRE",
    "strat": 11.4069,
-   "hodl": 1.2861
+   "hodl": 1.2861,
+   "strat_net": 10.83
   },
   {
    "date": "2016-06-30",
@@ -2760,7 +2982,8 @@
    "target": 0.5,
    "action": "ACHETER",
    "strat": 11.122,
-   "hodl": 1.2219
+   "hodl": 1.2219,
+   "strat_net": 10.5529
   },
   {
    "date": "2016-07-29",
@@ -2773,7 +2996,8 @@
    "target": 0.5,
    "action": "CONSERVER",
    "strat": 11.9319,
-   "hodl": 1.3999
+   "hodl": 1.3999,
+   "strat_net": 11.3214
   },
   {
    "date": "2016-08-31",
@@ -2786,7 +3010,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 12.1343,
-   "hodl": 1.4236
+   "hodl": 1.4236,
+   "strat_net": 11.4989
   },
   {
    "date": "2016-09-30",
@@ -2799,7 +3024,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 12.6478,
-   "hodl": 1.4838
+   "hodl": 1.4838,
+   "strat_net": 11.9856
   },
   {
    "date": "2016-10-31",
@@ -2812,7 +3038,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 12.2565,
-   "hodl": 1.4379
+   "hodl": 1.4379,
+   "strat_net": 11.6148
   },
   {
    "date": "2016-11-30",
@@ -2825,7 +3052,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 12.2824,
-   "hodl": 1.441
+   "hodl": 1.441,
+   "strat_net": 11.6394
   },
   {
    "date": "2016-12-30",
@@ -2838,7 +3066,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 12.5406,
-   "hodl": 1.4713
+   "hodl": 1.4713,
+   "strat_net": 11.8841
   },
   {
    "date": "2017-01-31",
@@ -2851,7 +3080,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 13.8732,
-   "hodl": 1.6276
+   "hodl": 1.6276,
+   "strat_net": 13.1468
   },
   {
    "date": "2017-02-28",
@@ -2864,7 +3094,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 15.0517,
-   "hodl": 1.7659
+   "hodl": 1.7659,
+   "strat_net": 14.2636
   },
   {
    "date": "2017-03-31",
@@ -2877,7 +3108,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 15.6468,
-   "hodl": 1.8357
+   "hodl": 1.8357,
+   "strat_net": 14.8276
   },
   {
    "date": "2017-04-28",
@@ -2890,7 +3122,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 16.4988,
-   "hodl": 1.9356
+   "hodl": 1.9356,
+   "strat_net": 15.635
   },
   {
    "date": "2017-05-31",
@@ -2903,7 +3136,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 17.7154,
-   "hodl": 2.0784
+   "hodl": 2.0784,
+   "strat_net": 16.7879
   },
   {
    "date": "2017-06-30",
@@ -2916,7 +3150,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 16.8199,
-   "hodl": 1.9733
+   "hodl": 1.9733,
+   "strat_net": 15.9393
   },
   {
    "date": "2017-07-31",
@@ -2929,7 +3164,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 18.2248,
-   "hodl": 2.1381
+   "hodl": 2.1381,
+   "strat_net": 17.2706
   },
   {
    "date": "2017-08-31",
@@ -2942,7 +3178,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 18.8691,
-   "hodl": 2.2137
+   "hodl": 2.2137,
+   "strat_net": 17.8812
   },
   {
    "date": "2017-09-29",
@@ -2955,7 +3192,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 18.7976,
-   "hodl": 2.2053
+   "hodl": 2.2053,
+   "strat_net": 17.8134
   },
   {
    "date": "2017-10-31",
@@ -2968,7 +3206,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 20.5071,
-   "hodl": 2.4059
+   "hodl": 2.4059,
+   "strat_net": 19.4334
   },
   {
    "date": "2017-11-30",
@@ -2981,7 +3220,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 21.2632,
-   "hodl": 2.4946
+   "hodl": 2.4946,
+   "strat_net": 20.1499
   },
   {
    "date": "2017-12-29",
@@ -2994,7 +3234,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 21.4576,
-   "hodl": 2.5174
+   "hodl": 2.5174,
+   "strat_net": 20.3341
   },
   {
    "date": "2018-01-31",
@@ -3007,7 +3248,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 25.2989,
-   "hodl": 2.9681
+   "hodl": 2.9681,
+   "strat_net": 23.9743
   },
   {
    "date": "2018-02-28",
@@ -3020,7 +3262,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 24.4388,
-   "hodl": 2.8672
+   "hodl": 2.8672,
+   "strat_net": 23.1593
   },
   {
    "date": "2018-03-29",
@@ -3033,7 +3276,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 22.3971,
-   "hodl": 2.6276
+   "hodl": 2.6276,
+   "strat_net": 21.2244
   },
   {
    "date": "2018-04-30",
@@ -3046,7 +3290,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 22.4663,
-   "hodl": 2.6358
+   "hodl": 2.6358,
+   "strat_net": 21.29
   },
   {
    "date": "2018-05-31",
@@ -3059,7 +3304,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 24.9675,
-   "hodl": 2.9292
+   "hodl": 2.9292,
+   "strat_net": 23.6603
   },
   {
    "date": "2018-06-29",
@@ -3072,7 +3318,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 25.4542,
-   "hodl": 2.9863
+   "hodl": 2.9863,
+   "strat_net": 24.1215
   },
   {
    "date": "2018-07-31",
@@ -3085,7 +3332,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 26.8041,
-   "hodl": 3.1447
+   "hodl": 3.1447,
+   "strat_net": 25.4007
   },
   {
    "date": "2018-08-31",
@@ -3098,7 +3346,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 30.001,
-   "hodl": 3.5197
+   "hodl": 3.5197,
+   "strat_net": 28.4303
   },
   {
    "date": "2018-09-28",
@@ -3111,7 +3360,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 29.7617,
-   "hodl": 3.4916
+   "hodl": 3.4916,
+   "strat_net": 28.2034
   },
   {
    "date": "2018-10-31",
@@ -3124,7 +3374,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 24.5767,
-   "hodl": 2.8833
+   "hodl": 2.8833,
+   "strat_net": 23.29
   },
   {
    "date": "2018-11-30",
@@ -3137,7 +3388,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 24.299,
-   "hodl": 2.8508
+   "hodl": 2.8508,
+   "strat_net": 23.0267
   },
   {
    "date": "2018-12-31",
@@ -3150,7 +3402,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 22.1267,
-   "hodl": 2.3411
+   "hodl": 2.3411,
+   "strat_net": 20.942
   },
   {
    "date": "2019-01-31",
@@ -3163,7 +3416,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 22.1267,
-   "hodl": 2.7713
+   "hodl": 2.7713,
+   "strat_net": 20.9158
   },
   {
    "date": "2019-02-28",
@@ -3176,7 +3430,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 22.4317,
-   "hodl": 2.9241
+   "hodl": 2.9241,
+   "strat_net": 21.1909
   },
   {
    "date": "2019-03-29",
@@ -3189,7 +3444,8 @@
    "target": 0.75,
    "action": "ACHETER",
    "strat": 23.7597,
-   "hodl": 3.1549
+   "hodl": 3.1549,
+   "strat_net": 22.4173
   },
   {
    "date": "2019-04-30",
@@ -3202,7 +3458,8 @@
    "target": 0.75,
    "action": "CONSERVER",
    "strat": 25.7458,
-   "hodl": 3.5065
+   "hodl": 3.5065,
+   "strat_net": 24.2912
   },
   {
    "date": "2019-05-31",
@@ -3215,7 +3472,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 21.5264,
-   "hodl": 2.9319
+   "hodl": 2.9319,
+   "strat_net": 20.2975
   },
   {
    "date": "2019-06-28",
@@ -3228,7 +3486,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 23.1977,
-   "hodl": 3.3871
+   "hodl": 3.3871,
+   "strat_net": 21.8461
   },
   {
    "date": "2019-07-31",
@@ -3241,7 +3500,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 24.2564,
-   "hodl": 3.5417
+   "hodl": 3.5417,
+   "strat_net": 22.8146
   },
   {
    "date": "2019-08-30",
@@ -3254,7 +3514,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 23.1479,
-   "hodl": 3.3798
+   "hodl": 3.3798,
+   "strat_net": 21.7719
   },
   {
    "date": "2019-09-30",
@@ -3267,7 +3528,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 23.4659,
-   "hodl": 3.4263
+   "hodl": 3.4263,
+   "strat_net": 22.0711
   },
   {
    "date": "2019-10-31",
@@ -3280,7 +3542,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 25.4811,
-   "hodl": 3.7205
+   "hodl": 3.7205,
+   "strat_net": 23.9664
   },
   {
    "date": "2019-11-29",
@@ -3293,7 +3556,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 27.524,
-   "hodl": 4.0188
+   "hodl": 4.0188,
+   "strat_net": 25.8879
   },
   {
    "date": "2019-12-31",
@@ -3306,7 +3570,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 29.7022,
-   "hodl": 4.3368
+   "hodl": 4.3368,
+   "strat_net": 27.9367
   },
   {
    "date": "2020-01-31",
@@ -3319,7 +3584,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 31.4293,
-   "hodl": 4.589
+   "hodl": 4.589,
+   "strat_net": 29.5611
   },
   {
    "date": "2020-02-28",
@@ -3332,7 +3598,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 27.6485,
-   "hodl": 4.037
+   "hodl": 4.037,
+   "strat_net": 26.005
   },
   {
    "date": "2020-03-31",
@@ -3345,7 +3612,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 21.9023,
-   "hodl": 3.198
+   "hodl": 3.198,
+   "strat_net": 20.6004
   },
   {
    "date": "2020-04-30",
@@ -3358,7 +3626,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 26.9596,
-   "hodl": 4.1825
+   "hodl": 4.1825,
+   "strat_net": 25.3412
   },
   {
    "date": "2020-05-29",
@@ -3371,7 +3640,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 30.2758,
-   "hodl": 4.697
+   "hodl": 4.697,
+   "strat_net": 28.4406
   },
   {
    "date": "2020-06-30",
@@ -3384,7 +3654,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 34.0021,
-   "hodl": 5.2751
+   "hodl": 5.2751,
+   "strat_net": 31.941
   },
   {
    "date": "2020-07-31",
@@ -3397,7 +3668,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 39.0262,
-   "hodl": 6.0545
+   "hodl": 6.0545,
+   "strat_net": 36.6605
   },
   {
    "date": "2020-08-31",
@@ -3410,7 +3682,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 47.9951,
-   "hodl": 7.446
+   "hodl": 7.446,
+   "strat_net": 45.0857
   },
   {
    "date": "2020-09-30",
@@ -3423,7 +3696,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 42.1973,
-   "hodl": 6.5465
+   "hodl": 6.5465,
+   "strat_net": 39.6394
   },
   {
    "date": "2020-10-30",
@@ -3436,7 +3710,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 39.2673,
-   "hodl": 6.0919
+   "hodl": 6.0919,
+   "strat_net": 36.887
   },
   {
    "date": "2020-11-30",
@@ -3449,7 +3724,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 48.1528,
-   "hodl": 7.4705
+   "hodl": 7.4705,
+   "strat_net": 45.234
   },
   {
    "date": "2020-12-31",
@@ -3462,7 +3738,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 53.0789,
-   "hodl": 8.2347
+   "hodl": 8.2347,
+   "strat_net": 49.8614
   },
   {
    "date": "2021-01-29",
@@ -3475,7 +3752,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 53.1799,
-   "hodl": 8.2504
+   "hodl": 8.2504,
+   "strat_net": 49.9563
   },
   {
    "date": "2021-02-26",
@@ -3488,7 +3766,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 52.8696,
-   "hodl": 8.2022
+   "hodl": 8.2022,
+   "strat_net": 49.6648
   },
   {
    "date": "2021-03-31",
@@ -3501,7 +3780,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 53.9431,
-   "hodl": 8.3688
+   "hodl": 8.3688,
+   "strat_net": 50.6733
   },
   {
    "date": "2021-04-30",
@@ -3514,7 +3794,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 60.3395,
-   "hodl": 9.3611
+   "hodl": 9.3611,
+   "strat_net": 56.6819
   },
   {
    "date": "2021-05-28",
@@ -3527,7 +3808,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 58.6394,
-   "hodl": 9.0973
+   "hodl": 9.0973,
+   "strat_net": 55.0848
   },
   {
    "date": "2021-06-30",
@@ -3540,7 +3822,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 66.2322,
-   "hodl": 10.2753
+   "hodl": 10.2753,
+   "strat_net": 62.2174
   },
   {
    "date": "2021-07-30",
@@ -3553,7 +3836,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 69.9,
-   "hodl": 10.8443
+   "hodl": 10.8443,
+   "strat_net": 65.6629
   },
   {
    "date": "2021-08-31",
@@ -3566,7 +3850,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 75.7666,
-   "hodl": 11.7545
+   "hodl": 11.7545,
+   "strat_net": 71.1739
   },
   {
    "date": "2021-09-30",
@@ -3579,7 +3864,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 67.2039,
-   "hodl": 10.426
+   "hodl": 10.426,
+   "strat_net": 63.1302
   },
   {
    "date": "2021-10-29",
@@ -3592,7 +3878,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 78.0955,
-   "hodl": 12.1158
+   "hodl": 12.1158,
+   "strat_net": 73.3616
   },
   {
    "date": "2021-11-30",
@@ -3605,7 +3892,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 80.7484,
-   "hodl": 12.5273
+   "hodl": 12.5273,
+   "strat_net": 75.8537
   },
   {
    "date": "2021-12-31",
@@ -3618,7 +3906,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 82.2139,
-   "hodl": 12.7547
+   "hodl": 12.7547,
+   "strat_net": 77.2303
   },
   {
    "date": "2022-01-31",
@@ -3631,7 +3920,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 68.3216,
-   "hodl": 10.5994
+   "hodl": 10.5994,
+   "strat_net": 64.1801
   },
   {
    "date": "2022-02-28",
@@ -3644,7 +3934,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 63.2978,
-   "hodl": 9.5603
+   "hodl": 9.5603,
+   "strat_net": 59.4237
   },
   {
    "date": "2022-03-31",
@@ -3657,7 +3948,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 65.7035,
-   "hodl": 10.2869
+   "hodl": 10.2869,
+   "strat_net": 61.6436
   },
   {
    "date": "2022-04-29",
@@ -3670,7 +3962,8 @@
    "target": 0.75,
    "action": "ACHETER",
    "strat": 53.0381,
-   "hodl": 7.643
+   "hodl": 7.643,
+   "strat_net": 49.7297
   },
   {
    "date": "2022-05-31",
@@ -3683,7 +3976,8 @@
    "target": 0.0,
    "action": "VENDRE",
    "strat": 53.0381,
-   "hodl": 7.2824
+   "hodl": 7.2824,
+   "strat_net": 49.6365
   },
   {
    "date": "2022-06-30",
@@ -3696,7 +3990,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 53.0381,
-   "hodl": 5.9588
+   "hodl": 5.9588,
+   "strat_net": 49.6365
   },
   {
    "date": "2022-07-29",
@@ -3709,7 +4004,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 53.0381,
-   "hodl": 7.5037
+   "hodl": 7.5037,
+   "strat_net": 49.6365
   },
   {
    "date": "2022-08-31",
@@ -3722,7 +4018,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 53.0381,
-   "hodl": 6.701
+   "hodl": 6.701,
+   "strat_net": 49.6365
   },
   {
    "date": "2022-09-30",
@@ -3735,7 +4032,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 53.0381,
-   "hodl": 5.3151
+   "hodl": 5.3151,
+   "strat_net": 49.6365
   },
   {
    "date": "2022-10-31",
@@ -3748,7 +4046,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 53.0381,
-   "hodl": 5.6914
+   "hodl": 5.6914,
+   "strat_net": 49.6365
   },
   {
    "date": "2022-11-30",
@@ -3761,7 +4060,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 53.0381,
-   "hodl": 6.2618
+   "hodl": 6.2618,
+   "strat_net": 49.6365
   },
   {
    "date": "2022-12-30",
@@ -3774,7 +4074,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 53.0381,
-   "hodl": 5.154
+   "hodl": 5.154,
+   "strat_net": 49.6365
   },
   {
    "date": "2023-01-31",
@@ -3787,7 +4088,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 53.0381,
-   "hodl": 6.2805
+   "hodl": 6.2805,
+   "strat_net": 49.6365
   },
   {
    "date": "2023-02-28",
@@ -3800,7 +4102,8 @@
    "target": 0.0,
    "action": "CONSERVER",
    "strat": 53.0381,
-   "hodl": 6.1889
+   "hodl": 6.1889,
+   "strat_net": 49.6365
   },
   {
    "date": "2023-03-31",
@@ -3813,7 +4116,8 @@
    "target": 0.25,
    "action": "ACHETER",
    "strat": 55.6035,
-   "hodl": 7.3863
+   "hodl": 7.3863,
+   "strat_net": 52.0049
   },
   {
    "date": "2023-04-28",
@@ -3826,7 +4130,8 @@
    "target": 0.75,
    "action": "ACHETER",
    "strat": 55.9315,
-   "hodl": 7.4444
+   "hodl": 7.4444,
+   "strat_net": 52.2462
   },
   {
    "date": "2023-05-31",
@@ -3839,7 +4144,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 64.5915,
-   "hodl": 8.597
+   "hodl": 8.597,
+   "strat_net": 60.2979
   },
   {
    "date": "2023-06-30",
@@ -3852,7 +4158,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 73.0677,
-   "hodl": 9.7252
+   "hodl": 9.7252,
+   "strat_net": 68.2106
   },
   {
    "date": "2023-07-31",
@@ -3865,7 +4172,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 78.6065,
-   "hodl": 10.4624
+   "hodl": 10.4624,
+   "strat_net": 73.3813
   },
   {
    "date": "2023-08-31",
@@ -3878,7 +4186,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 75.8462,
-   "hodl": 10.095
+   "hodl": 10.095,
+   "strat_net": 70.8045
   },
   {
    "date": "2023-09-29",
@@ -3891,7 +4200,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 68.2341,
-   "hodl": 9.0818
+   "hodl": 9.0818,
+   "strat_net": 63.6984
   },
   {
    "date": "2023-10-31",
@@ -3904,7 +4214,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 65.2261,
-   "hodl": 8.6815
+   "hodl": 8.6815,
+   "strat_net": 60.8903
   },
   {
    "date": "2023-11-30",
@@ -3917,7 +4228,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 79.7305,
-   "hodl": 10.612
+   "hodl": 10.612,
+   "strat_net": 74.4306
   },
   {
    "date": "2023-12-29",
@@ -3930,7 +4242,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 88.6443,
-   "hodl": 11.7984
+   "hodl": 11.7984,
+   "strat_net": 82.7518
   },
   {
    "date": "2024-01-31",
@@ -3943,7 +4256,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 91.758,
-   "hodl": 12.2128
+   "hodl": 12.2128,
+   "strat_net": 85.6586
   },
   {
    "date": "2024-02-29",
@@ -3956,7 +4270,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 101.4988,
-   "hodl": 13.5093
+   "hodl": 13.5093,
+   "strat_net": 94.7519
   },
   {
    "date": "2024-03-28",
@@ -3969,7 +4284,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 103.6965,
-   "hodl": 13.8018
+   "hodl": 13.8018,
+   "strat_net": 96.8035
   },
   {
    "date": "2024-04-30",
@@ -3982,7 +4298,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 94.3634,
-   "hodl": 12.5596
+   "hodl": 12.5596,
+   "strat_net": 88.0908
   },
   {
    "date": "2024-05-31",
@@ -3995,7 +4312,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 106.4526,
-   "hodl": 14.1686
+   "hodl": 14.1686,
+   "strat_net": 99.3763
   },
   {
    "date": "2024-06-28",
@@ -4008,7 +4326,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 119.8768,
-   "hodl": 15.9554
+   "hodl": 15.9554,
+   "strat_net": 111.9082
   },
   {
    "date": "2024-07-31",
@@ -4021,7 +4340,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 115.4278,
-   "hodl": 15.3632
+   "hodl": 15.3632,
+   "strat_net": 107.7549
   },
   {
    "date": "2024-08-30",
@@ -4034,7 +4354,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 117.3207,
-   "hodl": 15.6151
+   "hodl": 15.6151,
+   "strat_net": 109.522
   },
   {
    "date": "2024-09-30",
@@ -4047,7 +4368,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 122.7982,
-   "hodl": 16.3442
+   "hodl": 16.3442,
+   "strat_net": 114.6354
   },
   {
    "date": "2024-10-31",
@@ -4060,7 +4382,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 120.4508,
-   "hodl": 16.0318
+   "hodl": 16.0318,
+   "strat_net": 112.444
   },
   {
    "date": "2024-11-29",
@@ -4073,7 +4396,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 133.091,
-   "hodl": 17.7141
+   "hodl": 17.7141,
+   "strat_net": 124.244
   },
   {
    "date": "2024-12-31",
@@ -4086,7 +4410,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 133.6883,
-   "hodl": 17.7936
+   "hodl": 17.7936,
+   "strat_net": 124.8016
   },
   {
    "date": "2025-01-31",
@@ -4099,7 +4424,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 139.226,
-   "hodl": 18.5307
+   "hodl": 18.5307,
+   "strat_net": 129.9712
   },
   {
    "date": "2025-02-28",
@@ -4112,7 +4438,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 131.2863,
-   "hodl": 17.4739
+   "hodl": 17.4739,
+   "strat_net": 122.5593
   },
   {
    "date": "2025-03-31",
@@ -4125,7 +4452,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 111.1661,
-   "hodl": 14.796
+   "hodl": 14.796,
+   "strat_net": 103.7766
   },
   {
    "date": "2025-04-30",
@@ -4138,7 +4466,8 @@
    "target": 0.5,
    "action": "VENDRE",
    "strat": 111.4218,
-   "hodl": 14.864
+   "hodl": 14.864,
+   "strat_net": 103.8852
   },
   {
    "date": "2025-05-30",
@@ -4151,7 +4480,8 @@
    "target": 0.25,
    "action": "VENDRE",
    "strat": 116.5805,
-   "hodl": 17.6168
+   "hodl": 17.6168,
+   "strat_net": 108.6271
   },
   {
    "date": "2025-06-30",
@@ -4164,7 +4494,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 131.484,
-   "hodl": 19.8689
+   "hodl": 19.8689,
+   "strat_net": 122.2841
   },
   {
    "date": "2025-07-31",
@@ -4177,7 +4508,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 137.7336,
-   "hodl": 20.8133
+   "hodl": 20.8133,
+   "strat_net": 128.0964
   },
   {
    "date": "2025-08-29",
@@ -4190,7 +4522,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 139.8102,
-   "hodl": 21.1271
+   "hodl": 21.1271,
+   "strat_net": 130.0277
   },
   {
    "date": "2025-09-30",
@@ -4203,7 +4536,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 155.2158,
-   "hodl": 23.4551
+   "hodl": 23.4551,
+   "strat_net": 144.3554
   },
   {
    "date": "2025-10-31",
@@ -4216,7 +4550,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 169.8291,
-   "hodl": 25.6634
+   "hodl": 25.6634,
+   "strat_net": 157.9462
   },
   {
    "date": "2025-11-28",
@@ -4229,7 +4564,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 163.7345,
-   "hodl": 24.7424
+   "hodl": 24.7424,
+   "strat_net": 152.2781
   },
   {
    "date": "2025-12-31",
@@ -4242,7 +4578,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 161.1219,
-   "hodl": 24.3476
+   "hodl": 24.3476,
+   "strat_net": 149.8482
   },
   {
    "date": "2026-01-30",
@@ -4255,7 +4592,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 164.7697,
-   "hodl": 24.8988
+   "hodl": 24.8988,
+   "strat_net": 153.2408
   },
   {
    "date": "2026-02-27",
@@ -4268,7 +4606,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 156.8174,
-   "hodl": 23.6971
+   "hodl": 23.6971,
+   "strat_net": 145.8449
   },
   {
    "date": "2026-03-31",
@@ -4281,7 +4620,8 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 141.2649,
-   "hodl": 21.3469
+   "hodl": 21.3469,
+   "strat_net": 131.3806
   },
   {
    "date": "2026-04-30",
@@ -4294,7 +4634,8 @@
    "target": 0.75,
    "action": "VENDRE",
    "strat": 176.5951,
-   "hodl": 28.4654
+   "hodl": 28.4654,
+   "strat_net": 164.1361
   },
   {
    "date": "2026-05-29",
@@ -4307,7 +4648,8 @@
    "target": 1.0,
    "action": "ACHETER",
    "strat": 215.0853,
-   "hodl": 34.6696
+   "hodl": 34.6696,
+   "strat_net": 199.7859
   },
   {
    "date": "2026-06-30",
@@ -4320,11 +4662,12 @@
    "target": 1.0,
    "action": "CONSERVER",
    "strat": 212.4657,
-   "hodl": 34.2474
+   "hodl": 34.2474,
+   "strat_net": 197.3526
   },
   {
-   "date": "2026-07-01",
-   "ndx": 29964.82,
+   "date": "2026-07-02",
+   "ndx": 29511.8,
    "mom6": "HAUSSE",
    "mom8": "HAUSSE",
    "mom10": "HAUSSE",
@@ -4332,8 +4675,9 @@
    "votes": 4,
    "target": 1.0,
    "action": "CONSERVER",
-   "strat": 208.0933,
-   "hodl": 33.5426
+   "strat": 201.8006,
+   "hodl": 32.5283,
+   "strat_net": 187.4461
   }
  ]
 }

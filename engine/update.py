@@ -20,6 +20,8 @@ import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(ROOT, "docs")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from stats_common import extra_stats, COST_ONEWAY
 GENESIS = dt.date(2009, 1, 3)   # bloc genesis Bitcoin
 SLOPE = 5.8                     # pente de la power-law (fixe)
 BAND_LOW, BAND_HIGH = 0.6, 2.5  # bandes "bon marche" / "cher"
@@ -125,6 +127,7 @@ def build():
     rows = []
     val_state = "CASH"
     strat, hodl = 1.0, 1.0
+    strat_net = 1.0            # courbe nette de couts (25 bps par aller, cf. stats_common)
     prev_w = None
     for i, k in enumerate(mkeys):
         d, p = mdate[i], mprice[i]
@@ -163,17 +166,21 @@ def build():
             action = "VENDRE"
         else:
             action = "CONSERVER"
+        dw = abs(w - prev_w) if prev_w is not None else 0.0
         prev_w = w
+        strat_net *= (1 - COST_ONEWAY * dw)
         # rendement du mois (pour la courbe d'equite)
         if i + 1 < len(mkeys):
             r = mprice[i + 1] / p - 1
             strat *= (1 + w * r)
+            strat_net *= (1 + w * r)
             hodl *= (1 + r)
         rows.append(dict(
             date=str(d), price=round(p, 2), fair_value=round(fv, 2), ratio=round(ratio, 3),
             sma10=round(sma, 2) if sma else None, trend="HAUSSE" if trend_up else "BAISSE",
             valuation="chère" if val_state == "CASH" else ("bon marché" if val_state == "BUY" else val_state),
             target=w, action=action, strat=round(strat, 4), hodl=round(hodl, 4),
+            strat_net=round(strat_net, 4),
         ))
     return rows
 
@@ -188,12 +195,14 @@ def equity_stats(rows):
         for v in c:
             pk = max(pk, v); m = min(m, v / pk - 1)
         return m
-    return dict(
+    out = dict(
         months=n,
         strat_mult=sc[-1], hodl_mult=hc[-1],
         strat_cagr=cagr(sc[-1]), hodl_cagr=cagr(hc[-1]),
         strat_mdd=mdd(sc), hodl_mdd=mdd(hc),
     )
+    out.update(extra_stats(rows, n))
+    return out
 
 
 if __name__ == "__main__":
@@ -205,10 +214,12 @@ if __name__ == "__main__":
     with open(os.path.join(DOCS, "history.csv"), "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["date", "prix_usd", "juste_valeur_usd", "ratio", "moyenne_mobile_10m",
-                    "tendance", "valorisation", "cible_btc", "action", "mult_strategie", "mult_hodl"])
+                    "tendance", "valorisation", "cible_btc", "action", "mult_strategie", "mult_hodl",
+                    "mult_strategie_nette"])
         for r in rows:
             w.writerow([r["date"], r["price"], r["fair_value"], r["ratio"], r["sma10"],
-                        r["trend"], r["valuation"], r["target"], r["action"], r["strat"], r["hodl"]])
+                        r["trend"], r["valuation"], r["target"], r["action"], r["strat"], r["hodl"],
+                        r["strat_net"]])
 
     payload = dict(
         generated_utc=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),

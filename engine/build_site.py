@@ -228,6 +228,27 @@ def _explain(c, asset):
     )
 
 
+def _extra_kpis(st):
+    """Cartes KPI supplementaires (P1 audit 02/07/2026) : net de couts, Calmar,
+    exposition, arbitrages, fourchette bootstrap du MaxDD. Vide si stats absentes."""
+    if st.get("strat_cagr_net") is None:
+        return ""
+    boot = ""
+    if st.get("boot_mdd_median") is not None:
+        boot = (f'<div class="c"><div class="l">Pire baisse — fourchette bootstrap</div>'
+                f'<div class="v">{st["boot_mdd_median"]*100:.0f} % <span style="font-size:12px;color:#64748b">'
+                f'(5 % pire : {st["boot_mdd_p5"]*100:.0f} %)</span></div></div>')
+    return f'''<div class="kpi">
+  <div class="c"><div class="l">Rendement / an — net de frais ({st["cost_bps"]} bps/arbitrage)</div><div class="v g">{st['strat_cagr_net']*100:.1f} %</div></div>
+  <div class="c"><div class="l">Calmar (rdt ÷ pire baisse)</div><div class="v">{st['calmar']:.2f}</div></div>
+  <div class="c"><div class="l">Exposition moyenne</div><div class="v">{st['avg_exposure']*100:.0f} %</div></div>
+  <div class="c"><div class="l">Arbitrages</div><div class="v">{st['n_trades']} <span style="font-size:12px;color:#64748b">({st['turnover_per_year']:.1f}×/an)</span></div></div>
+  {boot}
+</div>
+<div class="note">Net de frais : hypothèse {st["cost_bps"]} bps par arbitrage (frais + écart achat/vente), appliquée à chaque changement de cible.
+Fourchette bootstrap : la pire baisse historique n'est qu'<b>un seul</b> chemin ; le rééchantillonnage par blocs (2 000 tirages) donne la médiane et le scénario défavorable (5 %) de cette statistique.</div>'''
+
+
 def render(payload, asset=BTC):
     c = payload["current"]
     st = payload["stats"]
@@ -336,6 +357,7 @@ def render(payload, asset=BTC):
   <div class="c"><div class="l">Pire baisse — Stratégie</div><div class="v g">{st['strat_mdd']*100:.0f} %</div></div>
   <div class="c"><div class="l">Pire baisse — HODL</div><div class="v r">{st['hodl_mdd']*100:.0f} %</div></div>
 </div>
+{_extra_kpis(st)}
 <div class="chartwrap">{_svg(payload["history"])}</div>
 <div class="note">Capital indexé, échelle logarithmique. Stratégie en vert, conserver-tout (HODL) en gris.</div>
 
@@ -354,7 +376,7 @@ def render(payload, asset=BTC):
 </ul>
 
 <div class="disc">
-<b>⚠️ Avertissement.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement. Les performances passées (backtest sur données historiques) ne préjugent pas des performances futures. La « juste valeur » power-law est une extrapolation statistique, pas une loi : elle peut cesser d'être valide. Le {asset["name"]} est un actif très volatil ; n'investissez que ce que vous pouvez vous permettre de perdre. Faites vos propres recherches.
+<b>⚠️ Avertissement.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement. Les performances passées (backtest sur données historiques) ne préjugent pas des performances futures. La « juste valeur » power-law est une extrapolation statistique, pas une loi : elle peut cesser d'être valide. Le {asset["name"]} est un actif très volatil ; n'investissez que ce que vous pouvez vous permettre de perdre. Faites vos propres recherches. Enfin, biais de sélection : cet actif fait partie des « gagnants » identifiés a posteriori — ce backtest répond à « comment le détenir », pas à « fallait-il le choisir ».
 </div>
 <div class="note" style="margin-top:14px">Code &amp; méthodologie : <a href="{asset["repo"]}">{asset["repo"].replace("https://","")}</a></div>
 </body></html>'''
@@ -504,6 +526,7 @@ def render_lqq(payload):
   <div class="c"><div class="l">Pire baisse — Stratégie</div><div class="v g">{st['strat_mdd']*100:.0f} %</div></div>
   <div class="c"><div class="l">Pire baisse — Buy &amp; Hold LQQ</div><div class="v r">{st['hodl_mdd']*100:.0f} %</div></div>
 </div>
+{_extra_kpis(st)}
 <div class="chartwrap">{_svg(payload["history"])}</div>
 <div class="note">Capital indexé, échelle logarithmique. Stratégie en vert, buy &amp; hold LQQ en gris. LQQ <b>simulé</b> à partir du Nasdaq-100 (×2 quotidien, hors dividendes — donc conservateur) ; simulation validée sur le vrai LQQ depuis 2008.</div>
 
@@ -525,7 +548,7 @@ def render_lqq(payload):
 </ul>
 
 <div class="disc">
-<b>⚠️ Avertissement — produit à effet de levier.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement. Le LQQ est un ETF <b>×2 à réinitialisation quotidienne</b> : très volatil, sujet à la décote de volatilité, et inadapté à la détention passive longue (le buy &amp; hold a perdu ~98 % au krach 2000-02). Les performances passées (backtest, dont une partie <b>simulée</b> avant 2008) ne préjugent pas du futur ; un signal mensuel ne protège pas des chutes intra-mois. N'investissez que ce que vous pouvez vous permettre de perdre, et faites vos propres recherches.
+<b>⚠️ Avertissement — produit à effet de levier.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement. Le LQQ est un ETF <b>×2 à réinitialisation quotidienne</b> : très volatil, sujet à la décote de volatilité, et inadapté à la détention passive longue (le buy &amp; hold a perdu ~98 % au krach 2000-02). Les performances passées (backtest, dont une partie <b>simulée</b> avant 2008) ne préjugent pas du futur ; un signal mensuel ne protège pas des chutes intra-mois. N'investissez que ce que vous pouvez vous permettre de perdre, et faites vos propres recherches. Enfin, biais de sélection : le Nasdaq-100 fait partie des indices « gagnants » identifiés a posteriori — ce backtest répond à « comment le détenir », pas à « fallait-il le choisir ».
 </div>
 <div class="note" style="margin-top:14px">Code &amp; méthodologie : <a href="https://github.com/robaromat/cool-crypto">github.com/robaromat/cool-crypto</a></div>
 </body></html>'''
