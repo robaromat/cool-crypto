@@ -71,7 +71,7 @@ BTC = dict(
     name="Bitcoin", sym="BTC", slope="5,8",
     title="cool-crypto — signal BTC mensuel (G75)",
     h1="cool-crypto — signal Bitcoin mensuel",
-    nav=[("₿ Bitcoin", "./", True), ("Ξ Ethereum", "eth/", False), ("📈 LQQ", "lqq/", False)],
+    nav=[("₿ Bitcoin", "./", True), ("Ξ Ethereum", "eth/", False), ("📈 LQQ", "lqq/", False), ("🧺 Portefeuille", "portfolio/", False)],
     repo="https://github.com/robaromat/cool-crypto",
     intro=None,
     # bullets "comment lire" specifiques (BTC : machine a etats + bandes)
@@ -89,7 +89,7 @@ ETH = dict(
     name="Ethereum", sym="ETH", slope="2,3",
     title="cool-crypto — signal ETH mensuel (G75)",
     h1="cool-crypto — signal Ethereum mensuel",
-    nav=[("₿ Bitcoin", "../", False), ("Ξ Ethereum", "./", True), ("📈 LQQ", "../lqq/", False)],
+    nav=[("₿ Bitcoin", "../", False), ("Ξ Ethereum", "./", True), ("📈 LQQ", "../lqq/", False), ("🧺 Portefeuille", "../portfolio/", False)],
     repo="https://github.com/robaromat/cool-crypto",
     intro=(
         "<div class=\"disc\" style=\"background:#eff6ff;border-color:#bfdbfe;margin:14px 0 0\">"
@@ -386,7 +386,7 @@ def render(payload, asset=BTC):
 # Rendu dédié LQQ (structure différente : pas de power-law, exposition graduée
 # par vote de momentum multi-fenêtres)
 # ----------------------------------------------------------------------------
-LQQ_NAV = [("₿ Bitcoin", "../", False), ("Ξ Ethereum", "../eth/", False), ("📈 LQQ", "./", True)]
+LQQ_NAV = [("₿ Bitcoin", "../", False), ("Ξ Ethereum", "../eth/", False), ("📈 LQQ", "./", True), ("🧺 Portefeuille", "../portfolio/", False)]
 
 
 def _lqq_rows_html(history):
@@ -552,3 +552,177 @@ def render_lqq(payload):
 </div>
 <div class="note" style="margin-top:14px">Code &amp; méthodologie : <a href="https://github.com/robaromat/cool-crypto">github.com/robaromat/cool-crypto</a></div>
 </body></html>'''
+
+
+# ----------------------------------------------------------------------------
+# Rendu du portefeuille consolide BTC+ETH+LQQ (P3 audit 02/07/2026)
+# ----------------------------------------------------------------------------
+PF_NAV = [("₿ Bitcoin", "../", False), ("Ξ Ethereum", "../eth/", False),
+          ("📈 LQQ", "../lqq/", False), ("🧺 Portefeuille", "./", True)]
+
+
+def _pf_rows_html(history):
+    out = []
+    for r in reversed(history):
+        rcol = "#16a34a" if r["r_pf"] >= 0 else "#dc2626"
+        out.append(
+            "<tr>"
+            f"<td>{r['date']}</td>"
+            f"<td class=num>{r['t_btc']*100:.0f}%</td>"
+            f"<td class=num>{r['t_eth']*100:.0f}%</td>"
+            f"<td class=num>{r['t_lqq']*100:.0f}%</td>"
+            f"<td class=num>{r['riskon']*100:.0f}%</td>"
+            f"<td class=num style='color:{rcol}'>{r['r_pf']*100:+.1f}%</td>"
+            f"<td class=num>{r['strat']:.2f}</td>"
+            "</tr>"
+        )
+    return "\n".join(out)
+
+
+def render_portfolio(payload):
+    st = payload["stats"]
+    cur = payload["currents"]
+    w_leg = 1.0 / len(cur)
+    cur_date = max(c["date"] for c in cur.values())
+    nxt = (dt.date.fromisoformat(cur_date).replace(day=28) + dt.timedelta(days=7)).replace(day=1)
+    nav = '<div class="nav">' + "".join(
+        f'<a class="{"navlink active" if a else "navlink"}" href="{h}">{lb}</a>'
+        for lb, h, a in PF_NAV) + '</div>'
+    total_inv = sum(c["target"] for c in cur.values()) * w_leg
+    alloc_rows = ""
+    js_parts = []
+    for name in ("BTC", "ETH", "LQQ"):
+        c = cur[name]
+        part = c["target"] * w_leg
+        alloc_rows += (f"<tr><td><b>{name}</b></td><td class=num>{w_leg*100:.1f}%</td>"
+                       f"<td class=num>{c['target']*100:.0f}%</td>"
+                       f"<td class=num style='font-weight:700'>{part*100:.1f}%</td></tr>")
+        js_parts.append("['%s',%.6f]" % (name, part))
+    alloc_rows += (f"<tr><td>💶 Cash</td><td class=num>—</td><td class=num>—</td>"
+                   f"<td class=num style='font-weight:700;color:#64748b'>{(1-total_inv)*100:.1f}%</td></tr>")
+    boot = ""
+    if st.get("boot_mdd_median") is not None:
+        boot = (f'<div class="c"><div class="l">Pire baisse — fourchette bootstrap</div>'
+                f'<div class="v">{st["boot_mdd_median"]*100:.0f} % <span style="font-size:12px;color:#64748b">'
+                f'(5 % pire : {st["boot_mdd_p5"]*100:.0f} %)</span></div></div>')
+    parts_js = ",".join(js_parts)
+    return f"""<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{NOINDEX}
+<title>cool-crypto — portefeuille consolidé BTC + ETH + LQQ</title>
+<style>
+ *{{box-sizing:border-box}}
+ body{{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1e293b;line-height:1.5;
+   max-width:960px;margin:0 auto;padding:22px 18px;background:#fafbfc}}
+ h1{{font-size:23px;margin:0 0 2px}} .sub{{color:#64748b;font-size:13px;margin-bottom:18px}}
+ h2{{font-size:17px;margin:30px 0 8px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}}
+ .nav{{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}}
+ .navlink{{text-decoration:none;font-weight:600;font-size:14px;color:#475569;background:#fff;
+   border:1px solid #e2e8f0;border-radius:9px;padding:7px 14px}}
+ .navlink.active{{background:#1e293b;color:#fff;border-color:#1e293b}}
+ .reco{{background:#eff6ff;border:1px solid #2563eb33;border-left:5px solid #2563eb;border-radius:12px;padding:20px 22px;margin:14px 0}}
+ .reco .lab{{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}}
+ .reco table{{border-collapse:collapse;width:100%;font-size:14px;background:transparent}}
+ .reco th,.reco td{{border-bottom:1px solid #dbeafe;padding:7px 9px;text-align:left}}
+ .reco td.num,.reco th.num{{text-align:right;font-variant-numeric:tabular-nums}}
+ .calc{{background:#fff;border:1px solid #e7ebf0;border-radius:11px;padding:14px 18px;margin:14px 0}}
+ .calclab{{font-size:13px;font-weight:600;margin-bottom:8px}}
+ .calc input{{width:100%;font-size:16px;padding:9px 11px;border:1px solid #cbd5e1;border-radius:8px;font-variant-numeric:tabular-nums}}
+ .calcout{{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}}
+ .calcout .cline{{flex:1;min-width:130px;display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:8px;padding:9px 12px}}
+ .calcout .cline span{{font-size:12.5px;color:#64748b}}
+ .calcout .cline b{{font-size:17px;font-variant-numeric:tabular-nums}}
+ .kpi{{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}}
+ .kpi .c{{flex:1;min-width:150px;background:#fff;border:1px solid #e7ebf0;border-radius:9px;padding:12px 14px}}
+ .kpi .l{{font-size:11px;color:#64748b}} .kpi .v{{font-size:20px;font-weight:700}}
+ .g{{color:#16a34a}} .r{{color:#dc2626}}
+ .chartwrap{{background:#fff;border:1px solid #e7ebf0;border-radius:10px;padding:12px;overflow-x:auto}}
+ table{{border-collapse:collapse;width:100%;font-size:12.5px;background:#fff}}
+ th,td{{border-bottom:1px solid #eef2f7;padding:6px 9px;text-align:left;white-space:nowrap}}
+ th{{position:sticky;top:0;background:#f1f5f9;font-weight:600;z-index:1}}
+ td.num,th.num{{text-align:right;font-variant-numeric:tabular-nums}}
+ .tablewrap{{max-height:460px;overflow:auto;border:1px solid #e7ebf0;border-radius:10px}}
+ .note{{font-size:12px;color:#64748b}}
+ .disc{{background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:12px 15px;font-size:12.5px;margin-top:18px}}
+ a{{color:#2563eb}}
+</style></head><body>
+{CONSENT_OVERLAY}
+{nav}
+<h1>cool-crypto — portefeuille consolidé</h1>
+<div class="sub">BTC + ETH + LQQ à parts égales (1/3 chacune), rebalancé le 1ᵉʳ du mois · chaque poche suit la cible de sa stratégie · mis à jour le {payload["generated_utc"]}</div>
+
+<div class="reco">
+  <div class="lab">Allocation consolidée du {cur_date} · prochaine révision : {nxt.isoformat()}</div>
+  <table>
+    <thead><tr><th>Poche</th><th class=num>Poids de la poche</th><th class=num>Cible de la stratégie</th><th class=num>Part du portefeuille total</th></tr></thead>
+    <tbody>{alloc_rows}</tbody>
+  </table>
+</div>
+
+<div class="calc">
+  <div class="calclab">🧮 Répartition pour votre portefeuille <span class="note" style="font-weight:400">— calcul instantané, rien n'est enregistré</span></div>
+  <input id="tot" type="number" inputmode="decimal" min="0" step="any" placeholder="Montant total du portefeuille (ex. 30000)">
+  <div class="calcout" id="calcout"></div>
+</div>
+<script>
+(function(){{
+  var PARTS=[{parts_js}];
+  var inp=document.getElementById('tot'), out=document.getElementById('calcout');
+  function fmt(x){{return x.toLocaleString('fr-FR',{{maximumFractionDigits:0}});}}
+  function calc(){{
+    var v=parseFloat((inp.value||'').replace(',','.'));
+    if(!(v>0)){{out.innerHTML='';return;}}
+    var html='', used=0;
+    for(var i=0;i<PARTS.length;i++){{
+      html+='<div class="cline"><span>'+PARTS[i][0]+' ('+Math.round(PARTS[i][1]*1000)/10+'%)</span><b>'+fmt(v*PARTS[i][1])+'</b></div>';
+      used+=PARTS[i][1];
+    }}
+    html+='<div class="cline"><span>Cash ('+Math.round((1-used)*1000)/10+'%)</span><b style="color:#64748b">'+fmt(v*(1-used))+'</b></div>';
+    out.innerHTML=html;
+  }}
+  inp.addEventListener('input',calc);
+}})();
+</script>
+
+<h2>Pourquoi un portefeuille combiné ?</h2>
+<div class="note" style="font-size:13px;line-height:1.7">Les rendements mensuels des trois stratégies sont <b>faiblement corrélés</b> (BTC-ETH ≈ 0,44 ; BTC-LQQ ≈ 0,20 ; ETH-LQQ ≈ 0,22 sur 2017→2026) : leurs mauvais mois ne tombent pas en même temps. Historiquement, la combinaison 1/3-1/3-1/3 a une <b>pire baisse plus faible que chacune des trois jambes prises isolément</b>, pour un rendement proche de la meilleure. C'est l'effet diversification.</div>
+
+<h2>Performance ({st["first_month"]} → {st["last_month"]}, backtest auditable)</h2>
+<div class="kpi">
+  <div class="c"><div class="l">Rendement / an — Portefeuille</div><div class="v g">{st['strat_cagr']*100:.1f} %</div></div>
+  <div class="c"><div class="l">Rendement / an — 1/3 HODL</div><div class="v">{st['hodl_cagr']*100:.1f} %</div></div>
+  <div class="c"><div class="l">Pire baisse — Portefeuille</div><div class="v g">{st['strat_mdd']*100:.0f} %</div></div>
+  <div class="c"><div class="l">Pire baisse — 1/3 HODL</div><div class="v r">{st['hodl_mdd']*100:.0f} %</div></div>
+</div>
+<div class="kpi">
+  <div class="c"><div class="l">Rendement / an — net de frais ({st["cost_bps"]} bps/arbitrage)</div><div class="v g">{st['strat_cagr_net']*100:.1f} %</div></div>
+  <div class="c"><div class="l">Calmar (rdt ÷ pire baisse)</div><div class="v">{st['calmar']:.2f}</div></div>
+  <div class="c"><div class="l">Part investie moyenne</div><div class="v">{st['avg_riskon']*100:.0f} %</div></div>
+  {boot}
+</div>
+<div class="chartwrap">{_svg(payload["history"])}</div>
+<div class="note">Capital indexé, échelle logarithmique. Portefeuille en vert ; « 1/3 HODL » (un tiers de chaque actif conservé sans signal) en gris. Coûts comptés dans chaque jambe (25 bps par arbitrage) ; le rebalancement mensuel inter-poches est supposé sans friction.</div>
+
+<h2>Historique mensuel ({st['months']} mois — le plus récent en haut)</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Mois</th><th class=num>Cible BTC</th><th class=num>Cible ETH</th><th class=num>Cible LQQ</th>
+<th class=num>Part investie</th><th class=num>Rdt portefeuille</th><th class=num>Multiple</th></tr></thead>
+<tbody>
+{_pf_rows_html(payload["history"])}
+</tbody></table></div>
+<div class="note">Données brutes : <a href="history.csv">history.csv</a> · <a href="data.json">data.json</a></div>
+
+<h2>Comment lire cette page</h2>
+<ul class="note" style="font-size:13px;line-height:1.7">
+<li><b>Poids des poches</b> : 1/3 BTC, 1/3 ETH, 1/3 LQQ, <b>rebalancés le 1ᵉʳ de chaque mois</b> (on ramène chaque poche à un tiers du total).</li>
+<li><b>À l'intérieur de chaque poche</b>, on applique la cible de la stratégie de l'actif (voir ses onglets). Ex. : poche BTC à 75 % → 25 % du portefeuille total en BTC et 8,3 % en cash.</li>
+<li>La <b>part investie</b> = moyenne des trois cibles ; le reste est en cash (fonds monétaire / USDC).</li>
+<li>La fenêtre du backtest démarre au premier mois commun aux trois historiques ({st["first_month"]} — l'ETH est la série la plus jeune).</li>
+</ul>
+
+<div class="disc">
+<b>⚠️ Avertissement.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement ni une allocation recommandée. Les performances passées (backtests, dont une partie simulée) ne préjugent pas des performances futures ; les corrélations entre actifs <b>varient dans le temps</b> et peuvent converger vers 1 en crise, réduisant l'effet de diversification. BTC, ETH et le Nasdaq-100 sont des actifs « gagnants » identifiés a posteriori — ce backtest répond à « comment les détenir ensemble », pas à « fallait-il les choisir ». N'investissez que ce que vous pouvez vous permettre de perdre.
+</div>
+<div class="note" style="margin-top:14px">Code &amp; méthodologie : <a href="https://github.com/robaromat/cool-crypto">github.com/robaromat/cool-crypto</a></div>
+</body></html>"""
