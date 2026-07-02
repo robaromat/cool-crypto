@@ -83,6 +83,10 @@ BTC = dict(
         "<li><b>Règle G75</b> : valorisation chère → <b>0 %</b> (cash) · sinon tendance haussière → "
         "<b>100 %</b> · sinon (baisse mais pas chère) → <b>75 %</b>.</li>"
         "<li>L'<b>action</b> compare la cible du mois à celle du mois précédent : on n'achète/vend que l'écart.</li>"
+        "<li><b>Transparence (audit 07/2026)</b> : le résultat du backtest est <b>sensible à la pente 5,8</b> "
+        "(une pente de 5,4 diviserait le multiple par ~18). Un signal alternatif « ensemble » votant sur une "
+        "grille de 15 paramétrages est publié <b>en observation</b> dans <code>data.json</code> / "
+        "<code>history.csv</code> (colonne <code>cible_ensemble_shadow</code>) — il ne remplace pas la consigne.</li>"
     ),
 )
 ETH = dict(
@@ -111,6 +115,10 @@ ETH = dict(
         "<i>tant que</i> c'est cher, on rentre dès que ça se dissipe). La power-law d'ETH étant plus "
         "plate et moins fiable, le mécanisme « collant » du BTC resterait bloqué en cash des années.</li>"
         "<li>L'<b>action</b> compare la cible du mois à celle du mois précédent : on n'achète/vend que l'écart.</li>"
+        "<li><b>Transparence (audit 07/2026)</b> : un signal « ensemble » votant sur une grille de 12 paramétrages "
+        "(pente × bande) a <b>passé le protocole de validation</b> et est publié <b>en observation</b> dans "
+        "<code>data.json</code> / <code>history.csv</code> (colonne <code>cible_ensemble_shadow</code>) pendant "
+        "3 mois avant toute bascule de la consigne.</li>"
     ),
 )
 

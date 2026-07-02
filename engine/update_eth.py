@@ -34,6 +34,7 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from stats_common import extra_stats, COST_ONEWAY
+from ensemble import GRID_ETH, ensemble_series, shadow_stats
 DOCS = os.path.join(ROOT, "docs", "eth")
 GENESIS = dt.date(2015, 7, 30)  # lancement du reseau Ethereum (Frontier)
 SLOPE = 2.3                     # pente de la power-law ETH (constante structurelle)
@@ -129,6 +130,11 @@ def build():
     mdate = [monthly[k][0] for k in mkeys]
     mprice = [monthly[k][1] for k in mkeys]
 
+    # P2 (audit 02/07/2026) : signal d'ENSEMBLE en shadow, ACCEPTE au protocole —
+    # publie en observation 3 mois avant toute bascule de la consigne affichee.
+    ens_map = ensemble_series(dates, prices, mdate, mprice, GENESIS, GRID_ETH,
+                              sticky=False, start=START, warm_year=2016)
+
     Acache = {}
     def A_for(d):
         if d.year not in Acache:
@@ -194,8 +200,14 @@ def build():
             valuation=valuation,
             target=w, action=action, strat=round(strat, 4), hodl=round(hodl, 4),
             strat_net=round(strat_net, 4),
+            target_ens=ens_map.get(d),
         ))
-    return rows
+    shadow = dict(
+        status="ACCEPTE au protocole — shadow 3 mois avant bascule eventuelle de la consigne",
+        grid=[list(g) for g in GRID_ETH], sticky=False,
+        stats=shadow_stats(ens_map, mdate, mprice),
+    )
+    return rows, shadow
 
 
 def equity_stats(rows):
@@ -219,7 +231,7 @@ def equity_stats(rows):
 
 
 if __name__ == "__main__":
-    rows = build()
+    rows, shadow = build()
     stats = equity_stats(rows)
     os.makedirs(DOCS, exist_ok=True)
 
@@ -228,16 +240,17 @@ if __name__ == "__main__":
         w = csv.writer(f)
         w.writerow(["date", "prix_usd", "juste_valeur_usd", "ratio", "moyenne_mobile_10m",
                     "tendance", "valorisation", "cible_eth", "action", "mult_strategie", "mult_hodl",
-                    "mult_strategie_nette"])
+                    "mult_strategie_nette", "cible_ensemble_shadow"])
         for r in rows:
             w.writerow([r["date"], r["price"], r["fair_value"], r["ratio"], r["sma10"],
                         r["trend"], r["valuation"], r["target"], r["action"], r["strat"], r["hodl"],
-                        r["strat_net"]])
+                        r["strat_net"], r["target_ens"]])
 
     payload = dict(
         generated_utc=dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         params=dict(slope=SLOPE, band_low=BAND_LOW, band_high=BAND_HIGH, sma_window=SMA_WIN, buffer=BUFFER),
         stats=stats, current=rows[-1], history=rows,
+        shadow_ensemble=shadow,
     )
     with open(os.path.join(DOCS, "data.json"), "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=1)
