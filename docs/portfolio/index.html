@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>cool-crypto — portefeuille consolidé BTC + ETH + LQQ</title>
+<style>
+ *{box-sizing:border-box}
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1e293b;line-height:1.5;
+   max-width:960px;margin:0 auto;padding:22px 18px;background:#fafbfc}
+ h1{font-size:23px;margin:0 0 2px} .sub{color:#64748b;font-size:13px;margin-bottom:18px}
+ h2{font-size:17px;margin:30px 0 8px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}
+ .nav{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}
+ .navlink{text-decoration:none;font-weight:600;font-size:14px;color:#475569;background:#fff;
+   border:1px solid #e2e8f0;border-radius:9px;padding:7px 14px}
+ .navlink.active{background:#1e293b;color:#fff;border-color:#1e293b}
+ .reco{background:#eff6ff;border:1px solid #2563eb33;border-left:5px solid #2563eb;border-radius:12px;padding:20px 22px;margin:14px 0}
+ .reco .lab{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+ .reco table{border-collapse:collapse;width:100%;font-size:14px;background:transparent}
+ .reco th,.reco td{border-bottom:1px solid #dbeafe;padding:7px 9px;text-align:left}
+ .reco td.num,.reco th.num{text-align:right;font-variant-numeric:tabular-nums}
+ .calc{background:#fff;border:1px solid #e7ebf0;border-radius:11px;padding:14px 18px;margin:14px 0}
+ .calclab{font-size:13px;font-weight:600;margin-bottom:8px}
+ .calc input{width:100%;font-size:16px;padding:9px 11px;border:1px solid #cbd5e1;border-radius:8px;font-variant-numeric:tabular-nums}
+ .calcout{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+ .calcout .cline{flex:1;min-width:130px;display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:8px;padding:9px 12px}
+ .calcout .cline span{font-size:12.5px;color:#64748b}
+ .calcout .cline b{font-size:17px;font-variant-numeric:tabular-nums}
+ .kpi{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+ .kpi .c{flex:1;min-width:150px;background:#fff;border:1px solid #e7ebf0;border-radius:9px;padding:12px 14px}
+ .kpi .l{font-size:11px;color:#64748b} .kpi .v{font-size:20px;font-weight:700}
+ .g{color:#16a34a} .r{color:#dc2626}
+ .chartwrap{background:#fff;border:1px solid #e7ebf0;border-radius:10px;padding:12px;overflow-x:auto}
+ table{border-collapse:collapse;width:100%;font-size:12.5px;background:#fff}
+ th,td{border-bottom:1px solid #eef2f7;padding:6px 9px;text-align:left;white-space:nowrap}
+ th{position:sticky;top:0;background:#f1f5f9;font-weight:600;z-index:1}
+ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+ .tablewrap{max-height:460px;overflow:auto;border:1px solid #e7ebf0;border-radius:10px}
+ .note{font-size:12px;color:#64748b}
+ .disc{background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:12px 15px;font-size:12.5px;margin-top:18px}
+ a{color:#2563eb}
+</style></head><body>
+
+<div id="cc-consent" role="dialog" aria-modal="true">
+  <div class="cc-card">
+    <div class="cc-title">⚠️ Avertissement — à lire avant d'entrer</div>
+    <p>Ce site est une <b>étude quantitative personnelle</b>, à but informatif et pédagogique.
+    Ce <b>n'est pas un conseil en investissement</b>, ni une recommandation, ni une sollicitation
+    d'achat ou de vente d'un quelconque actif.</p>
+    <ul>
+      <li>Les signaux proviennent de <b>backtests</b> sur données historiques (parfois simulées).
+      <b>Les performances passées ne préjugent en rien des performances futures.</b></li>
+      <li>Le Bitcoin, l'Ethereum et le LQQ (ETF à effet de levier ×2) sont des actifs
+      <b>très volatils</b> : vous pouvez perdre tout ou partie de votre capital.</li>
+      <li>Vous restez <b>seul responsable</b> de vos décisions. Faites vos propres recherches et,
+      au besoin, consultez un conseiller financier agréé.</li>
+    </ul>
+    <label class="cc-check"><input type="checkbox" id="cc-cb">
+      J'ai lu et compris : ce site ne constitue pas un conseil en investissement, et j'investis
+      sous ma seule responsabilité.</label>
+    <button id="cc-btn" type="button" disabled>Entrer sur le site</button>
+  </div>
+</div>
+<style>
+ #cc-consent{position:fixed;inset:0;z-index:99999;background:#0f172a;
+   display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}
+ #cc-consent .cc-card{background:#fff;max-width:560px;width:100%;border-radius:14px;
+   padding:24px 26px;box-shadow:0 20px 60px rgba(0,0,0,.4);font-size:14px;line-height:1.55;color:#1e293b}
+ #cc-consent .cc-title{font-size:19px;font-weight:800;margin-bottom:12px}
+ #cc-consent ul{margin:10px 0;padding-left:20px} #cc-consent li{margin:7px 0}
+ #cc-consent .cc-check{display:flex;gap:9px;align-items:flex-start;background:#f8fafc;
+   border-radius:9px;padding:11px 13px;margin:14px 0;font-size:13px;cursor:pointer}
+ #cc-consent .cc-check input{margin-top:2px;flex:0 0 auto;width:17px;height:17px}
+ #cc-consent button{width:100%;padding:12px;font-size:15px;font-weight:700;color:#fff;
+   background:#16a34a;border:0;border-radius:9px;cursor:pointer}
+ #cc-consent button:disabled{background:#cbd5e1;cursor:not-allowed}
+</style>
+<script>
+(function(){
+  var ov=document.getElementById('cc-consent');
+  try{ if(localStorage.getItem('cc-accepted')==='1'){ ov.style.display='none'; } }catch(e){}
+  var cb=document.getElementById('cc-cb'), btn=document.getElementById('cc-btn');
+  cb.addEventListener('change',function(){ btn.disabled=!cb.checked; });
+  btn.addEventListener('click',function(){
+    try{ localStorage.setItem('cc-accepted','1'); }catch(e){}
+    ov.style.display='none';
+  });
+})();
+</script>
+
+<div class="nav"><a class="navlink" href="../">₿ Bitcoin</a><a class="navlink" href="../eth/">Ξ Ethereum</a><a class="navlink" href="../lqq/">📈 LQQ</a><a class="navlink active" href="./">🧺 Portefeuille</a></div>
+<h1>cool-crypto — portefeuille consolidé</h1>
+<div class="sub">BTC + ETH + LQQ à parts égales (1/3 chacune), rebalancé le 1ᵉʳ du mois · chaque poche suit la cible de sa stratégie · mis à jour le 2026-07-02 15:53 UTC</div>
+
+<div class="reco">
+  <div class="lab">Allocation consolidée du 2026-07-02 · prochaine révision : 2026-08-01</div>
+  <table>
+    <thead><tr><th>Poche</th><th class=num>Poids de la poche</th><th class=num>Cible de la stratégie</th><th class=num>Part du portefeuille total</th></tr></thead>
+    <tbody><tr><td><b>BTC</b></td><td class=num>33.3%</td><td class=num>75%</td><td class=num style='font-weight:700'>25.0%</td></tr><tr><td><b>ETH</b></td><td class=num>33.3%</td><td class=num>75%</td><td class=num style='font-weight:700'>25.0%</td></tr><tr><td><b>LQQ</b></td><td class=num>33.3%</td><td class=num>100%</td><td class=num style='font-weight:700'>33.3%</td></tr><tr><td>💶 Cash</td><td class=num>—</td><td class=num>—</td><td class=num style='font-weight:700;color:#64748b'>16.7%</td></tr></tbody>
+  </table>
+</div>
+
+<div class="calc">
+  <div class="calclab">🧮 Répartition pour votre portefeuille <span class="note" style="font-weight:400">— calcul instantané, rien n'est enregistré</span></div>
+  <input id="tot" type="number" inputmode="decimal" min="0" step="any" placeholder="Montant total du portefeuille (ex. 30000)">
+  <div class="calcout" id="calcout"></div>
+</div>
+<script>
+(function(){
+  var PARTS=[['BTC',0.250000],['ETH',0.250000],['LQQ',0.333333]];
+  var inp=document.getElementById('tot'), out=document.getElementById('calcout');
+  function fmt(x){return x.toLocaleString('fr-FR',{maximumFractionDigits:0});}
+  function calc(){
+    var v=parseFloat((inp.value||'').replace(',','.'));
+    if(!(v>0)){out.innerHTML='';return;}
+    var html='', used=0;
+    for(var i=0;i<PARTS.length;i++){
+      html+='<div class="cline"><span>'+PARTS[i][0]+' ('+Math.round(PARTS[i][1]*1000)/10+'%)</span><b>'+fmt(v*PARTS[i][1])+'</b></div>';
+      used+=PARTS[i][1];
+    }
+    html+='<div class="cline"><span>Cash ('+Math.round((1-used)*1000)/10+'%)</span><b style="color:#64748b">'+fmt(v*(1-used))+'</b></div>';
+    out.innerHTML=html;
+  }
+  inp.addEventListener('input',calc);
+})();
+</script>
+
+<h2>Pourquoi un portefeuille combiné ?</h2>
+<div class="note" style="font-size:13px;line-height:1.7">Les rendements mensuels des trois stratégies sont <b>faiblement corrélés</b> (BTC-ETH ≈ 0,44 ; BTC-LQQ ≈ 0,20 ; ETH-LQQ ≈ 0,22 sur 2017→2026) : leurs mauvais mois ne tombent pas en même temps. Historiquement, la combinaison 1/3-1/3-1/3 a une <b>pire baisse plus faible que chacune des trois jambes prises isolément</b>, pour un rendement proche de la meilleure. C'est l'effet diversification.</div>
+
+<h2>Performance (2017-02 → 2026-07, backtest auditable)</h2>
+<div class="kpi">
+  <div class="c"><div class="l">Rendement / an — Portefeuille</div><div class="v g">76.9 %</div></div>
+  <div class="c"><div class="l">Rendement / an — 1/3 HODL</div><div class="v">71.0 %</div></div>
+  <div class="c"><div class="l">Pire baisse — Portefeuille</div><div class="v g">-32 %</div></div>
+  <div class="c"><div class="l">Pire baisse — 1/3 HODL</div><div class="v r">-67 %</div></div>
+</div>
+<div class="kpi">
+  <div class="c"><div class="l">Rendement / an — net de frais (25 bps/arbitrage)</div><div class="v g">76.5 %</div></div>
+  <div class="c"><div class="l">Calmar (rdt ÷ pire baisse)</div><div class="v">2.38</div></div>
+  <div class="c"><div class="l">Part investie moyenne</div><div class="v">76 %</div></div>
+  <div class="c"><div class="l">Pire baisse — fourchette bootstrap</div><div class="v">-41 % <span style="font-size:12px;color:#64748b">(5 % pire : -60 %)</span></div></div>
+</div>
+<div class="chartwrap"><svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+<line x1=56 y1=176.3 x2=830 y2=176.3 stroke="#eef2f7"/><text x=50 y=179.3 font-size=10 fill="#94a3b8" text-anchor=end>x10</text><line x1=56 y1=69.8 x2=830 y2=69.8 stroke="#eef2f7"/><text x=50 y=72.8 font-size=10 fill="#94a3b8" text-anchor=end>x100</text>
+<path d="M56.0,270.2 L62.8,247.8 L69.7,235.5 L76.5,206.9 L83.4,204.9 L90.2,203.7 L97.1,184.2 L103.9,189.7 L110.8,181.5 L117.6,165.6 L124.5,153.5 L131.3,150.6 L138.2,150.1 L145.0,169.5 L151.9,154.9 L158.7,158.1 L165.6,163.9 L172.4,161.3 L179.3,164.9 L186.1,170.1 L193.0,175.8 L199.8,189.4 L206.7,190.5 L213.5,192.8 L220.4,186.7 L227.2,183.5 L234.1,176.2 L240.9,161.5 L247.8,154.4 L254.6,158.1 L261.5,163.3 L268.3,164.9 L275.2,161.4 L282.0,166.1 L288.9,167.6 L295.7,156.9 L302.6,157.2 L309.4,171.8 L316.3,156.1 L323.1,149.7 L330.0,150.4 L336.8,136.0 L343.7,129.0 L350.5,137.5 L357.4,132.4 L364.2,118.1 L371.1,105.9 L377.9,92.4 L384.8,83.8 L391.6,77.1 L398.5,68.7 L405.3,77.2 L412.2,79.6 L419.0,73.0 L425.9,62.3 L432.7,66.4 L439.6,56.2 L446.4,55.7 L453.3,61.1 L460.1,71.6 L467.0,70.0 L473.8,65.9 L480.7,76.3 L487.5,87.1 L494.4,104.7 L501.2,91.4 L508.1,95.9 L514.9,102.8 L521.8,97.9 L528.6,102.2 L535.5,106.3 L542.3,92.8 L549.2,93.0 L556.0,85.9 L562.9,85.9 L569.7,84.0 L576.6,79.5 L583.4,79.3 L590.3,84.0 L597.1,83.3 L604.0,79.0 L610.8,72.6 L617.7,67.2 L624.5,67.3 L631.4,53.4 L638.2,51.0 L645.1,57.8 L651.9,49.7 L658.8,50.4 L665.6,51.4 L672.5,57.1 L679.3,55.3 L686.2,53.1 L693.0,40.0 L699.9,41.9 L706.7,41.3 L713.6,49.7 L720.4,54.5 L727.3,53.0 L734.1,43.8 L741.0,42.7 L747.8,34.6 L754.7,31.5 L761.5,28.4 L768.4,29.7 L775.2,38.6 L782.1,37.4 L788.9,43.2 L795.8,48.8 L802.6,48.1 L809.5,40.3 L816.3,40.3 L823.2,46.3 L830.0,47.2" fill=none stroke="#cbd5e1" stroke-width=1.5/>
+<path d="M56.0,272.0 L62.8,249.7 L69.7,237.3 L76.5,208.8 L83.4,209.5 L90.2,206.3 L97.1,194.9 L103.9,196.6 L110.8,187.9 L117.6,178.9 L124.5,178.7 L131.3,176.1 L138.2,176.6 L145.0,177.9 L151.9,169.7 L158.7,168.0 L165.6,167.7 L172.4,167.7 L179.3,169.3 L186.1,172.1 L193.0,176.6 L199.8,181.8 L206.7,180.9 L213.5,184.9 L220.4,180.6 L227.2,178.2 L234.1,172.6 L240.9,159.9 L247.8,153.8 L254.6,157.5 L261.5,162.7 L268.3,164.4 L275.2,161.1 L282.0,165.1 L288.9,165.9 L295.7,157.5 L302.6,158.5 L309.4,171.9 L316.3,159.7 L323.1,153.3 L330.0,153.9 L336.8,139.5 L343.7,132.6 L350.5,141.0 L357.4,135.9 L364.2,121.7 L371.1,109.5 L377.9,96.0 L384.8,87.4 L391.6,83.2 L398.5,74.6 L405.3,75.0 L412.2,73.1 L419.0,69.1 L425.9,67.8 L432.7,69.6 L439.6,67.2 L446.4,66.7 L453.3,66.4 L460.1,69.1 L467.0,69.5 L473.8,67.1 L480.7,73.2 L487.5,77.5 L494.4,82.6 L501.2,74.7 L508.1,76.7 L514.9,79.3 L521.8,76.3 L528.6,80.7 L535.5,81.6 L542.3,73.2 L549.2,73.1 L556.0,68.0 L562.9,68.0 L569.7,66.1 L576.6,61.7 L583.4,61.5 L590.3,66.2 L597.1,65.7 L604.0,61.4 L610.8,55.0 L617.7,49.6 L624.5,49.7 L631.4,35.8 L638.2,33.4 L645.1,40.2 L651.9,32.1 L658.8,32.8 L665.6,33.8 L672.5,39.5 L679.3,37.8 L686.2,35.6 L693.0,23.9 L699.9,25.9 L706.7,25.3 L713.6,33.6 L720.4,37.9 L727.3,36.3 L734.1,30.1 L741.0,28.8 L747.8,22.2 L754.7,19.1 L761.5,16.0 L768.4,17.3 L775.2,26.2 L782.1,25.4 L788.9,29.6 L795.8,33.9 L802.6,33.8 L809.5,27.8 L816.3,26.9 L823.2,31.4 L830.0,32.3" fill=none stroke="#16a34a" stroke-width=2.4/>
+<text x=836 y=35.32234414612469 font-size=11 fill="#16a34a" font-weight=700>Stratégie ×225</text>
+<text x=836 y=50.22112690219956 font-size=11 fill="#94a3b8">HODL ×163</text>
+</svg></div>
+<div class="note">Capital indexé, échelle logarithmique. Portefeuille en vert ; « 1/3 HODL » (un tiers de chaque actif conservé sans signal) en gris. Coûts comptés dans chaque jambe (25 bps par arbitrage) ; le rebalancement mensuel inter-poches est supposé sans friction.</div>
+
+<h2>Historique mensuel (114 mois — le plus récent en haut)</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Mois</th><th class=num>Cible BTC</th><th class=num>Cible ETH</th><th class=num>Cible LQQ</th>
+<th class=num>Part investie</th><th class=num>Rdt portefeuille</th><th class=num>Multiple</th></tr></thead>
+<tbody>
+<tr><td>2026-07</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#dc2626'>-1.9%</td><td class=num>225.03</td></tr>
+<tr><td>2026-06</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#dc2626'>-9.3%</td><td class=num>229.41</td></tr>
+<tr><td>2026-05</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#16a34a'>+1.9%</td><td class=num>253.01</td></tr>
+<tr><td>2026-04</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num style='color:#16a34a'>+13.8%</td><td class=num>248.21</td></tr>
+<tr><td>2026-03</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#16a34a'>+0.2%</td><td class=num>218.13</td></tr>
+<tr><td>2026-02</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#dc2626'>-8.9%</td><td class=num>217.67</td></tr>
+<tr><td>2026-01</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#dc2626'>-8.7%</td><td class=num>238.93</td></tr>
+<tr><td>2025-12</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#16a34a'>+1.8%</td><td class=num>261.56</td></tr>
+<tr><td>2025-11</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-17.5%</td><td class=num>256.82</td></tr>
+<tr><td>2025-10</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-2.8%</td><td class=num>311.30</td></tr>
+<tr><td>2025-09</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+6.8%</td><td class=num>320.30</td></tr>
+<tr><td>2025-08</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+7.1%</td><td class=num>299.79</td></tr>
+<tr><td>2025-07</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#16a34a'>+15.3%</td><td class=num>279.99</td></tr>
+<tr><td>2025-06</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#16a34a'>+2.8%</td><td class=num>242.87</td></tr>
+<tr><td>2025-05</td><td class=num>100%</td><td class=num>75%</td><td class=num>25%</td><td class=num>67%</td><td class=num style='color:#16a34a'>+14.3%</td><td class=num>236.16</td></tr>
+<tr><td>2025-04</td><td class=num>100%</td><td class=num>75%</td><td class=num>50%</td><td class=num>75%</td><td class=num style='color:#16a34a'>+3.5%</td><td class=num>206.60</td></tr>
+<tr><td>2025-03</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#dc2626'>-8.8%</td><td class=num>199.55</td></tr>
+<tr><td>2025-02</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-16.5%</td><td class=num>218.69</td></tr>
+<tr><td>2025-01</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+1.3%</td><td class=num>261.99</td></tr>
+<tr><td>2024-12</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-4.2%</td><td class=num>258.74</td></tr>
+<tr><td>2024-11</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#16a34a'>+28.9%</td><td class=num>269.96</td></tr>
+<tr><td>2024-10</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#16a34a'>+4.7%</td><td class=num>209.44</td></tr>
+<tr><td>2024-09</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#16a34a'>+3.8%</td><td class=num>199.98</td></tr>
+<tr><td>2024-08</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-11.5%</td><td class=num>192.58</td></tr>
+<tr><td>2024-07</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-2.3%</td><td class=num>217.72</td></tr>
+<tr><td>2024-06</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-1.5%</td><td class=num>222.77</td></tr>
+<tr><td>2024-05</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+19.2%</td><td class=num>226.12</td></tr>
+<tr><td>2024-04</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-13.7%</td><td class=num>189.67</td></tr>
+<tr><td>2024-03</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+5.3%</td><td class=num>219.76</td></tr>
+<tr><td>2024-02</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+35.1%</td><td class=num>208.71</td></tr>
+<tr><td>2024-01</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-0.3%</td><td class=num>154.44</td></tr>
+<tr><td>2023-12</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+12.5%</td><td class=num>154.87</td></tr>
+<tr><td>2023-11</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+14.8%</td><td class=num>137.65</td></tr>
+<tr><td>2023-10</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+9.7%</td><td class=num>119.88</td></tr>
+<tr><td>2023-09</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#16a34a'>+1.0%</td><td class=num>109.32</td></tr>
+<tr><td>2023-08</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-9.6%</td><td class=num>108.23</td></tr>
+<tr><td>2023-07</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+0.4%</td><td class=num>119.73</td></tr>
+<tr><td>2023-06</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+10.1%</td><td class=num>119.28</td></tr>
+<tr><td>2023-05</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+4.2%</td><td class=num>108.30</td></tr>
+<tr><td>2023-04</td><td class=num>100%</td><td class=num>100%</td><td class=num>75%</td><td class=num>92%</td><td class=num style='color:#dc2626'>-0.1%</td><td class=num>103.96</td></tr>
+<tr><td>2023-03</td><td class=num>100%</td><td class=num>100%</td><td class=num>25%</td><td class=num>75%</td><td class=num style='color:#16a34a'>+11.7%</td><td class=num>104.04</td></tr>
+<tr><td>2023-02</td><td class=num>100%</td><td class=num>100%</td><td class=num>0%</td><td class=num>67%</td><td class=num style='color:#16a34a'>+0.2%</td><td class=num>93.11</td></tr>
+<tr><td>2023-01</td><td class=num>75%</td><td class=num>75%</td><td class=num>0%</td><td class=num>50%</td><td class=num style='color:#16a34a'>+19.9%</td><td class=num>92.89</td></tr>
+<tr><td>2022-12</td><td class=num>75%</td><td class=num>75%</td><td class=num>0%</td><td class=num>50%</td><td class=num style='color:#dc2626'>-2.0%</td><td class=num>77.46</td></tr>
+<tr><td>2022-11</td><td class=num>75%</td><td class=num>75%</td><td class=num>0%</td><td class=num>50%</td><td class=num style='color:#dc2626'>-9.1%</td><td class=num>79.04</td></tr>
+<tr><td>2022-10</td><td class=num>75%</td><td class=num>75%</td><td class=num>0%</td><td class=num>50%</td><td class=num style='color:#16a34a'>+6.6%</td><td class=num>86.97</td></tr>
+<tr><td>2022-09</td><td class=num>75%</td><td class=num>75%</td><td class=num>0%</td><td class=num>50%</td><td class=num style='color:#dc2626'>-5.3%</td><td class=num>81.55</td></tr>
+<tr><td>2022-08</td><td class=num>75%</td><td class=num>75%</td><td class=num>0%</td><td class=num>50%</td><td class=num style='color:#dc2626'>-4.2%</td><td class=num>86.14</td></tr>
+<tr><td>2022-07</td><td class=num>75%</td><td class=num>75%</td><td class=num>0%</td><td class=num>50%</td><td class=num style='color:#16a34a'>+18.5%</td><td class=num>89.93</td></tr>
+<tr><td>2022-06</td><td class=num>0%</td><td class=num>75%</td><td class=num>0%</td><td class=num>25%</td><td class=num style='color:#dc2626'>-10.4%</td><td class=num>75.88</td></tr>
+<tr><td>2022-05</td><td class=num>0%</td><td class=num>75%</td><td class=num>0%</td><td class=num>25%</td><td class=num style='color:#dc2626'>-8.8%</td><td class=num>84.70</td></tr>
+<tr><td>2022-04</td><td class=num>0%</td><td class=num>100%</td><td class=num>75%</td><td class=num>58%</td><td class=num style='color:#dc2626'>-12.4%</td><td class=num>92.92</td></tr>
+<tr><td>2022-03</td><td class=num>0%</td><td class=num>75%</td><td class=num>50%</td><td class=num>42%</td><td class=num style='color:#16a34a'>+5.3%</td><td class=num>106.07</td></tr>
+<tr><td>2022-02</td><td class=num>0%</td><td class=num>75%</td><td class=num>75%</td><td class=num>50%</td><td class=num style='color:#dc2626'>-0.9%</td><td class=num>100.75</td></tr>
+<tr><td>2022-01</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#dc2626'>-5.6%</td><td class=num>101.66</td></tr>
+<tr><td>2021-12</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#16a34a'>+0.6%</td><td class=num>107.73</td></tr>
+<tr><td>2021-11</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#16a34a'>+1.1%</td><td class=num>107.08</td></tr>
+<tr><td>2021-10</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#16a34a'>+5.4%</td><td class=num>105.88</td></tr>
+<tr><td>2021-09</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#dc2626'>-3.8%</td><td class=num>100.45</td></tr>
+<tr><td>2021-08</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#16a34a'>+2.8%</td><td class=num>104.39</td></tr>
+<tr><td>2021-07</td><td class=num>0%</td><td class=num>100%</td><td class=num>100%</td><td class=num>67%</td><td class=num style='color:#16a34a'>+8.9%</td><td class=num>101.55</td></tr>
+<tr><td>2021-06</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#16a34a'>+4.3%</td><td class=num>93.22</td></tr>
+<tr><td>2021-05</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#dc2626'>-0.9%</td><td class=num>89.37</td></tr>
+<tr><td>2021-04</td><td class=num>0%</td><td class=num>100%</td><td class=num>100%</td><td class=num>67%</td><td class=num style='color:#16a34a'>+20.5%</td><td class=num>90.21</td></tr>
+<tr><td>2021-03</td><td class=num>0%</td><td class=num>100%</td><td class=num>100%</td><td class=num>67%</td><td class=num style='color:#16a34a'>+9.4%</td><td class=num>74.87</td></tr>
+<tr><td>2021-02</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+20.5%</td><td class=num>68.45</td></tr>
+<tr><td>2021-01</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+34.0%</td><td class=num>56.83</td></tr>
+<tr><td>2020-12</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+30.2%</td><td class=num>42.42</td></tr>
+<tr><td>2020-11</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+36.1%</td><td class=num>32.58</td></tr>
+<tr><td>2020-10</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+11.6%</td><td class=num>23.94</td></tr>
+<tr><td>2020-09</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-16.7%</td><td class=num>21.45</td></tr>
+<tr><td>2020-08</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+16.2%</td><td class=num>25.75</td></tr>
+<tr><td>2020-07</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+36.6%</td><td class=num>22.16</td></tr>
+<tr><td>2020-06</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-1.4%</td><td class=num>16.22</td></tr>
+<tr><td>2020-05</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+14.9%</td><td class=num>16.45</td></tr>
+<tr><td>2020-04</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num style='color:#16a34a'>+30.2%</td><td class=num>14.33</td></tr>
+<tr><td>2020-03</td><td class=num>75%</td><td class=num>100%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#dc2626'>-25.1%</td><td class=num>11.01</td></tr>
+<tr><td>2020-02</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#dc2626'>-2.2%</td><td class=num>14.70</td></tr>
+<tr><td>2020-01</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#16a34a'>+20.0%</td><td class=num>15.03</td></tr>
+<tr><td>2019-12</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#dc2626'>-1.7%</td><td class=num>12.53</td></tr>
+<tr><td>2019-11</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#dc2626'>-8.3%</td><td class=num>12.75</td></tr>
+<tr><td>2019-10</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#16a34a'>+7.6%</td><td class=num>13.90</td></tr>
+<tr><td>2019-09</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#dc2626'>-3.7%</td><td class=num>12.92</td></tr>
+<tr><td>2019-08</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-10.6%</td><td class=num>13.42</td></tr>
+<tr><td>2019-07</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#dc2626'>-7.7%</td><td class=num>15.02</td></tr>
+<tr><td>2019-06</td><td class=num>100%</td><td class=num>100%</td><td class=num>50%</td><td class=num>83%</td><td class=num style='color:#16a34a'>+14.0%</td><td class=num>16.27</td></tr>
+<tr><td>2019-05</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#16a34a'>+31.7%</td><td class=num>14.27</td></tr>
+<tr><td>2019-04</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num style='color:#16a34a'>+12.9%</td><td class=num>10.83</td></tr>
+<tr><td>2019-03</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num style='color:#16a34a'>+5.3%</td><td class=num>9.59</td></tr>
+<tr><td>2019-02</td><td class=num>75%</td><td class=num>75%</td><td class=num>25%</td><td class=num>58%</td><td class=num style='color:#16a34a'>+9.7%</td><td class=num>9.11</td></tr>
+<tr><td>2019-01</td><td class=num>75%</td><td class=num>75%</td><td class=num>0%</td><td class=num>50%</td><td class=num style='color:#dc2626'>-8.2%</td><td class=num>8.30</td></tr>
+<tr><td>2018-12</td><td class=num>0%</td><td class=num>75%</td><td class=num>50%</td><td class=num>42%</td><td class=num style='color:#16a34a'>+1.8%</td><td class=num>9.04</td></tr>
+<tr><td>2018-11</td><td class=num>0%</td><td class=num>75%</td><td class=num>100%</td><td class=num>58%</td><td class=num style='color:#dc2626'>-10.6%</td><td class=num>8.89</td></tr>
+<tr><td>2018-10</td><td class=num>0%</td><td class=num>75%</td><td class=num>100%</td><td class=num>58%</td><td class=num style='color:#dc2626'>-9.3%</td><td class=num>9.94</td></tr>
+<tr><td>2018-09</td><td class=num>0%</td><td class=num>75%</td><td class=num>100%</td><td class=num>58%</td><td class=num style='color:#dc2626'>-5.8%</td><td class=num>10.96</td></tr>
+<tr><td>2018-08</td><td class=num>0%</td><td class=num>75%</td><td class=num>100%</td><td class=num>58%</td><td class=num style='color:#dc2626'>-3.4%</td><td class=num>11.63</td></tr>
+<tr><td>2018-07</td><td class=num>0%</td><td class=num>75%</td><td class=num>100%</td><td class=num>58%</td><td class=num style='color:#dc2626'>-0.0%</td><td class=num>12.04</td></tr>
+<tr><td>2018-06</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#16a34a'>+0.7%</td><td class=num>12.05</td></tr>
+<tr><td>2018-05</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#16a34a'>+3.7%</td><td class=num>11.97</td></tr>
+<tr><td>2018-04</td><td class=num>0%</td><td class=num>75%</td><td class=num>100%</td><td class=num>58%</td><td class=num style='color:#16a34a'>+19.5%</td><td class=num>11.54</td></tr>
+<tr><td>2018-03</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#dc2626'>-2.8%</td><td class=num>9.66</td></tr>
+<tr><td>2018-02</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#dc2626'>-1.1%</td><td class=num>9.94</td></tr>
+<tr><td>2018-01</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#16a34a'>+6.0%</td><td class=num>10.05</td></tr>
+<tr><td>2017-12</td><td class=num>0%</td><td class=num>0%</td><td class=num>100%</td><td class=num>33%</td><td class=num style='color:#16a34a'>+0.3%</td><td class=num>9.48</td></tr>
+<tr><td>2017-11</td><td class=num>100%</td><td class=num>0%</td><td class=num>100%</td><td class=num>67%</td><td class=num style='color:#16a34a'>+21.5%</td><td class=num>9.45</td></tr>
+<tr><td>2017-10</td><td class=num>100%</td><td class=num>0%</td><td class=num>100%</td><td class=num>67%</td><td class=num style='color:#16a34a'>+20.9%</td><td class=num>7.78</td></tr>
+<tr><td>2017-09</td><td class=num>100%</td><td class=num>0%</td><td class=num>100%</td><td class=num>67%</td><td class=num style='color:#dc2626'>-3.8%</td><td class=num>6.44</td></tr>
+<tr><td>2017-08</td><td class=num>100%</td><td class=num>0%</td><td class=num>100%</td><td class=num>67%</td><td class=num style='color:#16a34a'>+28.0%</td><td class=num>6.69</td></tr>
+<tr><td>2017-07</td><td class=num>100%</td><td class=num>0%</td><td class=num>100%</td><td class=num>67%</td><td class=num style='color:#16a34a'>+7.1%</td><td class=num>5.23</td></tr>
+<tr><td>2017-06</td><td class=num>100%</td><td class=num>0%</td><td class=num>100%</td><td class=num>67%</td><td class=num style='color:#dc2626'>-1.5%</td><td class=num>4.88</td></tr>
+<tr><td>2017-05</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+85.5%</td><td class=num>4.96</td></tr>
+<tr><td>2017-04</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+30.6%</td><td class=num>2.67</td></tr>
+<tr><td>2017-03</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num>100%</td><td class=num style='color:#16a34a'>+62.1%</td><td class=num>2.05</td></tr>
+<tr><td>2017-02</td><td class=num>100%</td><td class=num>75%</td><td class=num>100%</td><td class=num>92%</td><td class=num style='color:#16a34a'>+26.2%</td><td class=num>1.26</td></tr>
+</tbody></table></div>
+<div class="note">Données brutes : <a href="history.csv">history.csv</a> · <a href="data.json">data.json</a></div>
+
+<h2>Comment lire cette page</h2>
+<ul class="note" style="font-size:13px;line-height:1.7">
+<li><b>Poids des poches</b> : 1/3 BTC, 1/3 ETH, 1/3 LQQ, <b>rebalancés le 1ᵉʳ de chaque mois</b> (on ramène chaque poche à un tiers du total).</li>
+<li><b>À l'intérieur de chaque poche</b>, on applique la cible de la stratégie de l'actif (voir ses onglets). Ex. : poche BTC à 75 % → 25 % du portefeuille total en BTC et 8,3 % en cash.</li>
+<li>La <b>part investie</b> = moyenne des trois cibles ; le reste est en cash (fonds monétaire / USDC).</li>
+<li>La fenêtre du backtest démarre au premier mois commun aux trois historiques (2017-02 — l'ETH est la série la plus jeune).</li>
+</ul>
+
+<div class="disc">
+<b>⚠️ Avertissement.</b> Ceci est une <b>étude quantitative personnelle</b>, pas un conseil en investissement ni une allocation recommandée. Les performances passées (backtests, dont une partie simulée) ne préjugent pas des performances futures ; les corrélations entre actifs <b>varient dans le temps</b> et peuvent converger vers 1 en crise, réduisant l'effet de diversification. BTC, ETH et le Nasdaq-100 sont des actifs « gagnants » identifiés a posteriori — ce backtest répond à « comment les détenir ensemble », pas à « fallait-il les choisir ». N'investissez que ce que vous pouvez vous permettre de perdre.
+</div>
+<div class="note" style="margin-top:14px">Code &amp; méthodologie : <a href="https://github.com/robaromat/cool-crypto">github.com/robaromat/cool-crypto</a></div>
+</body></html>

@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-07-02 15:34 UTC",
+ "generated_utc": "2026-07-02 15:53 UTC",
  "params": {
   "windows": [
    6,
@@ -11,17 +11,17 @@
  },
  "stats": {
   "months": 330,
-  "strat_mult": 201.8006,
-  "hodl_mult": 32.5283,
-  "strat_cagr": 0.21287309407492283,
-  "hodl_cagr": 0.13498813741341809,
+  "strat_mult": 200.3127,
+  "hodl_mult": 32.2884,
+  "strat_cagr": 0.2125467456527017,
+  "hodl_cagr": 0.13468266254325156,
   "strat_mdd": -0.5885127865596292,
   "hodl_mdd": -0.9823305470495738,
   "cost_bps": 25,
-  "strat_mult_net": 187.4461,
-  "strat_cagr_net": 0.20962304244986085,
+  "strat_mult_net": 186.0641,
+  "strat_cagr_net": 0.2092975833043127,
   "strat_mdd_net": -0.5910783745758503,
-  "calmar": 0.36171362617174696,
+  "calmar": 0.3611590954467156,
   "turnover": 29.5,
   "turnover_per_year": 1.0727272727272728,
   "n_trades": 85,
@@ -32,7 +32,7 @@
  },
  "current": {
   "date": "2026-07-02",
-  "ndx": 29511.8,
+  "ndx": 29404.1,
   "mom6": "HAUSSE",
   "mom8": "HAUSSE",
   "mom10": "HAUSSE",
@@ -40,9 +40,9 @@
   "votes": 4,
   "target": 1.0,
   "action": "CONSERVER",
-  "strat": 201.8006,
-  "hodl": 32.5283,
-  "strat_net": 187.4461
+  "strat": 200.3127,
+  "hodl": 32.2884,
+  "strat_net": 186.0641
  },
  "history": [
   {
@@ -4667,7 +4667,7 @@
   },
   {
    "date": "2026-07-02",
-   "ndx": 29511.8,
+   "ndx": 29404.1,
    "mom6": "HAUSSE",
    "mom8": "HAUSSE",
    "mom10": "HAUSSE",
@@ -4675,9 +4675,9 @@
    "votes": 4,
    "target": 1.0,
    "action": "CONSERVER",
-   "strat": 201.8006,
-   "hodl": 32.5283,
-   "strat_net": 187.4461
+   "strat": 200.3127,
+   "hodl": 32.2884,
+   "strat_net": 186.0641
   }
  ]
 }
