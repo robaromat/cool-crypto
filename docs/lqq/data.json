@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-07-02 15:53 UTC",
+ "generated_utc": "2026-08-01 07:18 UTC",
  "params": {
   "windows": [
    6,
@@ -11,28 +11,28 @@
  },
  "stats": {
   "months": 330,
-  "strat_mult": 200.3127,
-  "hodl_mult": 32.2884,
-  "strat_cagr": 0.2125467456527017,
-  "hodl_cagr": 0.13468266254325156,
+  "strat_mult": 184.4096,
+  "hodl_mult": 29.725,
+  "strat_cagr": 0.20890487305473648,
+  "hodl_cagr": 0.1312746821572448,
   "strat_mdd": -0.5885127865596292,
   "hodl_mdd": -0.9823305470495738,
   "cost_bps": 25,
-  "strat_mult_net": 186.0641,
-  "strat_cagr_net": 0.2092975833043127,
+  "strat_mult_net": 171.2921,
+  "strat_cagr_net": 0.20566543987050157,
   "strat_mdd_net": -0.5910783745758503,
-  "calmar": 0.3611590954467156,
+  "calmar": 0.3549708312642921,
   "turnover": 29.5,
   "turnover_per_year": 1.0727272727272728,
   "n_trades": 85,
   "avg_exposure": 0.7620845921450151,
-  "boot_mdd_median": -0.5482145866972976,
-  "boot_mdd_p5": -0.746926890201812,
+  "boot_mdd_median": -0.550497421252712,
+  "boot_mdd_p5": -0.7479551929862466,
   "boot_mdd_p1": -0.8321873637988669
  },
  "current": {
-  "date": "2026-07-02",
-  "ndx": 29404.1,
+  "date": "2026-07-31",
+  "ndx": 28274.2,
   "mom6": "HAUSSE",
   "mom8": "HAUSSE",
   "mom10": "HAUSSE",
@@ -40,9 +40,9 @@
   "votes": 4,
   "target": 1.0,
   "action": "CONSERVER",
-  "strat": 200.3127,
-  "hodl": 32.2884,
-  "strat_net": 186.0641
+  "strat": 184.4096,
+  "hodl": 29.725,
+  "strat_net": 171.2921
  },
  "history": [
   {
@@ -4666,8 +4666,8 @@
    "strat_net": 197.3526
   },
   {
-   "date": "2026-07-02",
-   "ndx": 29404.1,
+   "date": "2026-07-31",
+   "ndx": 28274.2,
    "mom6": "HAUSSE",
    "mom8": "HAUSSE",
    "mom10": "HAUSSE",
@@ -4675,9 +4675,9 @@
    "votes": 4,
    "target": 1.0,
    "action": "CONSERVER",
-   "strat": 200.3127,
-   "hodl": 32.2884,
-   "strat_net": 186.0641
+   "strat": 184.4096,
+   "hodl": 29.725,
+   "strat_net": 171.2921
   }
  ]
 }
