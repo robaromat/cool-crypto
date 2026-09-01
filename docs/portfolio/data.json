@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-08-01 07:18 UTC",
+ "generated_utc": "2026-09-01 06:02 UTC",
  "params": {
   "weights": {
    "BTC": 0.3333,
@@ -9,57 +9,57 @@
   "rebalance": "mensuel"
  },
  "stats": {
-  "months": 114,
+  "months": 115,
   "first_month": "2017-02",
-  "last_month": "2026-07",
-  "strat_mult": 231.5687,
-  "strat_cagr": 0.7738368355126155,
+  "last_month": "2026-08",
+  "strat_mult": 271.6798,
+  "strat_cagr": 0.7946864874025663,
   "strat_mdd": -0.3235089832873361,
-  "strat_mult_net": 226.8372,
-  "strat_cagr_net": 0.7699863779466818,
+  "strat_mult_net": 266.1287,
+  "strat_cagr_net": 0.79082458656119,
   "strat_mdd_net": -0.32452409694493456,
-  "hodl_mult": 170.743,
-  "hodl_cagr": 0.717842978027206,
+  "hodl_mult": 208.5738,
+  "hodl_cagr": 0.7458612003747724,
   "hodl_mdd": -0.6651688756319842,
-  "calmar": 2.392010347438496,
-  "avg_riskon": 0.7551157894736843,
-  "boot_mdd_median": -0.408226200193355,
-  "boot_mdd_p5": -0.593777769414427,
-  "boot_mdd_p1": -0.6834107633263531,
+  "calmar": 2.4564587954478436,
+  "avg_riskon": 0.7557956521739131,
+  "boot_mdd_median": -0.3935665362729388,
+  "boot_mdd_p5": -0.5774983652386299,
+  "boot_mdd_p1": -0.6420943587792114,
   "cost_bps": 25
  },
  "currents": {
   "BTC": {
-   "date": "2026-08-01",
-   "price": 63045.5,
-   "fair_value": 156713.68,
-   "ratio": 0.402,
-   "sma10": 76841.06,
-   "trend": "BAISSE",
+   "date": "2026-09-01",
+   "price": 79088.2,
+   "fair_value": 161154.51,
+   "ratio": 0.491,
+   "sma10": 73720.8,
+   "trend": "HAUSSE",
    "valuation": "bon marché",
-   "target": 0.75,
-   "action": "CONSERVER",
-   "strat": 1662.5695,
-   "hodl": 200.2866,
-   "strat_net": 1634.727
+   "target": 1.0,
+   "action": "ACHETER",
+   "strat": 1980.1491,
+   "hodl": 251.2519,
+   "strat_net": 1945.7713
   },
   "ETH": {
-   "date": "2026-08-01",
-   "price": 1868.81,
-   "fair_value": 4456.08,
-   "ratio": 0.419,
-   "sma10": 2380.05,
-   "trend": "BAISSE",
+   "date": "2026-09-01",
+   "price": 2482.05,
+   "fair_value": 4535.51,
+   "ratio": 0.547,
+   "sma10": 2238.55,
+   "trend": "HAUSSE",
    "valuation": "bon marché",
-   "target": 0.75,
-   "action": "CONSERVER",
-   "strat": 230.4817,
-   "hodl": 228.5209,
-   "strat_net": 224.2248
+   "target": 1.0,
+   "action": "ACHETER",
+   "strat": 287.3013,
+   "hodl": 303.5088,
+   "strat_net": 279.3271
   },
   "LQQ": {
-   "date": "2026-07-31",
-   "ndx": 28274.2,
+   "date": "2026-08-31",
+   "ndx": 29456.97,
    "mom6": "HAUSSE",
    "mom8": "HAUSSE",
    "mom10": "HAUSSE",
@@ -67,9 +67,9 @@
    "votes": 4,
    "target": 1.0,
    "action": "CONSERVER",
-   "strat": 184.4096,
-   "hodl": 29.725,
-   "strat_net": 171.2921
+   "strat": 199.6595,
+   "hodl": 32.1831,
+   "strat_net": 185.4573
   }
  },
  "history": [
@@ -1657,17 +1657,31 @@
   },
   {
    "date": "2026-07",
-   "r_btc": 0.0386,
-   "r_eth": 0.1217,
+   "r_btc": 0.03503,
+   "r_eth": 0.1099,
    "r_lqq": -0.13205,
-   "r_pf": 0.00942,
+   "r_pf": 0.00429,
    "t_btc": 0.75,
    "t_eth": 0.75,
    "t_lqq": 1.0,
    "riskon": 0.8333,
-   "strat": 231.5687,
-   "strat_net": 226.8372,
-   "hodl": 170.743
+   "strat": 230.3932,
+   "strat_net": 225.6857,
+   "hodl": 169.6074
+  },
+  {
+   "date": "2026-08",
+   "r_btc": 0.19513,
+   "r_eth": 0.25978,
+   "r_lqq": 0.0827,
+   "r_pf": 0.1792,
+   "t_btc": 0.75,
+   "t_eth": 0.75,
+   "t_lqq": 1.0,
+   "riskon": 0.8333,
+   "strat": 271.6798,
+   "strat_net": 266.1287,
+   "hodl": 208.5738
   }
  ]
 }

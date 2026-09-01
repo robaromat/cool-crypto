@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-08-01 07:18 UTC",
+ "generated_utc": "2026-09-01 06:02 UTC",
  "params": {
   "windows": [
    6,
@@ -10,29 +10,29 @@
   "leverage": 2.0
  },
  "stats": {
-  "months": 330,
-  "strat_mult": 184.4096,
-  "hodl_mult": 29.725,
-  "strat_cagr": 0.20890487305473648,
-  "hodl_cagr": 0.1312746821572448,
+  "months": 331,
+  "strat_mult": 199.6595,
+  "hodl_mult": 32.1831,
+  "strat_cagr": 0.2116974631613886,
+  "hodl_cagr": 0.13411528564277475,
   "strat_mdd": -0.5885127865596292,
   "hodl_mdd": -0.9823305470495738,
   "cost_bps": 25,
-  "strat_mult_net": 171.2921,
-  "strat_cagr_net": 0.20566543987050157,
+  "strat_mult_net": 185.4573,
+  "strat_cagr_net": 0.20846035782682915,
   "strat_mdd_net": -0.5910783745758503,
-  "calmar": 0.3549708312642921,
+  "calmar": 0.3597159959751172,
   "turnover": 29.5,
-  "turnover_per_year": 1.0727272727272728,
+  "turnover_per_year": 1.0694864048338368,
   "n_trades": 85,
-  "avg_exposure": 0.7620845921450151,
-  "boot_mdd_median": -0.550497421252712,
-  "boot_mdd_p5": -0.7479551929862466,
-  "boot_mdd_p1": -0.8321873637988669
+  "avg_exposure": 0.7628012048192772,
+  "boot_mdd_median": -0.5490407095481326,
+  "boot_mdd_p5": -0.7520217266062672,
+  "boot_mdd_p1": -0.8349803291303777
  },
  "current": {
-  "date": "2026-07-31",
-  "ndx": 28274.2,
+  "date": "2026-08-31",
+  "ndx": 29456.97,
   "mom6": "HAUSSE",
   "mom8": "HAUSSE",
   "mom10": "HAUSSE",
@@ -40,9 +40,9 @@
   "votes": 4,
   "target": 1.0,
   "action": "CONSERVER",
-  "strat": 184.4096,
-  "hodl": 29.725,
-  "strat_net": 171.2921
+  "strat": 199.6595,
+  "hodl": 32.1831,
+  "strat_net": 185.4573
  },
  "history": [
   {
@@ -4678,6 +4678,20 @@
    "strat": 184.4096,
    "hodl": 29.725,
    "strat_net": 171.2921
+  },
+  {
+   "date": "2026-08-31",
+   "ndx": 29456.97,
+   "mom6": "HAUSSE",
+   "mom8": "HAUSSE",
+   "mom10": "HAUSSE",
+   "mom12": "HAUSSE",
+   "votes": 4,
+   "target": 1.0,
+   "action": "CONSERVER",
+   "strat": 199.6595,
+   "hodl": 32.1831,
+   "strat_net": 185.4573
   }
  ]
 }

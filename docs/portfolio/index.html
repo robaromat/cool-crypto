@@ -89,13 +89,13 @@
 
 <div class="nav"><a class="navlink" href="../">₿ Bitcoin</a><a class="navlink" href="../eth/">Ξ Ethereum</a><a class="navlink" href="../lqq/">📈 LQQ</a><a class="navlink active" href="./">🧺 Portefeuille</a></div>
 <h1>cool-crypto — portefeuille consolidé</h1>
-<div class="sub">BTC + ETH + LQQ à parts égales (1/3 chacune), rebalancé le 1ᵉʳ du mois · chaque poche suit la cible de sa stratégie · mis à jour le 2026-08-01 07:18 UTC</div>
+<div class="sub">BTC + ETH + LQQ à parts égales (1/3 chacune), rebalancé le 1ᵉʳ du mois · chaque poche suit la cible de sa stratégie · mis à jour le 2026-09-01 06:02 UTC</div>
 
 <div class="reco">
-  <div class="lab">Allocation consolidée du 2026-08-01 · prochaine révision : 2026-09-01</div>
+  <div class="lab">Allocation consolidée du 2026-09-01 · prochaine révision : 2026-10-01</div>
   <table>
     <thead><tr><th>Poche</th><th class=num>Poids de la poche</th><th class=num>Cible de la stratégie</th><th class=num>Part du portefeuille total</th></tr></thead>
-    <tbody><tr><td><b>BTC</b></td><td class=num>33.3%</td><td class=num>75%</td><td class=num style='font-weight:700'>25.0%</td></tr><tr><td><b>ETH</b></td><td class=num>33.3%</td><td class=num>75%</td><td class=num style='font-weight:700'>25.0%</td></tr><tr><td><b>LQQ</b></td><td class=num>33.3%</td><td class=num>100%</td><td class=num style='font-weight:700'>33.3%</td></tr><tr><td>💶 Cash</td><td class=num>—</td><td class=num>—</td><td class=num style='font-weight:700;color:#64748b'>16.7%</td></tr></tbody>
+    <tbody><tr><td><b>BTC</b></td><td class=num>33.3%</td><td class=num>100%</td><td class=num style='font-weight:700'>33.3%</td></tr><tr><td><b>ETH</b></td><td class=num>33.3%</td><td class=num>100%</td><td class=num style='font-weight:700'>33.3%</td></tr><tr><td><b>LQQ</b></td><td class=num>33.3%</td><td class=num>100%</td><td class=num style='font-weight:700'>33.3%</td></tr><tr><td>💶 Cash</td><td class=num>—</td><td class=num>—</td><td class=num style='font-weight:700;color:#64748b'>0.0%</td></tr></tbody>
   </table>
 </div>
 
@@ -106,7 +106,7 @@
 </div>
 <script>
 (function(){
-  var PARTS=[['BTC',0.250000],['ETH',0.250000],['LQQ',0.333333]];
+  var PARTS=[['BTC',0.333333],['ETH',0.333333],['LQQ',0.333333]];
   var inp=document.getElementById('tot'), out=document.getElementById('calcout');
   function fmt(x){return x.toLocaleString('fr-FR',{maximumFractionDigits:0});}
   function calc(){
@@ -127,34 +127,35 @@
 <h2>Pourquoi un portefeuille combiné ?</h2>
 <div class="note" style="font-size:13px;line-height:1.7">Les rendements mensuels des trois stratégies sont <b>faiblement corrélés</b> (BTC-ETH ≈ 0,44 ; BTC-LQQ ≈ 0,20 ; ETH-LQQ ≈ 0,22 sur 2017→2026) : leurs mauvais mois ne tombent pas en même temps. Historiquement, la combinaison 1/3-1/3-1/3 a une <b>pire baisse plus faible que chacune des trois jambes prises isolément</b>, pour un rendement proche de la meilleure. C'est l'effet diversification.</div>
 
-<h2>Performance (2017-02 → 2026-07, backtest auditable)</h2>
+<h2>Performance (2017-02 → 2026-08, backtest auditable)</h2>
 <div class="kpi">
-  <div class="c"><div class="l">Rendement / an — Portefeuille</div><div class="v g">77.4 %</div></div>
-  <div class="c"><div class="l">Rendement / an — 1/3 HODL</div><div class="v">71.8 %</div></div>
+  <div class="c"><div class="l">Rendement / an — Portefeuille</div><div class="v g">79.5 %</div></div>
+  <div class="c"><div class="l">Rendement / an — 1/3 HODL</div><div class="v">74.6 %</div></div>
   <div class="c"><div class="l">Pire baisse — Portefeuille</div><div class="v g">-32 %</div></div>
   <div class="c"><div class="l">Pire baisse — 1/3 HODL</div><div class="v r">-67 %</div></div>
 </div>
 <div class="kpi">
-  <div class="c"><div class="l">Rendement / an — net de frais (25 bps/arbitrage)</div><div class="v g">77.0 %</div></div>
-  <div class="c"><div class="l">Calmar (rdt ÷ pire baisse)</div><div class="v">2.39</div></div>
+  <div class="c"><div class="l">Rendement / an — net de frais (25 bps/arbitrage)</div><div class="v g">79.1 %</div></div>
+  <div class="c"><div class="l">Calmar (rdt ÷ pire baisse)</div><div class="v">2.46</div></div>
   <div class="c"><div class="l">Part investie moyenne</div><div class="v">76 %</div></div>
-  <div class="c"><div class="l">Pire baisse — fourchette bootstrap</div><div class="v">-41 % <span style="font-size:12px;color:#64748b">(5 % pire : -59 %)</span></div></div>
+  <div class="c"><div class="l">Pire baisse — fourchette bootstrap</div><div class="v">-39 % <span style="font-size:12px;color:#64748b">(5 % pire : -58 %)</span></div></div>
 </div>
 <div class="chartwrap"><svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
 <line x1=56 y1=176.3 x2=830 y2=176.3 stroke="#eef2f7"/><text x=50 y=179.3 font-size=10 fill="#94a3b8" text-anchor=end>x10</text><line x1=56 y1=69.8 x2=830 y2=69.8 stroke="#eef2f7"/><text x=50 y=72.8 font-size=10 fill="#94a3b8" text-anchor=end>x100</text>
-<path d="M56.0,270.2 L62.8,247.8 L69.7,235.5 L76.5,206.9 L83.4,204.9 L90.2,203.7 L97.1,184.2 L103.9,189.7 L110.8,181.5 L117.6,165.6 L124.5,153.5 L131.3,150.6 L138.2,150.1 L145.0,169.5 L151.9,154.9 L158.7,158.1 L165.6,163.9 L172.4,161.3 L179.3,164.9 L186.1,170.1 L193.0,175.8 L199.8,189.4 L206.7,190.5 L213.5,192.8 L220.4,186.7 L227.2,183.5 L234.1,176.2 L240.9,161.5 L247.8,154.4 L254.6,158.1 L261.5,163.3 L268.3,164.9 L275.2,161.4 L282.0,166.1 L288.9,167.6 L295.7,156.9 L302.6,157.2 L309.4,171.8 L316.3,156.1 L323.1,149.7 L330.0,150.4 L336.8,136.0 L343.7,129.0 L350.5,137.5 L357.4,132.4 L364.2,118.1 L371.1,105.9 L377.9,92.4 L384.8,83.8 L391.6,77.1 L398.5,68.7 L405.3,77.2 L412.2,79.6 L419.0,73.0 L425.9,62.3 L432.7,66.4 L439.6,56.2 L446.4,55.7 L453.3,61.1 L460.1,71.6 L467.0,70.0 L473.8,65.9 L480.7,76.3 L487.5,87.1 L494.4,104.7 L501.2,91.4 L508.1,95.9 L514.9,102.8 L521.8,97.9 L528.6,102.2 L535.5,106.3 L542.3,92.8 L549.2,93.0 L556.0,85.9 L562.9,85.9 L569.7,84.0 L576.6,79.5 L583.4,79.3 L590.3,84.0 L597.1,83.3 L604.0,79.0 L610.8,72.6 L617.7,67.2 L624.5,67.3 L631.4,53.4 L638.2,51.0 L645.1,57.8 L651.9,49.7 L658.8,50.4 L665.6,51.4 L672.5,57.1 L679.3,55.3 L686.2,53.1 L693.0,40.0 L699.9,41.9 L706.7,41.3 L713.6,49.7 L720.4,54.5 L727.3,53.0 L734.1,43.8 L741.0,42.7 L747.8,34.6 L754.7,31.5 L761.5,28.4 L768.4,29.7 L775.2,38.6 L782.1,37.4 L788.9,43.2 L795.8,48.8 L802.6,48.1 L809.5,40.3 L816.3,40.3 L823.2,46.3 L830.0,45.1" fill=none stroke="#cbd5e1" stroke-width=1.5/>
-<path d="M56.0,272.0 L62.8,249.7 L69.7,237.3 L76.5,208.8 L83.4,209.5 L90.2,206.3 L97.1,194.9 L103.9,196.6 L110.8,187.9 L117.6,178.9 L124.5,178.7 L131.3,176.1 L138.2,176.6 L145.0,177.9 L151.9,169.7 L158.7,168.0 L165.6,167.7 L172.4,167.7 L179.3,169.3 L186.1,172.1 L193.0,176.6 L199.8,181.8 L206.7,180.9 L213.5,184.9 L220.4,180.6 L227.2,178.2 L234.1,172.6 L240.9,159.9 L247.8,153.8 L254.6,157.5 L261.5,162.7 L268.3,164.4 L275.2,161.1 L282.0,165.1 L288.9,165.9 L295.7,157.5 L302.6,158.5 L309.4,171.9 L316.3,159.7 L323.1,153.3 L330.0,153.9 L336.8,139.5 L343.7,132.6 L350.5,141.0 L357.4,135.9 L364.2,121.7 L371.1,109.5 L377.9,96.0 L384.8,87.4 L391.6,83.2 L398.5,74.6 L405.3,75.0 L412.2,73.1 L419.0,69.1 L425.9,67.8 L432.7,69.6 L439.6,67.2 L446.4,66.7 L453.3,66.4 L460.1,69.1 L467.0,69.5 L473.8,67.1 L480.7,73.2 L487.5,77.5 L494.4,82.6 L501.2,74.7 L508.1,76.7 L514.9,79.3 L521.8,76.3 L528.6,80.7 L535.5,81.6 L542.3,73.2 L549.2,73.1 L556.0,68.0 L562.9,68.0 L569.7,66.1 L576.6,61.7 L583.4,61.5 L590.3,66.2 L597.1,65.7 L604.0,61.4 L610.8,55.0 L617.7,49.6 L624.5,49.7 L631.4,35.8 L638.2,33.4 L645.1,40.2 L651.9,32.1 L658.8,32.8 L665.6,33.8 L672.5,39.5 L679.3,37.8 L686.2,35.6 L693.0,23.9 L699.9,25.9 L706.7,25.3 L713.6,33.6 L720.4,37.9 L727.3,36.3 L734.1,30.1 L741.0,28.8 L747.8,22.2 L754.7,19.1 L761.5,16.0 L768.4,17.3 L775.2,26.2 L782.1,25.4 L788.9,29.6 L795.8,33.9 L802.6,33.8 L809.5,27.8 L816.3,26.9 L823.2,31.4 L830.0,31.0" fill=none stroke="#16a34a" stroke-width=2.4/>
-<text x=836 y=33.99877544130081 font-size=11 fill="#16a34a" font-weight=700>Stratégie ×232</text>
-<text x=836 y=48.088741755122584 font-size=11 fill="#94a3b8">HODL ×171</text>
+<path d="M56.0,270.2 L62.8,247.8 L69.6,235.5 L76.4,206.9 L83.2,204.9 L89.9,203.7 L96.7,184.2 L103.5,189.7 L110.3,181.5 L117.1,165.6 L123.9,153.5 L130.7,150.6 L137.5,150.1 L144.3,169.5 L151.1,154.9 L157.8,158.1 L164.6,163.9 L171.4,161.3 L178.2,164.9 L185.0,170.1 L191.8,175.8 L198.6,189.4 L205.4,190.5 L212.2,192.8 L218.9,186.7 L225.7,183.5 L232.5,176.2 L239.3,161.5 L246.1,154.4 L252.9,158.1 L259.7,163.3 L266.5,164.9 L273.3,161.4 L280.1,166.1 L286.8,167.6 L293.6,156.9 L300.4,157.2 L307.2,171.8 L314.0,156.1 L320.8,149.7 L327.6,150.4 L334.4,136.0 L341.2,129.0 L347.9,137.5 L354.7,132.4 L361.5,118.1 L368.3,105.9 L375.1,92.4 L381.9,83.8 L388.7,77.1 L395.5,68.7 L402.3,77.2 L409.1,79.6 L415.8,73.0 L422.6,62.3 L429.4,66.4 L436.2,56.2 L443.0,55.7 L449.8,61.1 L456.6,71.6 L463.4,70.0 L470.2,65.9 L476.9,76.3 L483.7,87.1 L490.5,104.7 L497.3,91.4 L504.1,95.9 L510.9,102.8 L517.7,97.9 L524.5,102.2 L531.3,106.3 L538.1,92.8 L544.8,93.0 L551.6,85.9 L558.4,85.9 L565.2,84.0 L572.0,79.5 L578.8,79.3 L585.6,84.0 L592.4,83.3 L599.2,79.0 L605.9,72.6 L612.7,67.2 L619.5,67.3 L626.3,53.4 L633.1,51.0 L639.9,57.8 L646.7,49.7 L653.5,50.4 L660.3,51.4 L667.1,57.1 L673.8,55.3 L680.6,53.1 L687.4,40.0 L694.2,41.9 L701.0,41.3 L707.8,49.7 L714.6,54.5 L721.4,53.0 L728.2,43.8 L734.9,42.7 L741.7,34.6 L748.5,31.5 L755.3,28.4 L762.1,29.7 L768.9,38.6 L775.7,37.4 L782.5,43.2 L789.3,48.8 L796.1,48.1 L802.8,40.3 L809.6,40.3 L816.4,46.3 L823.2,45.4 L830.0,35.8" fill=none stroke="#cbd5e1" stroke-width=1.5/>
+<path d="M56.0,272.0 L62.8,249.7 L69.6,237.3 L76.4,208.8 L83.2,209.5 L89.9,206.3 L96.7,194.9 L103.5,196.6 L110.3,187.9 L117.1,178.9 L123.9,178.7 L130.7,176.1 L137.5,176.6 L144.3,177.9 L151.1,169.7 L157.8,168.0 L164.6,167.7 L171.4,167.7 L178.2,169.3 L185.0,172.1 L191.8,176.6 L198.6,181.8 L205.4,180.9 L212.2,184.9 L218.9,180.6 L225.7,178.2 L232.5,172.6 L239.3,159.9 L246.1,153.8 L252.9,157.5 L259.7,162.7 L266.5,164.4 L273.3,161.1 L280.1,165.1 L286.8,165.9 L293.6,157.5 L300.4,158.5 L307.2,171.9 L314.0,159.7 L320.8,153.3 L327.6,153.9 L334.4,139.5 L341.2,132.6 L347.9,141.0 L354.7,135.9 L361.5,121.7 L368.3,109.5 L375.1,96.0 L381.9,87.4 L388.7,83.2 L395.5,74.6 L402.3,75.0 L409.1,73.1 L415.8,69.1 L422.6,67.8 L429.4,69.6 L436.2,67.2 L443.0,66.7 L449.8,66.4 L456.6,69.1 L463.4,69.5 L470.2,67.1 L476.9,73.2 L483.7,77.5 L490.5,82.6 L497.3,74.7 L504.1,76.7 L510.9,79.3 L517.7,76.3 L524.5,80.7 L531.3,81.6 L538.1,73.2 L544.8,73.1 L551.6,68.0 L558.4,68.0 L565.2,66.1 L572.0,61.7 L578.8,61.5 L585.6,66.2 L592.4,65.7 L599.2,61.4 L605.9,55.0 L612.7,49.6 L619.5,49.7 L626.3,35.8 L633.1,33.4 L639.9,40.2 L646.7,32.1 L653.5,32.8 L660.3,33.8 L667.1,39.5 L673.8,37.8 L680.6,35.6 L687.4,23.9 L694.2,25.9 L701.0,25.3 L707.8,33.6 L714.6,37.9 L721.4,36.3 L728.2,30.1 L734.9,28.8 L741.7,22.2 L748.5,19.1 L755.3,16.0 L762.1,17.3 L768.9,26.2 L775.7,25.4 L782.5,29.6 L789.3,33.9 L796.1,33.8 L802.8,27.8 L809.6,26.9 L816.4,31.4 L823.2,31.2 L830.0,23.6" fill=none stroke="#16a34a" stroke-width=2.4/>
+<text x=836 y=26.612127065104602 font-size=11 fill="#16a34a" font-weight=700>Stratégie ×272</text>
+<text x=836 y=38.83467150844618 font-size=11 fill="#94a3b8">HODL ×209</text>
 </svg></div>
 <div class="note">Capital indexé, échelle logarithmique. Portefeuille en vert ; « 1/3 HODL » (un tiers de chaque actif conservé sans signal) en gris. Coûts comptés dans chaque jambe (25 bps par arbitrage) ; le rebalancement mensuel inter-poches est supposé sans friction.</div>
 
-<h2>Historique mensuel (114 mois — le plus récent en haut)</h2>
+<h2>Historique mensuel (115 mois — le plus récent en haut)</h2>
 <div class="tablewrap"><table>
 <thead><tr><th>Mois</th><th class=num>Cible BTC</th><th class=num>Cible ETH</th><th class=num>Cible LQQ</th>
 <th class=num>Part investie</th><th class=num>Rdt portefeuille</th><th class=num>Multiple</th></tr></thead>
 <tbody>
-<tr><td>2026-07</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#16a34a'>+0.9%</td><td class=num>231.57</td></tr>
+<tr><td>2026-08</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#16a34a'>+17.9%</td><td class=num>271.68</td></tr>
+<tr><td>2026-07</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#16a34a'>+0.4%</td><td class=num>230.39</td></tr>
 <tr><td>2026-06</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#dc2626'>-9.3%</td><td class=num>229.41</td></tr>
 <tr><td>2026-05</td><td class=num>75%</td><td class=num>75%</td><td class=num>100%</td><td class=num>83%</td><td class=num style='color:#16a34a'>+1.9%</td><td class=num>253.01</td></tr>
 <tr><td>2026-04</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num>75%</td><td class=num style='color:#16a34a'>+13.8%</td><td class=num>248.21</td></tr>
