@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-01 06:52 UTC",
+ "generated_utc": "2026-11-01 07:09 UTC",
  "params": {
   "slope": 2.3,
   "band_low": 0.6,
@@ -8,39 +8,39 @@
   "buffer": 0.75
  },
  "stats": {
-  "months": 117,
-  "strat_mult": 316.0151,
-  "hodl_mult": 332.0762,
-  "strat_cagr": 0.8045972480550834,
-  "hodl_cagr": 0.8137961981579043,
+  "months": 118,
+  "strat_mult": 263.6045,
+  "hodl_mult": 277.0018,
+  "strat_cagr": 0.7627819375970244,
+  "hodl_cagr": 0.7716913308929976,
   "strat_mdd": -0.6409099274046688,
   "hodl_mdd": -0.8953707819729141,
   "cost_bps": 25,
-  "strat_mult_net": 307.244,
-  "strat_cagr_net": 0.7993949762991139,
+  "strat_mult_net": 256.288,
+  "strat_cagr_net": 0.7577431635311753,
   "strat_mdd_net": -0.6422805971467691,
-  "calmar": 1.2553983229956476,
+  "calmar": 1.190154661335751,
   "turnover": 11.25,
-  "turnover_per_year": 1.1538461538461537,
+  "turnover_per_year": 1.1440677966101693,
   "n_trades": 25,
-  "avg_exposure": 0.7245762711864406,
-  "boot_mdd_median": -0.7450618272916698,
-  "boot_mdd_p5": -0.9222068799286078,
-  "boot_mdd_p1": -0.9600256395673995
+  "avg_exposure": 0.726890756302521,
+  "boot_mdd_median": -0.7583014593873916,
+  "boot_mdd_p5": -0.9230222336306828,
+  "boot_mdd_p1": -0.9647292682359535
  },
  "current": {
-  "date": "2026-10-01",
-  "price": 2715.67,
-  "fair_value": 4613.14,
-  "ratio": 0.589,
-  "sma10": 2223.16,
+  "date": "2026-11-01",
+  "price": 2265.28,
+  "fair_value": 4694.13,
+  "ratio": 0.483,
+  "sma10": 2148.59,
   "trend": "HAUSSE",
   "valuation": "bon marché",
   "target": 1.0,
   "action": "CONSERVER",
-  "strat": 316.0151,
-  "hodl": 332.0762,
-  "strat_net": 307.244
+  "strat": 263.6045,
+  "hodl": 277.0018,
+  "strat_net": 256.288
  },
  "history": [
   {
@@ -1677,23 +1677,37 @@
    "valuation": "bon marché",
    "target": 1.0,
    "action": "ACHETER",
-   "strat": 316.0151,
-   "hodl": 332.0762,
-   "strat_net": 307.244
+   "strat": 314.8445,
+   "hodl": 330.8461,
+   "strat_net": 306.1059
   },
   {
    "date": "2026-10-01",
-   "price": 2715.67,
+   "price": 2705.61,
    "fair_value": 4613.14,
-   "ratio": 0.589,
-   "sma10": 2223.16,
+   "ratio": 0.587,
+   "sma10": 2222.15,
    "trend": "HAUSSE",
    "valuation": "bon marché",
    "target": 1.0,
    "action": "CONSERVER",
-   "strat": 316.0151,
-   "hodl": 332.0762,
-   "strat_net": 307.244
+   "strat": 263.6045,
+   "hodl": 277.0018,
+   "strat_net": 256.288
+  },
+  {
+   "date": "2026-11-01",
+   "price": 2265.28,
+   "fair_value": 4694.13,
+   "ratio": 0.483,
+   "sma10": 2148.59,
+   "trend": "HAUSSE",
+   "valuation": "bon marché",
+   "target": 1.0,
+   "action": "CONSERVER",
+   "strat": 263.6045,
+   "hodl": 277.0018,
+   "strat_net": 256.288
   }
  ]
 }
